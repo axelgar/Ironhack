@@ -11,13 +11,12 @@ Virtual Campus for students of Ironhack with calendar as the main feature.
 -  **Logout:** As a user I can logout from the platform so no one else can use it
 -  **Add cohort** As an admin I can add cohorts so that I can organise the students
 -  **Details cohort** As user I want to see the cohort details so that I can know who participate in the cohort
--  **Cohort calendar** As a user I want to see the calendar so that I can know what and when are the lectures
--  **Update calendar** As an admin or staff I want to update the calendar so that I can organise the lectures
+-  **Cohort calendar** As a user I want to see the calendar so that I can know what and when are the unit
+-  **Update calendar** As an admin or staff I want to update the calendar so that I can organise the unit
 -  **List cohorts** As an admin or staff I want to see the cohorts so that I can choose one
 -  **List curriculums** As an admin or staff I want to see the curriculums so that I choose one
 -  **Details curriculum** As an admin or staff I want to see the curriculum details so that I can choose one
--  **Details lecture** As a user I want to see the lecture details so that I can get more information about it
--  **Search lectures** As a user I want to search lectures by category and subcategory so that I can find specific lectures faster
+-  **Details unit** As a user I want to see the lecture details so that I can get more information about it
 
 
 ## Backlog
@@ -31,14 +30,14 @@ Create curriculum:
 Edit curriculum: 
 - As an admim I want to update a curriculum to fix errors and change content
 
-Create lectures: 
-- As an admin or teacher I want to creat lectures to an existing curriculum
+Create unit: 
+- As an admin or teacher I want to creat unit to an existing curriculum
 
-Edit lectures:
-- As an admin or teacher I want to update lectures to fix errors and change content
+Edit unit:
+- As an admin or teacher I want to update unit to fix errors and change content
 
-Delete lectures:
-- As an admin or teacher I want to delete lectures in case the lecture gets obsolete
+Delete unit:
+- As an admin or teacher I want to delete unit in case the lecture gets obsolete
 
 User profile:
 - see own and other users profiles
@@ -50,6 +49,15 @@ Edit profile:
 
 Calendar:
 - limit accesability for students
+- edit fields
+- save calendar and reuse it
+
+Cohort overview: 
+- list of all the projects
+- edit fields
+
+Search unit:
+- as a user I want to search unit by category and subcategory so that I can find specific unit faster
 
 Chat
 
@@ -63,7 +71,7 @@ List web dev and UX/UI news
 
 Create surveys
 
-Material for the lectures in every cohort
+Material for the unit in every cohort
 
 Hiring page (student card)
 
@@ -77,33 +85,33 @@ Emails
 
 ## Routes
 
-- / - Homepage
-- /auth/signup - Signup form
-- /auth/login - Login form
-- /restaurants - restaurant list
-- /restaurants/create - create a restaurant
-- /restaurants/:id - restaurant detail
-- /profile/me - my details and favorite restaurants
+- /auth/login - login form
+- /curriculums - curriculums list
+- /curriculums/:id - curriculum detail
+- /units/:id - unit detail
+- /cohorts - cohorts list
+- /cohorts/create - create form
+- /cohorts/:id/calendar - cohort calendar
+- /cohorts/:id/details - cohort details
 - 404
 
 ## Pages
 
-- Home Page (public)
-- Sign in Page (anon only)
 - Log in Page (anon only)
-- Restaurants List Page (public only)
-- Restaurant Create (user only)
-- Restaurant Detail Page (public only)
-- My Profile Page (user only)
+- Curriculums List Page (admin/staff only)
+- Curriculum Detail Page (admin/staff only)
+- Unit Detail Page (user only)
+- Cohorts List Page (admin/staff only)
+- Cohort Calendar Page (user only)
+- Cohort Detail Page (user only)
 - 404 Page (public)
 
 ## Components
 
-- Restaurant Card component
-  - Input: restaurant: any
-  - Output: favorite(restaurantId: string, on: boolean)
-- Search component
-  - Output: change(terms: string)
+- Unit Card component
+  - Input: unit: any
+- Calendar component
+  - Input: calendar: any
 
 ## IO
 
@@ -112,16 +120,24 @@ Emails
 
 - Auth Service
   - auth.login(user)
-  - auth.signup(user)
   - auth.logout()
   - auth.me()
   - auth.getUser() // synchronous
-- Restaurant Service
-  - restaurant.list()
-  - restaurant.create(data)
-  - restaurant.detail(id)
-  - restaurant.addFavorite(id)
-  - restaurant.removeFavorite(id)   
+- Curriculum Service
+  - curriculum.list()
+  - curriculum.detail(id)
+- Cohort Service
+  - cohort.list()
+  - cohort.detail(id)
+  - cohort.create(data)
+- Calendar Service ?? Dragula
+  - calendar.dragstart()
+  - calendar.moved()
+  - calendar.dragend()
+  - calendar.canceled()
+  - calendar.dragend()
+  - calendar.callback()
+
 
 # Server
 
@@ -130,39 +146,66 @@ Emails
 User model
 
 ```
-username - String // required
+role - String // required & enum ['admin', 'staff', 'student']
 email - String // required & unique
 password - String // required
-favorites - [ObjectID<Restaurant>]
 ```
 
-Restaurant model
+Curriculum model
 
 ```
-owner - ObjectID<User> // required
-name - String // required
-phone - String
-address - String
+modules - ObjectID<User> // required
+type - String // required & enum ['webdev', 'ux-ui']
 ```
+
+Unit model
+
+```
+mandatory - Boolean // required
+category - String // required & enum ['lessons', 'rituals', 'practice-&-reviews']
+sub-category - String // required & enum ['lecture', 'research', 'code-along', 'demo', 'practice', 'review', 'de', 'stand-up', 'kick-off', 'activity', 'pp']
+title - String // required
+link - Array [] 
+learningObjectives - String // required & ??
+duration - Number // required
+```
+
+Calendar model
+
+```
+class-master - ObjectID<User> // required
+title - String // required 
+week - Number // required & enum ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+module - String // required & enum ['1', '2', '3']
+days - Array [{ObjectID<Unit>...}] 
+startDate - Date // required
+parckingLot - Array [{ObjectID<Unit>...}]
+adaptiveCurriculum - Array [{ObjectID<Unit>...}]
+cohort - ObjectID<Cohort> // required
+```
+
+Cohort model
+
+```
+teacher - ObjectID<User> 
+TAs - Array[ObjectID<User>..] 
+students - Array[ObjectID<User>..] 
+title - String // required 
+type - String // required & enum ['webdev', 'ux-ui']
+startDate - Date // required
+language - String // required & enum ['en', 'es']
+nickName - String 
+```
+
 
 ## API Endpoints/Backend Routes
 
 - GET /auth/me
-- POST /auth/signup
-  - body:
-    - username
-    - email
-    - password
 - POST /auth/login
   - body:
-    - username
+    - email
     - password
 - POST /auth/logout
-  - body: (empty)
-- POST /user/me/favorite
-  - body:
-    - restaurantId
-- DELETE /user/me/favorite/:restaurantId
   - body: (empty)
 - GET /restaurant
 - POST /restaurant
@@ -184,7 +227,7 @@ address - String
 
 The url to your repository and to your deployed project
 
-[Client repository Link](http://github.com)
+[Client repository Link](https://github.com/axelgar/Ironhack-client/)
 [Server repository Link](http://github.com)
 
 [Deploy Link](http://heroku.com)
