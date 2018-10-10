@@ -1,4 +1,4 @@
-# Ironhack
+# Ironhack Client
 
 ## Description
 
