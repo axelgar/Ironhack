@@ -190,7 +190,7 @@ Cohort model
 teacher - ObjectID<User> 
 TAs - Array[ObjectID<User>..] 
 students - Array[ObjectID<User>..] 
-title - String // required 
+title - String //
 type - String // required & enum ['webdev', 'ux-ui']
 startDate - Date // required
 language - String // required & enum ['en', 'es']
@@ -207,14 +207,32 @@ nickName - String
     - password
 - POST /auth/logout
   - body: (empty)
-- GET /restaurant
-- POST /restaurant
-  - body:
-    - name
-    - phone
-    - address
-- GET /restaurant/:id
+  
+- GET /curriculum
+- GET /curriculum/:id
 
+- GET /cohort
+- POST /cohort
+  - body:
+    - type
+    - startDate
+    - language
+    
+- POST /cohort/:id/edit
+  - body:
+    - teacher
+    - TAs
+    - students
+    - nickName
+    
+- GET /cohort/:id/details
+- GET /cohort/:id/calendar
+
+- POST /cohort/:id/calendar/edit
+  - body:
+    - unit
+
+- GET /units/:id
   
 
 ## Links
