@@ -246,7 +246,7 @@ nickName - String
 The url to your repository and to your deployed project
 
 [Client repository Link](https://github.com/axelgar/Ironhack-client/)
-[Server repository Link](http://github.com)
+[Server repository Link](https://github.com/axelgar/Ironhack-server)
 
 [Deploy Link](http://heroku.com)
 
