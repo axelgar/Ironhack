@@ -18,13 +18,13 @@ export class UnitService {
       .toPromise();
   }
 
-  // getCalendar(id): Promise<any> {
-  //   const options = {
-  //     withCredentials: true
-  //   }
-  //   return this.httpClient.get(`${this.baseUrl}/${id}/calendar`, options)
-  //     .toPromise();
-  // }
+  getUnit(id): Promise<any> {
+    const options = {
+      withCredentials: true
+    }
+    return this.httpClient.get(`${this.baseUrl}/${id}`, options)
+      .toPromise();
+  }
 
   // getOverview(id): Promise<any> {
   //   const options = {

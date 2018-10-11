@@ -1,3 +1,13 @@
-<p>
-  unit-detail-page works!
-</p>
+<div *ngIf="unit">
+ ---- <h2>{{unit.title}}</h2> ----
+  <p>{{unit.category}}</p>
+  <p>{{unit.subCategory}}</p>
+  <p>{{unit.duration}}</p>
+  <p>{{unit.learningObjective}}</p>
+  <ul>
+    <li *ngFor= "let link of unit.links">
+      <a href="#">{{link}}</a>
+    </li>
+  </ul>
+  <p>{{unit.description}}</p>
+</div>
