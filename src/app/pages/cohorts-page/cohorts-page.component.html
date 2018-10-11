@@ -1,0 +1,11 @@
+<p>it works</p>
+<ul class="card-container" >
+  <li *ngFor="let cohort of cohorts">
+    <div class="card section">
+      <h3>{{cohort.type}}</h3>
+      <p>{{cohort.startDate | date: "MMyy"}}</p>
+    </div>
+    <!-- <app-icecream-card [icecream]="icecream"></app-icecream-card> -->
+  </li>
+</ul>
+

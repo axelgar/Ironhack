@@ -1,0 +1,9 @@
+<ul class="card-container">
+  <li *ngFor="let unit of units">
+    <div class="card section" [ngClass]="{'is-lesson': unit.category === 'lessons', 'is-ritual': unit.category === 'rituals', 'is-pr': unit.category === 'practice&reviews', 'is-break': unit.category === 'breaks' }">
+      <h3>{{unit.subCategory}}</h3>
+      <p>{{unit.title}}</p>
+    </div>
+    <!-- <app-icecream-card [icecream]="icecream"></app-icecream-card> -->
+  </li>
+</ul>

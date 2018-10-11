@@ -1,5 +1,21 @@
 <header id="site-header">
   <h1>Ironhack</h1>
+  <div *ngIf="!loading && user">
+    <a [routerLink]="['/profile']">{{user.email}}</a>
+    <a (click)="logout()">logout</a>
+  </div>
+  <div *ngIf="!loading && anon">
+    <a [routerLink]="['/login']">login</a>
+  </div>
+  <div class="links">
+    <a [routerLink]="['/cohort']">Cohorts</a>
+    <a [routerLink]="['/curriculums']">Curriculums</a>
+    <a [routerLink]="['/cohort/create']">Creat Cohort</a>
+    <a [routerLink]="['/cohort/:id/calendar']">Cohort Calendar</a>
+    <a [routerLink]="['/cohort/:id/overview']">Cohort Overview</a>
+    <a [routerLink]="['/unit/:id']">Unit Details</a>
+    <a [routerLink]="['/curriculum/:id']">Curriculum Details</a>
+  </div>
 </header>
 <router-outlet></router-outlet>
 <footer id="site-footer">

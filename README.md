@@ -157,7 +157,7 @@ password - String // required
 Curriculum model
 
 ```
-modules - [ObjectID<Unit>] // required
+units - [ObjectID<Unit>] // required
 type - String // required & enum ['webdev', 'ux-ui']
 ```
 
