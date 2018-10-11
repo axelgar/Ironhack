@@ -11,9 +11,9 @@ Virtual Campus for students of Ironhack with calendar as the main feature.
 -  **Logout:** As a user I can logout from the platform so no one else can use it
 -  **Add cohort** As an admin I can add cohorts so that I can organise the students
 -  **Details cohort** As user I want to see the cohort details so that I can know who participate in the cohort
+-  **List cohorts** As an admin or staff I want to see the cohorts so that I can choose on
 -  **Cohort calendar** As a user I want to see the calendar so that I can know what and when are the unit
 -  **Update calendar** As an admin or staff I want to update the calendar so that I can organise the unit
--  **List cohorts** As an admin or staff I want to see the cohorts so that I can choose one
 -  **List curriculums** As an admin or staff I want to see the curriculums so that I choose one
 -  **Details curriculum** As an admin or staff I want to see the curriculum details so that I can choose one
 -  **Details unit** As a user I want to see the lecture details so that I can get more information about it
@@ -61,7 +61,7 @@ Search unit:
 
 Chat
 
-Picture recognision
+Picture recognision (Google Vision API - Test)
 
 Events calendar
 
@@ -85,7 +85,7 @@ Emails
 
 ## Routes
 
-- /auth/login - login form
+- /login - login form
 - /curriculums - curriculums list
 - /curriculums/:id - curriculum detail
 - /units/:id - unit detail
@@ -123,19 +123,21 @@ Emails
   - auth.logout()
   - auth.me()
   - auth.getUser() // synchronous
+  
 - Curriculum Service
   - curriculum.list()
   - curriculum.detail(id)
+  
 - Cohort Service
   - cohort.list()
   - cohort.detail(id)
   - cohort.create(data)
+  
 - Calendar Service ?? Dragula
   - calendar.dragstart()
   - calendar.moved()
   - calendar.dragend()
   - calendar.canceled()
-  - calendar.dragend()
   - calendar.callback()
 
 
@@ -154,7 +156,7 @@ password - String // required
 Curriculum model
 
 ```
-modules - ObjectID<User> // required
+modules - [ObjectID<Unit>] // required
 type - String // required & enum ['webdev', 'ux-ui']
 ```
 
@@ -165,7 +167,7 @@ mandatory - Boolean // required
 category - String // required & enum ['lessons', 'rituals', 'practice-&-reviews']
 sub-category - String // required & enum ['lecture', 'research', 'code-along', 'demo', 'practice', 'review', 'de', 'stand-up', 'kick-off', 'activity', 'pp']
 title - String // required
-link - Array [] 
+links - Array [] 
 learningObjectives - String // required & ??
 duration - Number // required
 ```
@@ -177,10 +179,10 @@ class-master - ObjectID<User> // required
 title - String // required 
 week - Number // required & enum ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 module - String // required & enum ['1', '2', '3']
-days - Array [{ObjectID<Unit>...}] 
+days - Array [ObjectID<Unit>] 
 startDate - Date // required
-parckingLot - Array [{ObjectID<Unit>...}]
-adaptiveCurriculum - Array [{ObjectID<Unit>...}]
+parkingLot - Array [ObjectID<Unit>]
+adaptiveCurriculum - Array [ObjectID<Unit>]
 cohort - ObjectID<Cohort> // required
 ```
 
@@ -188,8 +190,8 @@ Cohort model
 
 ```
 teacher - ObjectID<User> 
-TAs - Array[ObjectID<User>..] 
-students - Array[ObjectID<User>..] 
+TAs - [ObjectID<User>..] 
+students - [ObjectID<User>..] 
 title - String //
 type - String // required & enum ['webdev', 'ux-ui']
 startDate - Date // required
@@ -208,31 +210,48 @@ nickName - String
 - POST /auth/logout
   - body: (empty)
   
+  
 - GET /curriculum
+  - validation
+  - auth
 - GET /curriculum/:id
+  - validation
+  - auth
 
 - GET /cohort
+  - validation
+  - auth
 - POST /cohort
+  - validation
+  - auth
   - body:
     - type
     - startDate
     - language
-    
 - POST /cohort/:id/edit
+  - validation
+  - auth
   - body:
     - teacher
     - TAs
     - students
-    - nickName
-    
+    - nickName 
 - GET /cohort/:id/details
+  - validation
+  - auth
 - GET /cohort/:id/calendar
-
+  - validation
+  - auth
 - POST /cohort/:id/calendar/edit
+  - validation
+  - auth
   - body:
     - unit
 
+
 - GET /units/:id
+  - validation
+  - auth
   
 
 ## Links
