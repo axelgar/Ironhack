@@ -18,6 +18,14 @@ export class CohortService {
       .toPromise();
   }
 
+  getCohort(id): Promise<any> {
+    const options = {
+      withCredentials: true
+    }
+    return this.httpClient.get(`${this.baseUrl}/${id}`, options)
+      .toPromise();
+  }
+
   getCalendar(id): Promise<any> {
     const options = {
       withCredentials: true
