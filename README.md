@@ -101,6 +101,7 @@ Emails
 - Curriculums List Page (admin/staff only)
 - Curriculum Detail Page (admin/staff only)
 - Unit Detail Page (user only)
+- Cohort Create (admin/staff? only)
 - Cohorts List Page (admin/staff only)
 - Cohort Calendar Page (user only)
 - Cohort Detail Page (user only)
