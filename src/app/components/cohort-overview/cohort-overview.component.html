@@ -1,3 +1,23 @@
-<p>
-  cohort-overview works!
-</p>
+<div *ngIf="cohort">
+  <div class="teacher-card">
+    <p>Teacher</p>
+    <p>{{cohort.teacher}}</p>
+  </div>
+  <div>
+    <ul>
+      <li *ngFor="let ta of cohort.tas" class="tas-card">
+        <p>TA</p>
+        <p>{{ta.name}}</p>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li *ngFor="let student of cohort.students" class="students-card">
+        <p>Student</p>
+        <p>{{student.name}} {{student.surname}}</p>
+      </li>
+    </ul>
+  </div>
+  
+</div>

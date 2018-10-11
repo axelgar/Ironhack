@@ -11,6 +11,7 @@ export class CohortDetailsPageComponent implements OnInit {
   id: string;
   cohort: any;
   error = false;
+  calendar = true;
 
   constructor(private cohortService: CohortService, private route: ActivatedRoute) {}
 
@@ -27,5 +28,13 @@ export class CohortDetailsPageComponent implements OnInit {
             this.error = true;
           })
       })
+  }
+
+  handleToggleClickCalendar() {
+    this.calendar = true;
+  }
+
+  handleToggleClickOverview() {
+    this.calendar = false;
   }
 }

@@ -41,4 +41,14 @@ export class CohortService {
     return this.httpClient.get(`${this.baseUrl}/${id}/overview`, options)
       .toPromise();
   }
+
+  create(data): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.post(`${this.baseUrl}`, data, options)
+      .toPromise();
+  }
+
+
 }

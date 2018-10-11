@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cohort-calendar',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cohort-calendar.component.scss']
 })
 export class CohortCalendarComponent implements OnInit {
-
+  @Input() cohortId: any;
   constructor() { }
 
   ngOnInit() {

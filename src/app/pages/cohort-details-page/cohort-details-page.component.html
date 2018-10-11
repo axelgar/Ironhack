@@ -1,14 +1,14 @@
 <div *ngIf="cohort">
   <div>
-    <a href=""></a>
-    <a href=""></a>
+    <p class="calendar" (click)="handleToggleClickCalendar()">calendar</p>
+    <p class="overview" (click)="handleToggleClickOverview()">overview</p>
   </div>
 
-  <div>
+  <div *ngIf="calendar">
     <app-cohort-calendar></app-cohort-calendar>
   </div>
 
-  <div>
+  <div *ngIf="!calendar">
     <app-cohort-overview></app-cohort-overview>
   </div>
   </div>
