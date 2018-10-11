@@ -1,0 +1,29 @@
+<form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+
+  <div class="field" [ngClass]="{'has-error': feedbackEnabled && emailField.errors}">
+    <label>Email</label>
+    <input type="email" name="email" [(ngModel)]="login.email" #emailField="ngModel" required [disabled]="processing" />
+    <div *ngIf="feedbackEnabled && emailField.errors || emailField.dirty && emailField.errors">
+      <p *ngIf="emailField.errors.required" class="validation">email required</p>
+    </div>
+  </div>
+
+  <div class="field" [ngClass]="{'has-error': feedbackEnabled && passwordField.errors}">
+    <label>Password</label>
+    <input type="password" name="password" [(ngModel)]="login.password" #passwordField="ngModel" required [disabled]="processing" />
+    <div *ngIf="feedbackEnabled && passwordField.errors || passwordField.dirty && passwordField.errors">
+      <p *ngIf="passwordField.errors.required" class="validation">password required</p>
+    </div>
+  </div>
+
+  <div class="field submit">
+    <button type="submit" [disabled]="processing">Login!</button>
+    <div *ngIf="feedbackEnabled && form.invalid">
+      <p class="validation">there are errors in the form, please review the fields</p>
+    </div>
+    <div *ngIf="error" [ngSwitch]="error">
+      <p *ngSwitchCase="'not-found'" class="validation">Email or password not found</p>
+      <p *ngSwitchDefault class="validation">there are errors, please <a (click)="submitForm(form)">try again</a></p>
+    </div>
+  </div>
+</form>
