@@ -6,7 +6,7 @@ Virtual Campus for students of Ironhack with calendar as the main feature.
 
 ## User Stories
 
--  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+-  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault.
 -  **Login:** As a user I can login to the platform so that I can interact with the web site
 -  **Logout:** As a user I can logout from the platform so no one else can use it
 -  **Add cohort** As an admin I can add cohorts so that I can organise the students
