@@ -1,5 +1,4 @@
-<p>it works</p>
-<ul class="card-container" >
+<ul class="card-container" *ngIf="cohorts" >
   <li *ngFor="let cohort of cohorts">
     <div class="card section">
       <h3>{{cohort.type}}</h3>

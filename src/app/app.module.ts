@@ -12,7 +12,7 @@ import { CohortsPageComponent } from './pages/cohorts-page/cohorts-page.componen
 import { CohortCreatePageComponent } from './pages/cohort-create-page/cohort-create-page.component';
 import { CohortCalendarPageComponent } from './pages/cohort-calendar-page/cohort-calendar-page.component';
 import { CohortOverviewPageComponent } from './pages/cohort-overview-page/cohort-overview-page.component';
-import { CurriculumsPageComponent } from './pages/curriculums-page/curriculums-page.component';
+import { CurriculumPageComponent } from './pages/curriculums-page/curriculums-page.component';
 import { CurriculumDetailPageComponent } from './pages/curriculum-detail-page/curriculum-detail-page.component';
 import { UnitDetailPageComponent } from './pages/unit-detail-page/unit-detail-page.component';
 
@@ -27,7 +27,7 @@ import { RequireStudentGuard } from './guards/require-student.guard';
 const routes: Routes = [
   { path: 'login', component: LogInPageComponent, canActivate: [RequireAnonGuard]},
   { path: 'cohort', component: CohortsPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
-  { path: 'curriculums', component: CurriculumsPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
+  { path: 'curriculums', component: CurriculumPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
   { path: 'curriculum/:id', component: CurriculumDetailPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
   { path: 'cohort/:id/calendar', component: CohortCalendarPageComponent, canActivate: [RequireUserGuard]},
   { path: 'cohort/:id/overview', component: CohortOverviewPageComponent, canActivate: [RequireUserGuard]},
@@ -42,7 +42,7 @@ const routes: Routes = [
     NotFoundPageComponent,
     LogInPageComponent,
     CohortsPageComponent,
-    CurriculumsPageComponent,
+    CurriculumPageComponent,
     CurriculumDetailPageComponent,
     CohortCreatePageComponent,
     CohortCalendarPageComponent,

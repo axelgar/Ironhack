@@ -21,7 +21,6 @@ export class UnitDetailPageComponent implements OnInit {
         this.unitService.getUnit(this.id)
           .then((result) => {
             this.unit = result;
-            console.log(this.unit)
           })
           .catch((error) => {
             console.log(error);

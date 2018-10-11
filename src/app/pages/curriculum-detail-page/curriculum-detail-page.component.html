@@ -1,11 +1,11 @@
 <ul class="card-container">
   <li *ngFor="let unit of units" 
-  [ngClass]="{
-    'is-lesson': unit.category === 'lessons',
-    'is-ritual': unit.category === 'rituals',
-    'is-pr': unit.category === 'practice&reviews',
-    'is-break': unit.category === 'break' 
-  }">
+    [ngClass]="{
+      'is-lesson': unit.category === 'lessons',
+      'is-ritual': unit.category === 'rituals',
+      'is-pr': unit.category === 'practice&reviews',
+      'is-break': unit.category === 'break' 
+    }">
     <a [routerLink]="['/unit', unit._id]">
       <div class="card section">
         <h3>{{unit.subCategory}}</h3>

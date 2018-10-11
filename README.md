@@ -10,7 +10,7 @@ Virtual Campus for students of Ironhack with calendar as the main feature.
 -  **Login:** As a user I can login to the platform so that I can interact with the web site
 -  **Logout:** As a user I can logout from the platform so no one else can use it
 -  **Add cohort** As an admin I can add cohorts so that I can organise the students
--  **Details cohort** As user I want to see the cohort details so that I can know who participate in the cohort
+-  **Overview cohort** As user I want to see the cohort details so that I can know who participate in the cohort
 -  **List cohorts** As an admin or staff I want to see the cohorts so that I can choose on
 -  **Cohort calendar** As a user I want to see the calendar so that I can know what and when are the unit
 -  **Update calendar** As an admin or staff I want to update the calendar so that I can organise the unit

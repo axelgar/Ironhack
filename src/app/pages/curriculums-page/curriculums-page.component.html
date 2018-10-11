@@ -1,3 +1,9 @@
-<p>
-  curriculums-page works!
-</p>
+<ul class="card-container" *ngIf="curricula" >
+  <li *ngFor="let curriculum of curricula">
+    <div class="card section">
+      <a [routerLink]="['/curriculum', curriculum._id]">
+        <h3>{{curriculum.type}}</h3>
+      </a>
+    </div>
+  </li>
+</ul>
