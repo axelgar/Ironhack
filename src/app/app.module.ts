@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'login', component: LogInPageComponent, canActivate: [RequireAnonGuard]},
   { path: 'cohort', component: CohortsPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
   { path: 'cohort/create', component: CohortCreatePageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
-  { path: 'cohort/details', component: CohortDetailsPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'cohort/:id', component: CohortDetailsPageComponent, canActivate: [RequireUserGuard]},
   { path: 'curriculums', component: CurriculumPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
   { path: 'curriculum/:id', component: CurriculumDetailPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
   { path: 'unit/:id', component: UnitDetailPageComponent, canActivate: [RequireUserGuard]},

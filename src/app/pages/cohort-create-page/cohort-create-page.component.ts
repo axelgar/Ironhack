@@ -21,12 +21,8 @@ export class CohortCreatePageComponent implements OnInit {
   newCohort: any = {
     location: '',
     type: '',
-    campus: '',
     startDate: '',
-    language: '',
-    teacher: '',
-    tas: '',
-    students: ''
+    language: ''
   }
 
   constructor(private cohortService: CohortService, private userService: UserService, private router: Router) { }
@@ -57,8 +53,9 @@ export class CohortCreatePageComponent implements OnInit {
     if (form.valid) {
       this.processing = true;
       this.cohortService.create(this.newCohort)
-        .then(() => {
-          this.router.navigate(['/list']);
+        .then((cohort) => {
+          const id = cohort._id;
+          this.router.navigate([`/cohort/${id}`]);
         })
         .catch((err) => {
           this.error = err.error.code; // :-)
