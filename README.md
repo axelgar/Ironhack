@@ -208,51 +208,67 @@ nickName - String
   - body:
     - email
     - password
+   (200) status code 
+   
 - POST /auth/logout
   - body: (empty)
-  
+  (204) status code 
   
 - GET /curriculum
-  - validation
-  - auth
+  - validation (404)
+  - auth (401) admin / staff
+  (200) status code 
+  
 - GET /curriculum/:id
-  - validation
-  - auth
+  - validation (404) validId, exists?
+  - auth (401) admin / staff
 
 - GET /cohort
   - validation
-  - auth
+  - auth (401) admin
+  
 - POST /cohort
-  - validation
-  - auth
+  - validation requeired fields (422 Unprocessable Entity)
+  - auth (401) admin / staff
   - body:
     - type
     - startDate
     - language
+     (200) status code 
+    
 - POST /cohort/:id/edit
-  - validation
-  - auth
+  - validation, valid inputs 422 Unprocessable Entity
+  - auth (401) admin / staff
   - body:
     - teacher
     - TAs
     - students
     - nickName 
+     (200) status code 
+    
 - GET /cohort/:id/details
-  - validation
-  - auth
+  - validation validId
+  - auth (401) user / not ano
+   (200) status code 
+  
 - GET /cohort/:id/calendar
-  - validation
-  - auth
+  - validation validId
+  - auth (401) user / not ano
+   (200) status code 
+  
 - POST /cohort/:id/calendar/edit
-  - validation
-  - auth
+  - validation validId
+  - auth (401) admin / staff
   - body:
     - unit
+     (200) status code 
+    
 
 
 - GET /units/:id
   - validation
-  - auth
+  - auth (401) user / not ano
+   (200) status code 
   
 
 ## Links
