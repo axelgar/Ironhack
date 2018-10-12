@@ -1,19 +1,19 @@
 <header id="site-header" *ngIf="user">
-  <h1>Ironhack</h1>
-  <div *ngIf="!loading && user">
-    <a [routerLink]="['/profile']">{{user.email}}</a>
-    <a (click)="logout()">logout</a>
-  </div>
-  <div *ngIf="!loading && anon">
-    <a [routerLink]="['/login']">login</a>
-  </div>
-  <div class="links">
-    <a [routerLink]="['/cohort']">Cohorts</a>
-    <a [routerLink]="['/curriculums']">Curriculums</a>
-    <a [routerLink]="['/cohort/create']">Creat Cohort</a>
-  </div>
+  <h1>Iron<span class="title">hack</span> </h1>
 </header>
 <router-outlet></router-outlet>
 <footer id="site-footer" *ngIf="user">
+        <div *ngIf="!loading && user">
+          <!-- <a [routerLink]="['/profile']">{{user.email}}</a> -->
+          <a (click)="logout()">logout</a>
+        </div>
+        <div *ngIf="!loading && anon">
+          <a [routerLink]="['/login']">login</a>
+        </div>
+        <div class="links">
+          <a [routerLink]="['/cohort']">Cohorts</a>
+          <a [routerLink]="['/curriculums']">Curriculums</a>
+          <!-- <a [routerLink]="['/profile']">Curriculums</a> -->
+        </div>
   Nice footer
 </footer>
