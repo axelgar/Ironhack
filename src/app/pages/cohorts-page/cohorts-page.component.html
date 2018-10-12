@@ -2,11 +2,13 @@
   <h2>Cohorts</h2>
   
   <ul class="card-container" *ngIf="cohorts" >
-    <li>
-      <div class="card cohort-card">
-        <span>+</span>
-      </div>
-    </li>
+    <a [routerLink]="['/cohort/create']">
+      <li>
+        <div class="card cohort-card">
+          <span>+</span>
+        </div>
+      </li>
+    </a>
     <li *ngFor="let cohort of cohorts">
       <a [routerLink]="['/cohort', cohort._id]">
         <div class="card cohort-card">
