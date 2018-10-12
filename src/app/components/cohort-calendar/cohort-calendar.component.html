@@ -1,6 +1,6 @@
 <h3>cohort-calendar works!</h3>
 <ul *ngIf="cohort">
   <li *ngFor="let day of cohort.days" class="day-card">
-    {{day}}
+    {{day.date | date: "dd MMMM yyyy hh"}}
   </li>
 </ul>
