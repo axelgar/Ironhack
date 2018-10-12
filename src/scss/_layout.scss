@@ -1,0 +1,89 @@
+#site-header {
+  padding: 20px 0;
+  color: #000f40;
+  background: #f9f9fa;
+  position: relative;
+  text-align: center;
+  box-shadow: 0	2px	8px	rgba(12, 12, 13, 0.1);
+  
+
+  nav {
+    padding-top: 20px;
+
+    a {
+      text-decoration: none;
+      color: #000f40;
+      margin-right: 10px;
+
+      &:active {
+        color: #F7B733;
+      }
+
+      &:hover {
+        border-bottom: 4px solid #F7B733;
+      }
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  h1 {
+    a {
+      text-decoration: none;
+      color: #000f40;
+    }
+  }
+
+  div {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    padding-right: 10px;
+
+    a {
+      text-decoration: none;
+      padding-left: 5px;
+
+      &:first-child {
+        padding: 0;
+      }
+    }
+
+    .username {
+      font-weight: 700;
+      color: #F7B733;
+    }
+  }
+}
+
+#site-footer {
+  color: #f9f9fa;
+  padding: 20px 0;
+  background: #F7B733;
+  text-align: center;
+}
+
+#site-main {
+  margin-bottom: 60px;
+  height: 100%;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.container {
+  margin: 0 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 728px;
+    margin: 0 auto;
+  }
+}

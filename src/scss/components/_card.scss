@@ -1,0 +1,56 @@
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: $color-white;;
+  padding: 30px 10px;
+  border-radius: 20px;
+  box-shadow: 0	4px	16px	rgba(12, 12, 13, 0.1);
+  margin-bottom: 20px;
+
+  &.cohort-card {
+    width: 150px;
+    height: 150px;
+    text-align: center
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+
+  span {
+    font-size: 30px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.card-list {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  li {
+    list-style: none;
+    width: 40%;
+  }
+}
+
+

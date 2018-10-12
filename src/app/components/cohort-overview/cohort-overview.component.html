@@ -1,21 +1,25 @@
 <div *ngIf="cohort">
   <div class="teacher-card">
     <p>Teacher</p>
-    <p>{{cohort.teacher}}</p>
-  </div>
-  <div>
     <ul>
-      <li *ngFor="let ta of cohort.tas" class="tas-card">
-        <p>TA</p>
-        <p>{{ta.name}}</p>
+      <li *ngFor="let teacher of cohort.teacher" class="teachers-card">
+        <p>{{teacher.firstName}}</p>
       </li>
     </ul>
   </div>
   <div>
+    <p>TA</p>
+    <ul>
+      <li *ngFor="let ta of cohort.tas" class="tas-card">
+        <p>{{ta.firstName}}</p>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <p>Student</p>
     <ul>
       <li *ngFor="let student of cohort.students" class="students-card">
-        <p>Student</p>
-        <p>{{student.name}} {{student.surname}}</p>
+        <p>{{student.firstName}} {{student.lastName}}</p>
       </li>
     </ul>
   </div>

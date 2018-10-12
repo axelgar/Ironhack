@@ -1,11 +1,20 @@
-<ul class="card-container" *ngIf="cohorts" >
-  <li *ngFor="let cohort of cohorts">
-    <a [routerLink]="['/cohort', cohort._id]">
-      <div class="card section">
-        <h3>{{cohort.type}}</h3>
-        <p>{{cohort.startDate | date: "MMyy"}}</p>
+<section class="cohort-list">
+  <h2>Cohorts</h2>
+  
+  <ul class="card-container" *ngIf="cohorts" >
+    <li>
+      <div class="card cohort-card">
+        <span>+</span>
       </div>
-    </a>
-  </li>
-</ul>
+    </li>
+    <li *ngFor="let cohort of cohorts">
+      <a [routerLink]="['/cohort', cohort._id]">
+        <div class="card cohort-card">
+          <h3>{{cohort.type}}</h3>
+          <p>{{cohort.startDate | date: "MMyy"}}</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</section>
 

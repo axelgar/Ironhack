@@ -22,7 +22,8 @@ export class CohortCreatePageComponent implements OnInit {
     location: '',
     type: '',
     startDate: '',
-    language: ''
+    language: '',
+    tas: {}
   }
 
   constructor(private cohortService: CohortService, private userService: UserService, private router: Router) { }

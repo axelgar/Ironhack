@@ -1,4 +1,4 @@
-<header id="site-header">
+<header id="site-header" *ngIf="user">
   <h1>Ironhack</h1>
   <div *ngIf="!loading && user">
     <a [routerLink]="['/profile']">{{user.email}}</a>
@@ -14,6 +14,6 @@
   </div>
 </header>
 <router-outlet></router-outlet>
-<footer id="site-footer">
+<footer id="site-footer" *ngIf="user">
   Nice footer
 </footer>

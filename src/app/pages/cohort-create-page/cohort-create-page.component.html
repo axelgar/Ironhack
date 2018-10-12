@@ -60,22 +60,20 @@
     </select>
   </div>
 
-  <!-- <div class="field" *ngIf="tas">
-    <label>TAs</label>
-    <select name="ta"[(ngModel)]="newCohort.tas" #tasField="ngModel" [disabled]="processing" multiple="multiple">
-      <option value="">-Pick one-</option>
-      <option value="{{ta._id}}" *ngFor="let ta of tas">{{ta.firstName}}</option>
-    </select>
-  </div> -->
-
   <div class="field" *ngIf="tas">
     <label>TAs</label>
-    <div *ngFor="let ta of tas">
-      <label>{{ta.firstName}}</label>
-      <input type="checkbox" name="{{ta.firstName}}" [(ngModel)]="newCohort.tas" #tasField="ngModel" [disabled]="processing" value="{{ta._id}}" id="{{ta._id}}" ng-model="getValue" ng-true-value="'YES'" ng-false-value="'NO'">
-    </div>
+    <select multiple [(ngModel)]="newCohort.tas" [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let ta of tas" [ngValue]="ta._id">{{ta.firstName}}</option>
+    </select>
   </div>
-
+  
+  <div class="field" *ngIf="students">
+    <label>Students</label>
+    <select multiple [(ngModel)]="newCohort.students" [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let student of students" [ngValue]="student._id">{{student.firstName}}</option>
+    </select>
+  </div>
+<!-- 
   <div class="field" *ngIf="students">
     <label>students</label>
     <ul>
@@ -84,7 +82,7 @@
           value="{{student._id}}" id="{{student._id}}"><label for="{{student._id}}">{{student.firstName}}</label>
       </li>
     </ul>
-  </div>
+  </div> -->
   
   <div class="field submit">
     <button type="submit" [disabled]="processing">Finish!</button>
