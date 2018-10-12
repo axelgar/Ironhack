@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://ironhack-api.herokuapp.com'
+  apiUrl: 'https://ironhack-api.herokuapp.com'
 };
