@@ -24,6 +24,9 @@ import { RequireUserGuard } from './guards/require-user.guard';
 import { RequireAdminGuard } from './guards/require-admin.guard';
 import { RequireStaffGuard } from './guards/require-staff.guard';
 import { RequireStudentGuard } from './guards/require-student.guard';
+import { ModuleOneUnitsComponent } from './components/module-one-units/module-one-units.component';
+import { ModuleTwoUnitsComponent } from './components/module-two-units/module-two-units.component';
+import { ModuleThreeUnitsComponent } from './components/module-three-units/module-three-units.component';
 
 
 const routes: Routes = [
@@ -49,7 +52,10 @@ const routes: Routes = [
     UnitDetailPageComponent,
     CohortDetailsPageComponent,
     CohortCalendarComponent,
-    CohortOverviewComponent
+    CohortOverviewComponent,
+    ModuleOneUnitsComponent,
+    ModuleTwoUnitsComponent,
+    ModuleThreeUnitsComponent
   ],
   imports: [
     BrowserModule,

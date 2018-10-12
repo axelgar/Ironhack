@@ -1,26 +1,56 @@
+body {
+  background-image: url(assets/bg-cow.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 #site-header {
-  padding: 20px 0;
-  color: #000f40;
-  background: #f9f9fa;
-  position: relative;
+  padding: 20px 0 10px;
+  color: $color-white;
   text-align: center;
-  box-shadow: 0	2px	8px	rgba(12, 12, 13, 0.1);
-  
+
+
+  h1 {
+    font-weight: 500;
+    span {
+      font-weight: 300;
+    }
+  }
+}
+
+#site-footer {
+  color: $color-white;
+  padding: 10px 0;
+  background: $color-dark;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+
 
   nav {
-    padding-top: 20px;
+    display: flex;
+    justify-content: space-around;
 
     a {
       text-decoration: none;
-      color: #000f40;
+      color: $color-white;
       margin-right: 10px;
 
-      &:active {
-        color: #F7B733;
+      img {
+        width: 20px;
+      }
+
+      p {
+        line-height: 0.5;
+        padding: 3px 0 2px;
+        text-transform: uppercase;
+        font-size: 11px;
       }
 
       &:hover {
-        border-bottom: 4px solid #F7B733;
+        border-bottom: 4px solid $color-blue;
       }
 
       &:last-child {
@@ -28,41 +58,6 @@
       }
     }
   }
-
-  h1 {
-    a {
-      text-decoration: none;
-      color: #000f40;
-    }
-  }
-
-  div {
-    position: absolute;
-    right: 0;
-    top: 10px;
-    padding-right: 10px;
-
-    a {
-      text-decoration: none;
-      padding-left: 5px;
-
-      &:first-child {
-        padding: 0;
-      }
-    }
-
-    .username {
-      font-weight: 700;
-      color: #F7B733;
-    }
-  }
-}
-
-#site-footer {
-  color: #f9f9fa;
-  padding: 20px 0;
-  background: #F7B733;
-  text-align: center;
 }
 
 #site-main {
@@ -79,6 +74,32 @@
 .section {
   margin-bottom: 20px;
   padding-top: 20px;
+}
+
+.curriculum-section {
+  .modules-menu {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+    p {
+      font-size: 25px;
+      font-weight: 300;
+      border-right: 1px solid $color-blue;
+      padding-right: 40px;
+  
+      &:hover {
+        border-bottom: 1.5px solid $color-blue;
+      }
+  
+      &:last-child {
+        border-right: none;
+        padding: 0;
+      }
+    }
+  }
+
+
+
 }
 
 @media (min-width: 768px) {

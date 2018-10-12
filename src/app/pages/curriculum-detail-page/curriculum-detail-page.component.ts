@@ -11,6 +11,9 @@ export class CurriculumDetailPageComponent implements OnInit {
   curriculum: any;
   error = false;
   id: string;
+  mOne = true;
+  mTwo = false;
+  mThree = false;
 
   constructor(private curriculumService: CurriculumService, private route: ActivatedRoute) { }
 
@@ -27,5 +30,24 @@ export class CurriculumDetailPageComponent implements OnInit {
             this.error = true;
           })
       })
+  }
+
+  handleToggleClickMOne() {
+    this.mOne = true;
+    this.mTwo = false;
+    this.mThree = false;
+
+  }
+
+  handleToggleClickMTwo() {
+    this.mOne = false;
+    this.mTwo = true;
+    this.mThree = false;
+  }
+
+  handleToggleClickMThree() {
+    this.mOne = false;
+    this.mTwo = false;
+    this.mThree = true;
   }
 }

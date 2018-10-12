@@ -1,16 +1,16 @@
-<ul class="card-container" *ngIf="curriculum">
-  <li *ngFor="let unit of curriculum.units" 
-    [ngClass]="{
-      'is-lesson': unit.category === 'lessons',
-      'is-ritual': unit.category === 'rituals',
-      'is-pr': unit.category === 'practice&reviews',
-      'is-break': unit.category === 'break' 
-    }">
-    <a [routerLink]="['/unit', unit._id]">
-      <div class="card section">
-        <p>{{unit.subCategory}}</p>
-        <h2>{{unit.title}}</h2>
-      </div>
-    </a>
-  </li>
-</ul>
+<section class="units-list" *ngIf="curriculum">
+  <h2>{{curriculum.type}}</h2>
+  <div class="curriculum-section">
+    <div class="modules-menu">
+      <p class="calendar" (click)="handleToggleClickMOne()">M1</p>
+      <p class="overview" (click)="handleToggleClickMTwo()">M2</p>
+      <p class="overview" (click)="handleToggleClickMThree()">M3</p>
+    </div>
+
+    <div class="scroll" *ngIf="curriculum">
+      <app-module-one-units *ngIf="mOne"></app-module-one-units>
+      <app-module-two-units *ngIf="mTwo"></app-module-two-units>
+      <app-module-three-units *ngIf="mThree"></app-module-three-units>
+    </div>
+  </div>
+</section>

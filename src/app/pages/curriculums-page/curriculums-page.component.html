@@ -1,9 +1,12 @@
-<ul class="card-container" *ngIf="curricula" >
-  <li *ngFor="let curriculum of curricula">
-    <div class="card section">
-      <a [routerLink]="['/curriculum', curriculum._id]">
-        <h3>{{curriculum.type}}</h3>
-      </a>
-    </div>
-  </li>
-</ul>
+<section class="curriculum-list">
+  <h2>Curriculum</h2>
+  <ul class="card-container" *ngIf="curricula" >
+    <li *ngFor="let curriculum of curricula">
+      <div class="card curriculum-card section">
+        <a [routerLink]="['/curriculum', curriculum._id]">
+          <h3 class="curriculum-title">{{curriculum.type}}</h3>
+        </a>
+      </div>
+    </li>
+  </ul>
+</section>

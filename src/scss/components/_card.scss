@@ -5,12 +5,21 @@
   flex-wrap: wrap;
 }
 
+.scroll {
+  overflow: scroll;
+  height: 60vh;
+  width: 360px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
 .card {
   background-color: $color-white;;
-  padding: 30px 10px;
+  padding: 55px 0;
   border-radius: 20px;
-  box-shadow: 0	4px	16px	rgba(12, 12, 13, 0.1);
+  box-shadow: 0 2px 7px 1px rgba(12, 12, 13, 0.1);
   margin-bottom: 20px;
+  color: $color-dark;
 
   &.cohort-card {
     width: 170px;
@@ -18,15 +27,84 @@
     text-align: center
   }
 
+  &.curriculum-card {
+    width: 360px;
+    height: 160px;
+    text-align: center
+  }
+
+  &.unit-card {
+    background: none;
+    width: 360px;
+    height: 90px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    align-items: center;
+
+    p {
+      flex: 1;
+      border-right: 1px solid $color-dark;
+      margin: auto;
+      font-weight: 400;
+      font-size: 15px;
+      text-transform: capitalize;
+    }
+
+    h3 {
+      flex: 2;
+      padding: 0 20px;
+      margin: auto;
+      font-size: 20px;
+    }
+  }
+
+  &.create {
+    padding-top: 70px;
+  }
+
+  &.is-lesson {
+    background-color: $color-orange;
+  }
+
+  &.is-pr {
+    background-color: $color-green;
+  }
+
+  &.is-ritual {
+    background-color: $color-pink;
+  }
+
+  &.is-break {
+    display: none;
+  }
+
+  a {
+    color: $color-dark;
+  }
+
   h3 {
     margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 25px;
+
+    &.curriculum-title {
+      font-size: 45px;
+      display: inline-block;
+      line-height: 51px;
+    }
   }
   p {
     margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 20px;
   }
 
   span {
-    font-size: 30px;
+    padding-top: 40px;
+    font-size: 60px;
   }
 }
 

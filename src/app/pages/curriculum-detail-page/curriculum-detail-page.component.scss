@@ -1,15 +1,5 @@
-.is-lesson {
-  background-color: orange;
-}
+@import '../../../scss/variables';
 
-.is-pr {
-  background-color: greenyellow;
-}
-
-.is-ritual {
-  background-color: pink;
-}
-
-.is-break {
-  display: none;
+.curriculum-section {
+  background: $color-white;
 }
