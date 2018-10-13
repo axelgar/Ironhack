@@ -1,6 +1,98 @@
-<h3>cohort-calendar works!</h3>
-<ul *ngIf="cohort">
-  <li *ngFor="let day of cohort.days" class="day-card">
-    {{day.date | date: "dd MMMM yyyy hh"}}
+<ul>
+</ul>
+<ul *ngIf="cohort scroll">
+  <li>
+    <ul class="grid-days">
+      <li *ngFor="let day of cohort.days" class="day-card">
+        <div id="{{day.date}}">
+          {{day.date | date: "dd MMM"}}
+          <ul>
+            <li [dragula]='"units"' [(dragulaModel)]="units">
+              Morning
+            </li>
+            <li *ngFor='let unit of day.morning'>
+              <div class="morning">
+                Morning
+                <a [routerLink]="['/unit', unit._id]">
+                  <div class="card unit-card section" [ngClass]="{
+                        'is-lesson': unit.category === 'lessons',
+                        'is-ritual': unit.category === 'rituals',
+                        'is-pr': unit.category === 'practice&reviews',
+                        'is-break': unit.category === 'break'
+                        }">
+                    <p>{{unit.subCategory}}</p>
+                    <h3>{{unit.title}}</h3>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li [dragula]='"units"' [(dragulaModel)]="units">
+              Midday
+            </li>
+            <li class="midday" *ngFor='let unit of day.midday'>
+                <a [routerLink]="['/unit', unit._id]">
+                  <div class="card unit-card section" [ngClass]="{
+                        'is-lesson': unit.category === 'lessons',
+                        'is-ritual': unit.category === 'rituals',
+                        'is-pr': unit.category === 'practice&reviews',
+                        'is-break': unit.category === 'break'
+                        }">
+                    <p>{{unit.subCategory}}</p>
+                    <h3>{{unit.title}}</h3>
+                  </div>
+                </a>
+            </li>
+            <li [dragula]='"units"' [(dragulaModel)]="units">
+              Evening
+            </li>
+            <li class="evening" *ngFor='let unit of day.evening'>
+                <a [routerLink]="['/unit', unit._id]">
+                  <div class="card unit-card section" [ngClass]="{
+                        'is-lesson': unit.category === 'lessons',
+                        'is-ritual': unit.category === 'rituals',
+                        'is-pr': unit.category === 'practice&reviews',
+                        'is-break': unit.category === 'break'
+                        }">
+                    <p>{{unit.subCategory}}</p>
+                    <h3>{{unit.title}}</h3>
+                  </div>
+                </a>
+            </li>
+          </ul> 
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <ul class="scroll">
+      <div [dragula]='"units"' [(dragulaModel)]="units">
+        <li class="parkingLot" *ngFor='let unit of cohort.parkingLot'>
+            <a [routerLink]="['/unit', unit._id]">
+              <div class="card unit-card section" [ngClass]="{
+                    'is-lesson': unit.category === 'lessons',
+                    'is-ritual': unit.category === 'rituals',
+                    'is-pr': unit.category === 'practice&reviews',
+                    'is-break': unit.category === 'break'
+                    }">
+                <p>{{unit.subCategory}}</p>
+                <h3>{{unit.title}}</h3>
+              </div>
+            </a>
+        </li>
+      </div>
+      <li class="adaptiveCurriculum" *ngFor='let unit of cohort.adaptiveCurriculum'>
+          <a [routerLink]="['/unit', unit._id]">
+            <div class="card unit-card section" [ngClass]="{
+                  'is-lesson': unit.category === 'lessons',
+                  'is-ritual': unit.category === 'rituals',
+                  'is-pr': unit.category === 'practice&reviews',
+                  'is-break': unit.category === 'break'
+                  }">
+              <p>{{unit.subCategory}}</p>
+              <h3>{{unit.title}}</h3>
+            </div>
+          </a>
+      </li>
+    </ul>
   </li>
 </ul>
