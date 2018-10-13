@@ -31,6 +31,8 @@ import { CohortCalendarComponent } from './components/cohort-calendar/cohort-cal
 import { CohortOverviewComponent } from './components/cohort-overview/cohort-overview.component';
 import { ArrowBackComponent } from './components/arrow-back/arrow-back.component';
 
+import { DragulaHandler } from './services/dragula.service';
+
 
 const routes: Routes = [
   { path: 'login', component: LogInPageComponent, canActivate: [RequireAnonGuard]},
@@ -67,9 +69,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    DragulaModule.forRoot()
+    DragulaModule
   ],
-  providers: [],
+  providers: [
+    DragulaHandler
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
