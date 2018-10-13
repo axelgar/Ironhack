@@ -1,6 +1,11 @@
 form {
-	width: 30%;
+	width: 100%;
 	margin: 0 auto;
+	height: 70vh;
+	text-align: center;
+	&.scroll {
+		height: 70vh;
+	}
 	
 	&.is-processing {
 		opacity: 0.5;
@@ -11,32 +16,57 @@ form {
 	}
 
 	label {
-		display: block;
+		font-weight: 700;
+		font-size: 18px;
 		margin-bottom: 10px;
-
-		font-style: bold;
+		display: block;
 	}
-	input {
-		padding: 10px 10px;
-		font-size: 16px;
+	select {
+		border: 1px solid $color-dark;
+		border-radius: 10px;
+		padding: 10px;
+		width: 175px;
+		font-size: 12px;
 
-		width: 100%;
-		border: 1px solid #F7B733;
-		border-radius: 20px;
-		background-color: #f9f9fa;
+		&.multiple {
+			background: $color-white;
+			border: none;
+			overflow: visible;
+			text-align: center;
+			margin-bottom: 25px;
+
+			&:focus {
+				outline: none;
+			}
+			option {
+				&:checked{
+					background: $color-blue;
+				}
+			}
+
+		}
+	}
+
+	input {
+		border: 1px solid $color-dark;
+		border-radius: 10px;
+		padding: 10px;
+		width: 175px;
+		font-size: 12px;
 	}
 	.submit {
 		padding-top: 20px;
 		button {
-			padding: 10px 20px;
+			padding: 15px 20px;
 			text-align: center;
 			border: none;
-			font-size: 16px;
-			border-radius: 20px;
+			font-size: 18px;
+			border-radius: 10px;
 			width: 100%;
-			background-color: #F7B733;
+			background-color: $color-blue;
 			cursor: pointer;
-			color: #f9f9fa;
+			color: $color-white;
+			font-weight: 700;
 		}
 	}
 

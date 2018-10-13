@@ -20,7 +20,7 @@ export class RequireAdminGuard implements CanActivate {
         if (user.role === 'admin') {
           return true;
         } else {
-          this.router.navigate(['/cohorts']);
+          this.router.navigate(['/cohort']);
           return false;
         }
       })

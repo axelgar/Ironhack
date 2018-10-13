@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { CohortsPageComponent } from './pages/cohorts-page/cohorts-page.component';
@@ -15,18 +16,18 @@ import { CurriculumDetailPageComponent } from './pages/curriculum-detail-page/cu
 import { UnitDetailPageComponent } from './pages/unit-detail-page/unit-detail-page.component';
 import { CohortDetailsPageComponent } from './pages/cohort-details-page/cohort-details-page.component';
 
-import { CohortCalendarComponent } from './components/cohort-calendar/cohort-calendar.component';
-import { CohortOverviewComponent } from './components/cohort-overview/cohort-overview.component';
-
 import { InitAuthGuard } from './guards/init-auth.guard';
 import { RequireAnonGuard } from './guards/require-anon.guard';
 import { RequireUserGuard } from './guards/require-user.guard';
 import { RequireAdminGuard } from './guards/require-admin.guard';
 import { RequireStaffGuard } from './guards/require-staff.guard';
 import { RequireStudentGuard } from './guards/require-student.guard';
+
 import { ModuleOneUnitsComponent } from './components/module-one-units/module-one-units.component';
 import { ModuleTwoUnitsComponent } from './components/module-two-units/module-two-units.component';
 import { ModuleThreeUnitsComponent } from './components/module-three-units/module-three-units.component';
+import { CohortCalendarComponent } from './components/cohort-calendar/cohort-calendar.component';
+import { CohortOverviewComponent } from './components/cohort-overview/cohort-overview.component';
 
 
 const routes: Routes = [

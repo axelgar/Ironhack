@@ -24,6 +24,12 @@ export class AppComponent {
       this.user = user;
       this.anon = !user;
     });
+    // if (this.user) {
+    //   this.router.navigate(['/cohort'])
+    // }
+    // else {
+    //   this.router.navigate(['/login'])
+    // }
   }
   
   logout() {

@@ -23,7 +23,7 @@ export class CohortCreatePageComponent implements OnInit {
     type: '',
     startDate: '',
     language: '',
-    tas: {}
+    teacher: ''
   }
 
   constructor(private cohortService: CohortService, private userService: UserService, private router: Router) { }
