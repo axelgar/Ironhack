@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CohortService } from 'src/app/services/cohort.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-cohort-page',
@@ -9,8 +11,9 @@ import { CohortService } from 'src/app/services/cohort.service';
 export class CohortsPageComponent implements OnInit {
   cohorts: Array<any> = [];
   error = false;
+  currentLocation = location.pathname;
 
-  constructor(private cohortService:CohortService) { }
+  constructor(private cohortService: CohortService, private authService: AuthService) { }
 
   ngOnInit() {
     this.cohortService.list()
@@ -21,5 +24,6 @@ export class CohortsPageComponent implements OnInit {
         console.log(error);
         this.error = true;
       })
+
   }
 }

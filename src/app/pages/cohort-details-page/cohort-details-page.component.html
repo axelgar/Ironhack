@@ -1,14 +1,18 @@
-<div *ngIf="cohort">
-  <div>
-    <p class="calendar" (click)="handleToggleClickCalendar()">calendar</p>
-    <p class="overview" (click)="handleToggleClickOverview()">overview</p>
-  </div>
-
-  <div *ngIf="calendar">
-    <app-cohort-calendar></app-cohort-calendar>
-  </div>
-
-  <div *ngIf="!calendar">
-    <app-cohort-overview></app-cohort-overview>
-  </div>
-  </div>
+<section class="cohort-details" *ngIf="cohort">
+  <app-arrow-back></app-arrow-back>
+  <h2>{{cohort.type}}</h2>
+  <div *ngIf="cohort">
+    <div>
+      <p class="calendar" (click)="handleToggleClickCalendar()">calendar</p>
+      <p class="overview" (click)="handleToggleClickOverview()">overview</p>
+    </div>
+  
+    <div *ngIf="calendar">
+      <app-cohort-calendar></app-cohort-calendar>
+    </div>
+  
+    <div *ngIf="!calendar">
+      <app-cohort-overview></app-cohort-overview>
+    </div>
+    </div>
+</section>

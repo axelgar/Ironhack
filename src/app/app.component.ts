@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-root',
@@ -17,13 +18,15 @@ export class AppComponent {
     private authService: AuthService,
     private router: Router
   ) { }
-  
+
+
   ngOnInit() {
     this.authService.userChange$.subscribe((user) => {
       this.loading = false;
       this.user = user;
       this.anon = !user;
     });
+    
     // if (this.user) {
     //   this.router.navigate(['/cohort'])
     // }

@@ -1,4 +1,5 @@
 <section class="form-cohort">
+  <app-arrow-back></app-arrow-back>
   <h2>New cohort</h2>
   <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" class="scroll">
     <div class="field" [ngClass]="{'has-error': feedbackEnabled && locationField.errors}">

@@ -1,4 +1,5 @@
 <section  *ngIf="unit" class="unit-details">
+  <app-arrow-back></app-arrow-back>
   <h2>{{unit.title}}</h2>
   <div class="scroll" >
     <h3 [ngClass]="{
@@ -12,7 +13,7 @@
     <p>{{unit.description}}</p>
       <ul>
         <li *ngFor= "let link of unit.links">
-          <a href="{{link}}">{{link}}</a>
+          <a href="http://{{link}}">{{link}}</a>
         </li>
       </ul>
   </div>

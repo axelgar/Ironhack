@@ -28,6 +28,7 @@ import { ModuleTwoUnitsComponent } from './components/module-two-units/module-tw
 import { ModuleThreeUnitsComponent } from './components/module-three-units/module-three-units.component';
 import { CohortCalendarComponent } from './components/cohort-calendar/cohort-calendar.component';
 import { CohortOverviewComponent } from './components/cohort-overview/cohort-overview.component';
+import { ArrowBackComponent } from './components/arrow-back/arrow-back.component';
 
 
 const routes: Routes = [
@@ -57,6 +58,7 @@ const routes: Routes = [
     ModuleOneUnitsComponent,
     ModuleTwoUnitsComponent,
     ModuleThreeUnitsComponent,
+    ArrowBackComponent,
   ],
   imports: [
     BrowserModule,
