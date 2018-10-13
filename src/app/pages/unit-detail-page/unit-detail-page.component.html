@@ -1,13 +1,19 @@
-<div *ngIf="unit">
+<section  *ngIf="unit" class="unit-details">
   <h2>{{unit.title}}</h2>
-  <p>{{unit.category}}</p>
-  <p>{{unit.subCategory}}</p>
-  <p>{{unit.duration}}</p>
-  <p>{{unit.learningObjective}}</p>
-  <ul>
-    <li *ngFor= "let link of unit.links">
-      <a href="{{link}}">{{link}}</a>
-    </li>
-  </ul>
-  <p>{{unit.description}}</p>
-</div>
+  <div class="scroll" >
+    <h3 [ngClass]="{
+      'is-lesson': unit.category === 'lessons',
+      'is-ritual': unit.category === 'rituals',
+      'is-pr': unit.category === 'practice&reviews',
+      'is-break': unit.category === 'break'
+      }">{{unit.subCategory}}</h3>
+    <h4>Duration: {{unit.duration}} min</h4>
+    <p>{{unit.learningObjective}}</p>
+    <p>{{unit.description}}</p>
+      <ul>
+        <li *ngFor= "let link of unit.links">
+          <a href="{{link}}">{{link}}</a>
+        </li>
+      </ul>
+  </div>
+</section>

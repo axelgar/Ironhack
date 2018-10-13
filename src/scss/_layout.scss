@@ -84,13 +84,14 @@ body {
     p {
       font-size: 25px;
       font-weight: 300;
-      border-right: 1px solid $color-blue;
       padding-right: 40px;
+      border-right: 1px solid $color-blue;
   
       &:hover {
-        border-bottom: 1.5px solid $color-blue;
+        font-weight: 700;
+        color: $color-blue;
       }
-  
+
       &:last-child {
         border-right: none;
         padding: 0;
@@ -99,8 +100,39 @@ body {
   }
 }
 
-.form-cohort {
-
+.unit-details{
+  .scroll{
+    height: 70vh;
+  }
+  h3 {
+    text-transform: uppercase;
+    text-align: center;
+    &.is-lesson {
+      
+      color: $color-orange;
+    }
+  
+    &.is-pr {
+      
+      color: $color-green;
+    }
+  
+    &.is-ritual {
+      
+      color: $color-pink;
+    }
+  
+    &.is-break {
+      display: none;
+    }
+  }
+   h4{
+     text-align: center;
+     margin-bottom: 10px;
+   }
+   p{
+     text-align: justify;
+   }
 }
 
 @media (min-width: 768px) {

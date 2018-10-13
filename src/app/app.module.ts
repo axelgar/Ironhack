@@ -56,7 +56,7 @@ const routes: Routes = [
     CohortOverviewComponent,
     ModuleOneUnitsComponent,
     ModuleTwoUnitsComponent,
-    ModuleThreeUnitsComponent
+    ModuleThreeUnitsComponent,
   ],
   imports: [
     BrowserModule,
