@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common'
+
 import { CohortService } from 'src/app/services/cohort.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-cohort-page',
@@ -24,6 +25,5 @@ export class CohortsPageComponent implements OnInit {
         console.log(error);
         this.error = true;
       })
-
   }
 }

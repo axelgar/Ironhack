@@ -4,7 +4,6 @@ import { CohortService } from 'src/app/services/cohort.service';
 import { Subscription } from 'rxjs';
 import { DragulaHandler } from '../../services/dragula.service';
 
-
 @Component({
   selector: 'app-cohort-calendar',
   templateUrl: './cohort-calendar.component.html',
@@ -17,18 +16,10 @@ export class CohortCalendarComponent implements OnInit {
   error = false;
   subs = new Subscription();
 
-  constructor(private cohortService: CohortService, private route: ActivatedRoute, private dragulaService: DragulaHandler) {
- 
-    // this.subs.add(this.dragulaService.drag
-    //   .subscribe((cohort) => {
-    //     dragulaService.dropModel();
-    //   })
-    // );
-    // this.subs.add(this.dragulaService.drop
-    //   .subscribe((cohort) => {
-    //     cohortService.editRemove(cohort)
-    //   })
-    // );
+  constructor(
+    private cohortService: CohortService, 
+    private route: ActivatedRoute, 
+    private dragulaService: DragulaHandler) {
    }
 
   ngOnInit() {
@@ -41,16 +32,5 @@ export class CohortCalendarComponent implements OnInit {
             this.cohort = cohort;
           })
       })
-  }
-
-  // onCohortEdit(cohort) {
-  //   this.cohortService.edit(cohort)
-  //     .subscribe(
-  //       (response) => {
-  //         cohort.update(response);
-  //       }
-  //     );
-  // }
-
-  
+  } 
 }

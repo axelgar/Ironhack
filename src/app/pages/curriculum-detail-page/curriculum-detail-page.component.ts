@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CurriculumService } from 'src/app/services/curriculum.service';
 import { ActivatedRoute } from "@angular/router";
+
+import { CurriculumService } from 'src/app/services/curriculum.service';
 
 @Component({
   selector: 'app-cohort-page',
@@ -36,7 +37,6 @@ export class CurriculumDetailPageComponent implements OnInit {
     this.mOne = true;
     this.mTwo = false;
     this.mThree = false;
-
   }
 
   handleToggleClickMTwo() {

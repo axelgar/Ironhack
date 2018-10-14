@@ -11,5 +11,4 @@ export class NotFoundPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

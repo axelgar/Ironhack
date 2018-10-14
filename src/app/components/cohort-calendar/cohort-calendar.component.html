@@ -4,8 +4,6 @@
       <li *ngFor="let day of cohort.days" class="day-card">
         <div id="{{day.date}}">
           {{day.date | date: "dd MMM"}}
-          <!-- <ul>
-            <li> -->
               <ul [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.units">
                   Morning
                 <li *ngFor='let unit of day.units, let i = index' [id]="unit._id"
@@ -19,46 +17,13 @@
                             'is-break': unit.category === 'break'
                             }">
                         <p>{{unit.subCategory}}</p>
+                        <p>{{unit.position}}</p>
                         <h3>{{unit.title}}</h3>
                       </div>
                     </a>
                   </div>
                 </li>
               </ul>
-            <!-- </li> -->
-            <!-- <li [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.midday">
-              Midday
-            </li>
-            <li class="midday" *ngFor='let unit of day.midday, let i = index'>
-                <a [routerLink]="['/unit', unit._id]">
-                  <div class="card unit-card section" [ngClass]="{
-                        'is-lesson': unit.category === 'lessons',
-                        'is-ritual': unit.category === 'rituals',
-                        'is-pr': unit.category === 'practice&reviews',
-                        'is-break': unit.category === 'break'
-                        }">
-                    <p>{{unit.subCategory}}</p>
-                    <h3>{{unit.title}}</h3>
-                  </div>
-                </a>
-            </li>
-            <li [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.evening">
-              Evening
-            </li>
-            <li class="evening" *ngFor='let unit of day.evening, let i = index'>
-                <a [routerLink]="['/unit', unit._id]">
-                  <div class="card unit-card section" [ngClass]="{
-                        'is-lesson': unit.category === 'lessons',
-                        'is-ritual': unit.category === 'rituals',
-                        'is-pr': unit.category === 'practice&reviews',
-                        'is-break': unit.category === 'break'
-                        }">
-                    <p>{{unit.subCategory}}</p>
-                    <h3>{{unit.title}}</h3>
-                  </div>
-                </a>
-            </li> -->
-          <!-- </ul>  -->
         </div>
       </li>
     </ul>

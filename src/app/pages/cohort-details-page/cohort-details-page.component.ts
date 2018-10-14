@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CohortService } from 'src/app/services/cohort.service';
 import { ActivatedRoute } from "@angular/router";
 import { DragulaService } from 'ng2-dragula';
+
+import { CohortService } from 'src/app/services/cohort.service';
 
 @Component({
   selector: 'app-cohort-details-page',

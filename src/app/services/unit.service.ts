@@ -11,7 +11,6 @@ import { Unit } from '../models/unit';
   providedIn: 'root'
 })
 export class UnitService {
-
   private apiUrl = environment.apiUrl + '/unit';
 
   constructor(private httpClient: HttpClient) { }

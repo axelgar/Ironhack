@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
-import { DaysService } from './days.service';
 import { CohortService } from './cohort.service';
 
 @Injectable()
@@ -8,7 +7,6 @@ export class DragulaHandler {
 
   constructor(
     private dragulaService: DragulaService,
-    private dayService: DaysService,
     private cohortService: CohortService,
   ) 
   {

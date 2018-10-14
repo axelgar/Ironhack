@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { CohortService } from 'src/app/services/cohort.service';
 
+import { CohortService } from 'src/app/services/cohort.service';
 
 @Component({
   selector: 'app-cohort-overview',

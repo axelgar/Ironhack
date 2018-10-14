@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UnitService } from 'src/app/services/unit.service';
 import { ActivatedRoute } from "@angular/router";
+
+import { UnitService } from 'src/app/services/unit.service';
 
 @Component({
   selector: 'app-unit-detail-page',

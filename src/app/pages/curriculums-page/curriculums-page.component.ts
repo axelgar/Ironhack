@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CurriculumService } from 'src/app/services/curriculum.service';
 
 @Component({

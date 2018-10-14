@@ -14,7 +14,7 @@ export class Unit implements SortableItem {
         Object.assign(this, rawObj);
     }
 
-    setDay(id) {
+    set setDay(id) {
         this.day = id;
     }
 }

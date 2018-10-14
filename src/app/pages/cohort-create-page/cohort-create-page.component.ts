@@ -59,7 +59,7 @@ export class CohortCreatePageComponent implements OnInit {
           this.router.navigate([`/cohort/${id}`]);
         })
         .catch((err) => {
-          this.error = err.error.code; // :-)
+          this.error = err.error.code;
           this.processing = false;
           this.feedbackEnabled = false;
         });

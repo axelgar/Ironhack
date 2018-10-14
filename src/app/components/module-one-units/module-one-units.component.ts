@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { CurriculumService } from 'src/app/services/curriculum.service';
 
+import { CurriculumService } from 'src/app/services/curriculum.service';
 
 @Component({
   selector: 'app-module-one-units',
@@ -13,7 +13,6 @@ export class ModuleOneUnitsComponent implements OnInit {
   id: string;
   curriculum: any;
   error = false;
-
 
   constructor(private curriculumService: CurriculumService, private route: ActivatedRoute) { }
 
@@ -31,5 +30,4 @@ export class ModuleOneUnitsComponent implements OnInit {
           })
       })
   }
-
 }
