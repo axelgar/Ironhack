@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CohortService } from 'src/app/services/cohort.service';
 import { ActivatedRoute } from "@angular/router";
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-cohort-details-page',
@@ -13,19 +14,16 @@ export class CohortDetailsPageComponent implements OnInit {
   error = false;
   calendar = true;
 
-  constructor(private cohortService: CohortService, private route: ActivatedRoute) {}
+  constructor(private cohortService: CohortService, private route: ActivatedRoute, private dragulaService: DragulaService) {
+  }
 
   ngOnInit() {
     this.route.params
       .subscribe((params) => {
         this.id = params.id;
         this.cohortService.getCohort(this.id)
-          .then((result) => {
-            this.cohort = result;
-          })
-          .catch((error) => {
-            console.log(error);
-            this.error = true;
+          .subscribe((cohort) => {
+            this.cohort = cohort;
           })
       })
   }

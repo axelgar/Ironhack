@@ -21,12 +21,8 @@ export class CohortOverviewComponent implements OnInit {
       .subscribe((params) => {
         this.id = params.id;
         this.cohortService.getCohort(this.id)
-          .then((result) => {
-            this.cohort = result;
-          })
-          .catch((error) => {
-            console.log(error);
-            this.error = true;
+          .subscribe((cohort) => {
+            this.cohort = cohort;
           })
       })
   }
