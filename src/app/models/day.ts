@@ -8,17 +8,14 @@ export class Day implements SortableItem {
     title: string;
     position: number;
     units: Array<Unit> = [];
-    morning: Array<Unit> = [];
-    midday: Array<Unit> = [];
-    evening: Array<Unit> = [];
 
     constructor ({
-        _id, title, position, morning
+        _id, title, position, units
     }) {
         this._id = _id;
         this.title = title;
         this.position = position;
-        this.morning = morning.map((unit) => new Unit(unit));
+        this.units = units.map((unit) => new Unit(unit));
     }
 
     update(day) {

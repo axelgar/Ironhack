@@ -4,31 +4,29 @@
       <li *ngFor="let day of cohort.days" class="day-card">
         <div id="{{day.date}}">
           {{day.date | date: "dd MMM"}}
-          <ul>
-            <li>
-              Morning
-            </li>
-            <ul [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.morning">
-                Morning
-              <li *ngFor='let unit of day.morning, let i = index' [id]="unit._id"
-              (onCohortEdit)="onCohortEdit($event)">
-                <div class="morning">
+          <!-- <ul>
+            <li> -->
+              <ul [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.units">
                   Morning
-                  <a [routerLink]="['/unit', unit._id]">
-                    <div class="card unit-card section" [ngClass]="{
-                          'is-lesson': unit.category === 'lessons',
-                          'is-ritual': unit.category === 'rituals',
-                          'is-pr': unit.category === 'practice&reviews',
-                          'is-break': unit.category === 'break'
-                          }">
-                      <p>{{unit.subCategory}}</p>
-                      <h3>{{unit.title}}</h3>
-                    </div>
-                  </a>
-                </div>
-              </li>
-            </ul>
-            <li [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.midday">
+                <li *ngFor='let unit of day.units, let i = index' [id]="unit._id"
+                (onCohortEdit)="onCohortEdit($event)">
+                  <div class="morning">
+                    <a [routerLink]="['/unit', unit._id]">
+                      <div class="card unit-card section" [ngClass]="{
+                            'is-lesson': unit.category === 'lessons',
+                            'is-ritual': unit.category === 'rituals',
+                            'is-pr': unit.category === 'practice&reviews',
+                            'is-break': unit.category === 'break'
+                            }">
+                        <p>{{unit.subCategory}}</p>
+                        <h3>{{unit.title}}</h3>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            <!-- </li> -->
+            <!-- <li [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.midday">
               Midday
             </li>
             <li class="midday" *ngFor='let unit of day.midday, let i = index'>
@@ -59,8 +57,8 @@
                     <h3>{{unit.title}}</h3>
                   </div>
                 </a>
-            </li>
-          </ul> 
+            </li> -->
+          <!-- </ul>  -->
         </div>
       </li>
     </ul>

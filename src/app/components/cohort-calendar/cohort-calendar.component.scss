@@ -1,0 +1,12 @@
+@import '../../../scss/variables';
+
+.card {
+
+  &.is-break {
+    display: flex;
+    background-color: $color-yellow;
+  }
+
+
+}
+

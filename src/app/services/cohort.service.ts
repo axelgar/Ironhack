@@ -90,21 +90,21 @@ export class CohortService {
   shiftUnit(sourceDay, targetDay, unitId): void {
     const sDay = _.find(this.cohort.days, { _id: sourceDay }) as Day;
     const tDay = _.find(this.cohort.days, { _id: targetDay }) as Day;
-    const _index = _.findIndex(tDay.morning, { _id: unitId }) as number;
-    const _el = _.find(tDay.morning, { _id: unitId }) as Unit;
+    const _index = _.findIndex(tDay.units, { _id: unitId }) as number;
+    const _el = _.find(tDay.units, { _id: unitId }) as Unit;
 
     if (_index !== -1) {
       if (_index === 0) {
-        if (tDay.morning.length > 1) {
-          _el.position = tDay.morning[1].position - 1000;
+        if (tDay.units.length > 1) {
+          _el.position = tDay.units[1].position - 1000;
         } else {
           _el.position = 0;
         }
       } else {
-        if (tDay.morning[_index - 1] && tDay.morning[_index + 1]) {
-          _el.position = (tDay.morning[_index - 1].position + tDay.morning[_index + 1].position) / 2;
+        if (tDay.units[_index - 1] && tDay.units[_index + 1]) {
+          _el.position = (tDay.units[_index - 1].position + tDay.units[_index + 1].position) / 2;
         } else {
-          _el.position = tDay.morning[_index - 1].position + 1000;
+          _el.position = tDay.units[_index - 1].position + 1000;
         }
       }
 
