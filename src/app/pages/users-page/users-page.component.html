@@ -1,0 +1,24 @@
+<section class="user-list">
+  <h2>Users</h2>
+
+  <div class="scroll">
+    <ul class="card-container" *ngIf="users" >
+      <!-- <a [routerLink]="['/users/create']">
+        <li>
+          <div class="card user-card create">
+            <span>+</span>
+          </div>
+        </li>
+      </a> -->
+      <li *ngFor="let user of users">
+        <!-- <a [routerLink]="['/user', user._id]"> -->
+          <div class="card user-card">
+            <h3 class="name">{{user.firstName}} {{user.lastName}}</h3>
+            <p class="person">{{user.role}}</p>
+          </div>
+        <!-- </a> -->
+      </li>
+    </ul>
+  </div>
+</section>
+

@@ -32,6 +32,8 @@ import { CohortOverviewComponent } from './components/cohort-overview/cohort-ove
 import { ArrowBackComponent } from './components/arrow-back/arrow-back.component';
 
 import { DragulaHandler } from './services/dragula.service';
+import { UsersPageComponent } from './pages/users-page/users-page.component';
+import { UsersCreatePageComponent } from './pages/users-create-page/users-create-page.component';
 
 
 const routes: Routes = [
@@ -42,6 +44,8 @@ const routes: Routes = [
   { path: 'curriculums', component: CurriculumPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
   { path: 'curriculum/:id', component: CurriculumDetailPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
   { path: 'unit/:id', component: UnitDetailPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'users', component: UsersPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/create/:id', component: UsersCreatePageComponent, canActivate: [RequireUserGuard]},
   { path: '**', component: NotFoundPageComponent, canActivate: [InitAuthGuard]}
 ];
 
@@ -62,6 +66,8 @@ const routes: Routes = [
     ModuleTwoUnitsComponent,
     ModuleThreeUnitsComponent,
     ArrowBackComponent,
+    UsersPageComponent,
+    UsersCreatePageComponent,
   ],
   imports: [
     BrowserModule,
