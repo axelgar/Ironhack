@@ -10,14 +10,12 @@
           </div>
         </li>
       </a>
-      <li *ngFor="let cohort of cohorts">
-        <a [routerLink]="['/cohort', cohort._id]">
-          <div class="card cohort-card">
-            <h3>{{cohort.type}}</h3>
-            <p>{{cohort.startDate | date: "MMyy"}}</p>
-            <p>{{cohort.location | uppercase}}</p>
-          </div>
-        </a>
+      <li *ngFor="let cohort of cohorts" [routerLink]="['/cohort', cohort._id]">
+        <div class="card cohort-card">
+          <h3>{{cohort.type}}</h3>
+          <p>{{cohort.startDate | date: "MMyy"}}</p>
+          <p>{{cohort.location | uppercase}}</p>
+        </div>
       </li>
     </ul>
   </div>

@@ -1,11 +1,9 @@
 <section class="curriculum-list">
   <h2>Curriculum</h2>
   <ul class="card-container" *ngIf="curricula" >
-    <li *ngFor="let curriculum of curricula">
+    <li *ngFor="let curriculum of curricula"  [routerLink]="['/curriculum', curriculum._id]">
       <div class="card curriculum-card section">
-        <a [routerLink]="['/curriculum', curriculum._id]">
           <h3 class="curriculum-title">{{curriculum.type}}</h3>
-        </a>
       </div>
     </li>
   </ul>

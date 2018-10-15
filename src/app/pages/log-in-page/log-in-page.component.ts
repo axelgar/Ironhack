@@ -34,7 +34,7 @@ export class LogInPageComponent implements OnInit {
           this.router.navigate(['/cohort']);
         })
         .catch((err) => {
-          this.error = err.error.code; // :-)
+          this.error = err.error.code || 'unexpected'
           this.processing = false;
           this.feedbackEnabled = false;
         });

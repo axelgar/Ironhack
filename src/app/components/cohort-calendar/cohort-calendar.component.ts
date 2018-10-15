@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CohortOverviewComponent } from '../cohort-overview/cohort-overview.component';
 import { CohortService } from 'src/app/services/cohort.service';
 
+
 @Component({
   selector: 'app-cohort-calendar',
   templateUrl: './cohort-calendar.component.html',
@@ -14,6 +15,8 @@ export class CohortCalendarComponent implements OnInit, OnDestroy {
   id: string;
   error = false;
   subs = new Subscription();
+  movedLeft=false;
+  movedRight=false;
 
   constructor(
     private dragulaService: DragulaService,
@@ -30,6 +33,16 @@ export class CohortCalendarComponent implements OnInit, OnDestroy {
       const from = value[3].id;
       this.cohortService.shiftUnit(from, to, element);
     }));
+  }
+
+  handleClickLeft() {
+    this.movedLeft = true;
+    this.movedRight = false;
+    console.log('left')
+  }
+
+  handleClickRight() {
+    
   }
 
   ngOnDestroy() {

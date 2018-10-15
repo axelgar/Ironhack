@@ -1,26 +1,24 @@
-.section-calendar {
-  padding-bottom: 200px;
-}
+// .section-calendar {
+
+// }
 
 .grid-days {
   display: grid;
   grid-template-columns: repeat(45, 100vw);
   overflow: scroll;
   scroll-behavior: smooth;
-  // display: block;
-  // overflow-y: scroll;
-  // text-align: center;
 }
 
- 
-.scrolling-box {
-background-color: #eaeaea;
-display: block;
-height: 200px;
-overflow-y: scroll;
-text-align: center;
-width: 200px;
+.arrows {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+
+  p {
+    display: inline;
+  }
 }
+
 
 .day-card {
   text-align: center;
@@ -29,7 +27,25 @@ width: 200px;
 .morning {
   margin-bottom: 20px;
 }
- 
+
+.calendar-view {
+  margin: 0 auto;
+}
+
+.calendar-stuff {
+  .scroll {
+    height: 30vh;
+  }
+}
+
+.scroll-x {
+  display: grid;
+  grid-template-columns: repeat(2, 100vw);
+  overflow: scroll;
+  scroll-behavior: smooth;
+  text-align: center;
+}
+
 
 // .grid-units {
 //   display: grid;

@@ -3,6 +3,10 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+
+  li {
+    cursor: pointer;
+  }
 }
 
 .scroll {
