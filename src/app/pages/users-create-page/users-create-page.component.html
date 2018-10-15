@@ -21,7 +21,7 @@
       
       <div class="field" [ngClass]="{'has-error': feedbackEnabled && emailField.errors}">
         <label>Email address</label>
-        <input type="email" name="email" [(ngModel)]="newUser.email" #emailField="ngModel" required [disabled]="processing">
+        <input type="email" name="email" [(ngModel)]="newUser.email" [email]="true" #emailField="ngModel" required [disabled]="processing">
         <div *ngIf="feedbackEnabled && emailField.errors || emailField.dirty && emailField.errors">
           <p *ngIf="emailField.errors.required" class="validation">Email address required</p>
         </div>
@@ -31,7 +31,7 @@
         <label>Password address</label>
         <input type="password" name="password" [(ngModel)]="newUser.password" #passwordField="ngModel" required [disabled]="processing">
         <div *ngIf="feedbackEnabled && passwordField.errors || passwordField.dirty && passwordField.errors">
-          <p *ngIf="passwordField.errors.required" class="validation">Password address required</p>
+          <p *ngIf="passwordField.errors.required" class="validation">Password required</p>
         </div>
       </div>
 
@@ -50,8 +50,9 @@
       
       <div class="field submit">
         <button type="submit" [disabled]="processing">Add User</button>
-        <div *ngIf="feedbackEnabled && form.invalid">
+        <div *ngIf="feedbackEnabled && form.invalid || error" [ngSwitch]="error">
           <p class="validation">there are errors in the form, please review the fields</p>
+          <p *ngSwitchCase="'email-not-unique'" class="validation">Email already in use</p>
         </div>
       </div>
     </form>
