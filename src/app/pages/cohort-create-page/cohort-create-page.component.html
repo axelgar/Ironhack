@@ -62,14 +62,7 @@
         <option *ngFor="let ta of tas" [ngValue]="ta._id">{{ta.firstName}}</option>
       </select>
     </div>
-    
-    <div class="field" *ngIf="students">
-      <label>Students</label>
-      <select multiple [(ngModel)]="newCohort.students" [ngModelOptions]="{standalone: true}" class="multiple">
-        <option *ngFor="let student of students" [ngValue]="student._id">{{student.firstName}}</option>
-      </select>
-    </div>
-    
+
     <div class="field submit">
       <button type="submit" [disabled]="processing">Finish</button>
       <div *ngIf="feedbackEnabled && form.invalid">

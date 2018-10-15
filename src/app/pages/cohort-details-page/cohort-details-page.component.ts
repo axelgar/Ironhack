@@ -31,10 +31,10 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
         this.id = params.id;
       });
       this.cohortService.getCohort(this.id)
-    .pipe(takeUntil(this.destroySubject$))
-    .subscribe(cohort => {
-      this.cohort = cohort;
-    });
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe(cohort => {
+        this.cohort = cohort;
+      });
   }
 
   handleToggleClickCalendar() {
