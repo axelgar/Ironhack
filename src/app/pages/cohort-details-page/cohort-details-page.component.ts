@@ -34,6 +34,11 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.destroySubject$))
     .subscribe(cohort => {
       this.cohort = cohort;
+      this.cohort.days.forEach((day) => {
+        day.units.sort((a, b) => { 
+          return a.position - b.position;
+        });
+      });
     });
   }
 
