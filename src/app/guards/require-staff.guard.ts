@@ -17,10 +17,16 @@ export class RequireStaffGuard implements CanActivate {
   canActivate(): Promise<any> {
     return this.authService.me()
       .then((user) => {
-        if (user.role === 'staff') {
-          return true;
+        if (user) {
+          if (user.role === 'staff' || user.role === 'teacher' || user.role === 'ta' || user.role === 'admin') {
+            return true;
+          }
+          else {
+            this.router.navigate(['/cohorts']);
+            return false;
+          }
         } else {
-          this.router.navigate(['/cohorts']);
+          this.router.navigate(['/login']);
           return false;
         }
       })

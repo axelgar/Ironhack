@@ -28,13 +28,13 @@ export class CohortService {
       .toPromise();
   }
 
-  getOne(id): Promise<any> {
-    const options = {
-      withCredentials: true
-    }
-    return this.httpClient.get(`${this.apiUrl}/${id}`, options)
-      .toPromise()
-  }
+  // getOne(id): Promise<any> {
+  //   const options = {
+  //     withCredentials: true
+  //   }
+  //   return this.httpClient.get(`${this.apiUrl}/${id}`, options)
+  //     .toPromise()
+  // }
 
 
   getCohort(id): Observable<any> {
@@ -42,6 +42,7 @@ export class CohortService {
       withCredentials: true
     }
     return this.httpClient.get(`${this.apiUrl}/${id}`, options)
+    
     .pipe(map((res) => {
       return this.cohort = res;
     }))

@@ -17,10 +17,16 @@ export class RequireStudentGuard implements CanActivate {
   canActivate(): Promise<any> {
     return this.authService.me()
       .then((user) => {
-        if (user.role === 'student') {
-          return true;
+        if (user) {
+          if (user.role === 'student') {
+            return true;
+          }
+          else {
+            this.router.navigate(['/cohorts']);
+            return false;
+          }
         } else {
-          this.router.navigate(['/cohorts']);
+          this.router.navigate(['/login']);
           return false;
         }
       })

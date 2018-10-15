@@ -36,15 +36,16 @@ import { UsersCreatePageComponent } from './pages/users-create-page/users-create
 
 
 const routes: Routes = [
+  { path: '', component: CohortsPageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
   { path: 'login', component: LogInPageComponent, canActivate: [RequireAnonGuard]},
-  { path: 'cohort', component: CohortsPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
-  { path: 'cohort/create', component: CohortCreatePageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
+  { path: 'cohort', component: CohortsPageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
+  { path: 'cohort/create', component: CohortCreatePageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
   { path: 'cohort/:id', component: CohortDetailsPageComponent, canActivate: [RequireUserGuard]},
-  { path: 'curriculums', component: CurriculumPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
-  { path: 'curriculum/:id', component: CurriculumDetailPageComponent, canActivate: [RequireUserGuard, RequireAdminGuard]},
+  { path: 'curriculums', component: CurriculumPageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
+  { path: 'curriculum/:id', component: CurriculumDetailPageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
   { path: 'unit/:id', component: UnitDetailPageComponent, canActivate: [RequireUserGuard]},
   { path: 'users', component: UsersPageComponent, canActivate: [RequireUserGuard]},
-  { path: 'user/create/:id', component: UsersCreatePageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/create/:id', component: UsersCreatePageComponent, canActivate: [RequireStaffGuard]},
   { path: '**', component: NotFoundPageComponent, canActivate: [InitAuthGuard]}
 ];
 
