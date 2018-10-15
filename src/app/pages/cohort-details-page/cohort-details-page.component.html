@@ -1,5 +1,4 @@
 <section class="cohort-details" *ngIf="cohort">
-  <app-arrow-back></app-arrow-back>
   <h2>{{cohort.type}}</h2>
   <p class="start-date">{{cohort.startDate | date: "MMyy"}}</p>
   <div *ngIf="cohort">
@@ -9,11 +8,11 @@
     </div>
   
     <div *ngIf="calendar">
-      <app-cohort-calendar></app-cohort-calendar>
+      <app-cohort-calendar [cohort]="cohort"></app-cohort-calendar>
     </div>
   
     <div *ngIf="!calendar">
-      <app-cohort-overview></app-cohort-overview>
+      <app-cohort-overview [cohort]="cohort"></app-cohort-overview>
     </div>
     </div>
 </section>

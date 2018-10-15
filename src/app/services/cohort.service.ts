@@ -28,6 +28,15 @@ export class CohortService {
       .toPromise();
   }
 
+  getOne(id): Promise<any> {
+    const options = {
+      withCredentials: true
+    }
+    return this.httpClient.get(`${this.apiUrl}/${id}`, options)
+      .toPromise()
+  }
+
+
   getCohort(id): Observable<any> {
     const options = {
       withCredentials: true
@@ -37,22 +46,6 @@ export class CohortService {
       return this.cohort = res;
     }))
     .pipe(catchError((err) => Observable.throw(err.json())));
-  }
-
-  getCalendar(id): Promise<any> {
-    const options = {
-      withCredentials: true
-    }
-    return this.httpClient.get(`${this.apiUrl}/${id}/calendar`, options)
-      .toPromise();
-  }
-
-  getOverview(id): Promise<any> {
-    const options = {
-      withCredentials: true
-    }
-    return this.httpClient.get(`${this.apiUrl}/${id}/overview`, options)
-      .toPromise();
   }
 
   create(data): Promise<any> {
@@ -70,26 +63,6 @@ export class CohortService {
    */
   private sortItems(items: Array<SortableItem>): Array<SortableItem> {
     return _.orderBy(items, ['position', 'title']);
-  }
-  
-  /**
-   * Edit a cohort
-   * @params cohort: SortableItem
-   * @returns Observable<GenericResponse>
-   */
-  editAdd(cohort: SortableItem){
-    return this.httpClient.put(`${this.apiUrl}/${cohort._id}/add`, cohort)
-      .pipe(catchError((err) => Observable.throw(err.json())));
-  }
-
-  /**
-   * Edit a cohort
-   * @params cohort: SortableItem
-   * @returns Observable<GenericResponse>
-   */
-  editRemove(cohort: SortableItem){
-    return this.httpClient.put(`${this.apiUrl}/${cohort._id}/remove`, cohort)
-      .pipe(catchError((err) => Observable.throw(err.json())));
   }
 
   shiftUnit(sourceDay, targetDay, unitId): void {
@@ -115,7 +88,6 @@ export class CohortService {
       tranferUnits(_el)
     } else {
       const sDay = _.find(this.cohort.days, { _id: sourceDay }) as Day;
-      // let tDay = _.find(this.cohort, { _id: targetDay }) as Cohort;
       const _el = _.find(this.cohort.parkingLot, { _id: unitId }) as Unit;
       tranferUnits(_el)
     }

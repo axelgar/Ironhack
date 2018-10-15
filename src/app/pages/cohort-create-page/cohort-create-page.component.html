@@ -55,12 +55,15 @@
       </div>
     </div>
   
-    <div class="field" *ngIf="teachers">
+    <div class="field" *ngIf="teachers" [ngClass]="{'has-error': feedbackEnabled && teacherField.errors}">
       <label>Teacher</label>
-      <select name="teacher" [(ngModel)]="newCohort.teacher" #teacherField="ngModel" [disabled]="processing">
+      <select name="teacher" [(ngModel)]="newCohort.teacher" #teacherField="ngModel" required [disabled]="processing">
         <option value="">-Pick one-</option>
         <option value="{{teacher._id}}" *ngFor="let teacher of teachers">{{teacher.firstName}}</option>
       </select>
+      <div *ngIf="feedbackEnabled && teacherField.errors || teacherField.dirty && teacherField.errors">
+        <p *ngIf="teacherField.errors.required" class="validation">Teacher required</p>
+      </div>
     </div>
   
     <div class="field" *ngIf="tas">
@@ -76,16 +79,6 @@
         <option *ngFor="let student of students" [ngValue]="student._id">{{student.firstName}}</option>
       </select>
     </div>
-  <!-- 
-    <div class="field" *ngIf="students">
-      <label>students</label>
-      <ul>
-        <li *ngFor="let student of students">
-          <input type="checkbox" name="{{student.firstName}}" [(ngModel)]="newCohort.students" #studentsField="ngModel" [disabled]="processing"
-            value="{{student._id}}" id="{{student._id}}"><label for="{{student._id}}">{{student.firstName}}</label>
-        </li>
-      </ul>
-    </div> -->
     
     <div class="field submit">
       <button type="submit" [disabled]="processing">Finish</button>
