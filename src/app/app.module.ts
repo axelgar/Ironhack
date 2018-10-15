@@ -31,7 +31,6 @@ import { CohortCalendarComponent } from './components/cohort-calendar/cohort-cal
 import { CohortOverviewComponent } from './components/cohort-overview/cohort-overview.component';
 import { ArrowBackComponent } from './components/arrow-back/arrow-back.component';
 
-import { DragulaHandler } from './services/dragula.service';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersCreatePageComponent } from './pages/users-create-page/users-create-page.component';
 
