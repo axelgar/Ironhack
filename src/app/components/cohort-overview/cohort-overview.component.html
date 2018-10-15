@@ -1,4 +1,13 @@
 <div *ngIf="cohort" class="scroll">
+  <div>
+    <a [routerLink]="['/user/create', cohort._id]">
+      <li>
+        <div class="card cohort-card create">
+          <span>add user</span>
+        </div>
+      </li>
+    </a>
+  </div>
   <div class="teacher-card">
     <ul class="card-container">
       <li *ngFor="let teacher of cohort.teacher" class="card teachers-card">

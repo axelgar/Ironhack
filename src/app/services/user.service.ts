@@ -19,6 +19,14 @@ export class UserService {
       
   }
 
+  userCreate(user: any): Promise<any> {
+    const options = {
+      withCredentials: true,
+    };
+    return this.httpClient.post(`${this.apiUrl}/user-create`, user, options)
+      .toPromise()
+  }
+
   // getOne(id): Promise<any> {
   //   const options = {
   //     withCredentials: true

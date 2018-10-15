@@ -1,0 +1,59 @@
+<section class="form-cohort">
+    <app-arrow-back></app-arrow-back>
+    <h2>New cohort</h2>
+    <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" class="scroll">
+      
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && firstNameField.errors}">
+        <label>First Name</label>
+        <input type="text" name="firstName" [(ngModel)]="newUser.firstName" #firstNameField="ngModel" required [disabled]="processing">
+        <div *ngIf="feedbackEnabled && firstNameField.errors || firstNameField.dirty && firstNameField.errors">
+          <p *ngIf="firstNameField.errors.required" class="validation">First Name required</p>
+        </div>
+      </div>
+      
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && lastNameField.errors}">
+        <label>Last Name</label>
+        <input type="text" name="lastName" [(ngModel)]="newUser.lastName" #lastNameField="ngModel" required [disabled]="processing">
+        <div *ngIf="feedbackEnabled && lastNameField.errors || lastNameField.dirty && lastNameField.errors">
+          <p *ngIf="lastNameField.errors.required" class="validation">Last Name required</p>
+        </div>
+      </div>
+      
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && emailField.errors}">
+        <label>Email address</label>
+        <input type="email" name="email" [(ngModel)]="newUser.email" [email]="true" #emailField="ngModel" required [disabled]="processing">
+        <div *ngIf="feedbackEnabled && emailField.errors || emailField.dirty && emailField.errors">
+          <p *ngIf="emailField.errors.required" class="validation">Email address required</p>
+        </div>
+      </div>
+     
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && passwordField.errors}">
+        <label>Password address</label>
+        <input type="password" name="password" [(ngModel)]="newUser.password" #passwordField="ngModel" required [disabled]="processing">
+        <div *ngIf="feedbackEnabled && passwordField.errors || passwordField.dirty && passwordField.errors">
+          <p *ngIf="passwordField.errors.required" class="validation">Password required</p>
+        </div>
+      </div>
+
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && roleField.errors}">
+          <label>Role</label>
+          <select name="role" [(ngModel)]="newUser.role" #roleField="ngModel" required [disabled]="processing">
+            <option value="">-Pick one-</option>
+            <option value="ta">TA</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+          </select>
+          <div *ngIf="feedbackEnabled && roleField.errors || roleField.dirty && roleField.errors">
+            <p *ngIf="roleField.errors.required" class="validation">Role required</p>
+          </div>
+        </div>
+      
+      <div class="field submit">
+        <button type="submit" [disabled]="processing">Add User</button>
+        <div *ngIf="feedbackEnabled && form.invalid || error" [ngSwitch]="error">
+          <p class="validation">there are errors in the form, please review the fields</p>
+          <p *ngSwitchCase="'email-not-unique'" class="validation">Email already in use</p>
+        </div>
+      </div>
+    </form>
+  </section>
