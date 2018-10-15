@@ -37,7 +37,10 @@ export class UnitService {
    * @returns Observable<Card>
    */
   edit(unit: Unit) {
-    return this.httpClient.put(`${this.apiUrl}/${unit._id}`, unit)
+    const options = {
+      withCredentials: true
+    }
+    return this.httpClient.put(`${this.apiUrl}/${unit._id}`, unit, options)
       .pipe(map((_card) => {
         unit = new Unit(_card);
         return unit;
@@ -53,12 +56,15 @@ export class UnitService {
    * @returns Observable<Card>
    */
   transfer(unit: Unit, from, to) {
+    const options = {
+      withCredentials: true
+    }
     const body = {
       unit,
       from,
       to
     };
-    return this.httpClient.put(`${this.apiUrl}/transfer/${unit._id}`, body)
+    return this.httpClient.put(`${this.apiUrl}/transfer/${unit._id}`, body, options)
       .pipe(catchError((err) => Observable.throw(err.json())));
   }
 }

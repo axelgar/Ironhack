@@ -6,17 +6,7 @@
       <label>Campus</label>
       <select name="location" [(ngModel)]="newCohort.location" #locationField="ngModel" required [disabled]="processing">
         <option value="">-Pick one-</option>
-        <option value="barcelona">Barcelona</option>
-        <option value="madrid">Madrid</option>
-        <option value="lisbon">Lisbon</option>
-        <option value="paris">Paris</option>
-        <option value="munich">Munich</option>
-        <option value="berlin">Berlin</option>
-        <option value="amsterdam">Amsterdam</option>
-        <option value="bogota">Bogota</option>
-        <option value="miami">Miami</option>
-        <option value="mexico-city">Mexico City</option>
-        <option value="sao-paulo">Sao Paulo</option>
+        <option value="bcn">Barcelona</option>
       </select>
       <div *ngIf="feedbackEnabled && locationField.errors || locationField.dirty && locationField.errors">
         <p *ngIf="locationField.errors.required" class="validation">Campus required</p>
