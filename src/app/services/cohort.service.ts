@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import * as _ from 'lodash';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { SortableItem } from '../interfaces/sortable-item';
@@ -46,7 +46,7 @@ export class CohortService {
     .pipe(map((res) => {
       return this.cohort = res;
     }))
-    .pipe(catchError((err) => Observable.throw(err.json())));
+    .pipe(catchError((err) => throwError("this is an error")));
   }
 
   create(data): Promise<any> {

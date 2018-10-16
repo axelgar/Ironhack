@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
 import { CohortService } from 'src/app/services/cohort.service';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -39,7 +39,12 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
           return a.position - b.position;
         });
       });
-    });
+    },
+    error => {
+      this.error = error;
+      console.log(this.error)
+      return throwError(error)
+    })
   }
 
   handleToggleClickCalendar() {

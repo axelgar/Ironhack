@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 
@@ -46,7 +46,7 @@ export class UnitService {
         unit = new Unit(_card);
         return unit;
       }))
-      .pipe(catchError((err) => Observable.throw(err.json())));
+      .pipe(catchError((err) => throwError(err.json())));
   }
 
   /**
