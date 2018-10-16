@@ -1,7 +1,9 @@
-<section class="cohort-details" *ngIf="cohort">
-  <h2>{{cohort.type}}</h2>
-  <p class="start-date">{{cohort.startDate | date: "MMyy"}}</p>
-  <div *ngIf="cohort">
+<section class="cohort-details" *ngIf="cohort" >
+  <div class="container">
+    <h2>{{cohort.type}}</h2>
+    <p class="start-date">{{cohort.startDate | date: "MMyy"}}</p>
+  </div>
+  <div *ngIf="cohort" class="container">
     <div class="cohort-menu">
       <p class="calendar" (click)="handleToggleClickCalendar()">calendar</p>
       <p class="overview" (click)="handleToggleClickOverview()">overview</p>

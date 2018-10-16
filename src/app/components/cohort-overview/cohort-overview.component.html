@@ -1,4 +1,4 @@
-<div *ngIf="cohort" class="scroll">
+<div *ngIf="cohort" class="scroll container">
   <div>
     <a [routerLink]="['/user/create', cohort._id]">
       <li>
@@ -10,7 +10,7 @@
   </div>
   <div class="teacher-card">
     <ul class="card-container">
-      <li *ngFor="let teacher of cohort.teacher" class="card teachers-card">
+      <li *ngFor="let teacher of cohort.teacher" class="card teachers-card" [routerLink]="['/user', teacher._id]">
         <p class="person">Teacher</p>
         <p class="name">{{teacher.firstName}}</p>
       </li>
@@ -18,7 +18,7 @@
   </div>
   <div class="tas-cards">
     <ul class="card-container">
-      <li *ngFor="let ta of cohort.tas" class="card tas-card">
+      <li *ngFor="let ta of cohort.tas" class="card tas-card" [routerLink]="['/user', ta._id]">
         <p class="person">TA</p>
         <p class="name">{{ta.firstName}}</p>
       </li>

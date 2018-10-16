@@ -1,0 +1,74 @@
+<section *ngIf="user" class="profile-page">
+  <img src="{{user.profilePic}}" alt="profile picture">
+  <div class="info-user">
+    <h2>{{user.firstName}}</h2>
+    <p>{{user.role}}</p>
+    <div class="edit-settings">
+      <div>
+        <a [routerLink]="['/user/edit']">
+            <div class="card cohort-card create" *ngIf="currentUser._id === user._id">
+              <span>Edit</span>
+            </div>
+        </a>
+      </div>
+      <div class="settings" *ngIf="currentUser._id === user._id">
+        <a [routerLink]="['/user/settings']">Change password</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="projects" *ngIf="currentUser._id === user._id">
+    <form *ngIf="user" (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && titleField.errors}">
+        <label>Title</label>
+        <input type="text" name="title" [(ngModel)]="newProject.title" #titleField="ngModel" required [disabled]="processing">
+        <div *ngIf="feedbackEnabled && titleField.errors || titleField.dirty && titleField.errors">
+          <p *ngIf="titleField.errors.required" class="validation">First Name required</p>
+        </div>
+      </div>
+
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && moduleField.errors}">
+        <label>Module</label>
+        <input type="text" name="module" [(ngModel)]="newProject.module" #moduleField="ngModel" required [disabled]="processing">
+        <div *ngIf="feedbackEnabled && moduleField.errors || moduleField.dirty && moduleField.errors">
+          <p *ngIf="moduleField.errors.required" class="validation">First Name required</p>
+        </div>
+      </div>
+
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && presLinkField.errors}">
+        <label>Presentation Link</label>
+        <input type="text" name="presLink" [(ngModel)]="newProject.presLink" #presLinkField="ngModel" required [disabled]="processing">
+        <div *ngIf="feedbackEnabled && presLinkField.errors || presLinkField.dirty && presLinkField.errors">
+          <p *ngIf="presLinkField.errors.required" class="validation">First Name required</p>
+        </div>
+      </div>
+    
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && deployLinkField.errors}">
+        <label>Deploy Link</label>
+        <input type="text" name="deployLink" [(ngModel)]="newProject.deployLink" #deployLinkField="ngModel" required [disabled]="processing">
+        <div *ngIf="feedbackEnabled && deployLinkField.errors || deployLinkField.dirty && deployLinkField.errors">
+          <p *ngIf="deployLinkField.errors.required" class="validation">First Name required</p>
+        </div>
+      </div>
+    
+      <div class="field submit">
+        <button type="submit" [disabled]="processing">Save</button>
+        <div *ngIf="feedbackEnabled && form.invalid">
+          <p class="validation">there are errors in the form, please review the fields</p>
+        </div>
+      </div>
+    </form>
+  </div>
+  <ul class="projects-list" *ngIf="user">
+    <li *ngFor="let project of projectsUser">
+      <div>
+        <h3>{{project.title}}</h3>
+        <h4>{{project.module}}</h4>
+        <a href="{{project.presLink}}">{{project.presLink}}</a>
+        <a href="{{project.deployLink}}">{{project.deployLink}}</a>
+      </div>
+    </li>
+  </ul>
+
+</section>

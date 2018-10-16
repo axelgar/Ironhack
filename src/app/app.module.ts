@@ -4,6 +4,38 @@ import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { DragulaModule } from 'ng2-dragula';
+import { FileUploadModule } from 'ng2-file-upload';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 5,
+  spaceBetween: 10,
+  breakpoints: {
+    // when window width is <= 320px
+    768: {
+      slidesPerView: 1,
+      // spaceBetween: 10
+    },
+    // when window width is <= 480px
+    1028: {
+      slidesPerView: 3,
+      // spaceBetween: 20
+    },
+    // when window width is <= 640px
+    // 1028: {
+    //   slidesPerView: 5,
+    //   // spaceBetween: 30
+    // }
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  }
+};
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +48,9 @@ import { CurriculumPageComponent } from './pages/curriculums-page/curriculums-pa
 import { CurriculumDetailPageComponent } from './pages/curriculum-detail-page/curriculum-detail-page.component';
 import { UnitDetailPageComponent } from './pages/unit-detail-page/unit-detail-page.component';
 import { CohortDetailsPageComponent } from './pages/cohort-details-page/cohort-details-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { ProfileSettingsPageComponent } from './pages/profile-settings-page/profile-settings-page.component';
+import { ProfileEditPageComponent } from './pages/profile-edit-page/profile-edit-page.component';
 
 import { InitAuthGuard } from './guards/init-auth.guard';
 import { RequireAnonGuard } from './guards/require-anon.guard';
@@ -36,6 +71,8 @@ import { UsersCreatePageComponent } from './pages/users-create-page/users-create
 import { AddUnitComponent } from './components/add-unit/add-unit.component';
 
 
+
+
 const routes: Routes = [
   { path: '', component: CohortsPageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
   { path: 'login', component: LogInPageComponent, canActivate: [RequireAnonGuard]},
@@ -46,7 +83,10 @@ const routes: Routes = [
   { path: 'curriculum/:id', component: CurriculumDetailPageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
   { path: 'unit/:id', component: UnitDetailPageComponent, canActivate: [RequireUserGuard]},
   { path: 'users', component: UsersPageComponent, canActivate: [RequireUserGuard]},
-  { path: 'user/create/:id', component: UsersCreatePageComponent, canActivate: [RequireStaffGuard]},
+  { path: 'user/create/:id', component: UsersCreatePageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/settings', component: ProfileSettingsPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/edit', component: ProfileEditPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/:id', component: ProfilePageComponent, canActivate: [RequireUserGuard]},
   { path: '**', component: NotFoundPageComponent, canActivate: [InitAuthGuard]}
 ];
 
@@ -70,6 +110,9 @@ const routes: Routes = [
     UsersPageComponent,
     UsersCreatePageComponent,
     AddUnitComponent,
+    ProfilePageComponent,
+    ProfileSettingsPageComponent,
+    ProfileEditPageComponent
   ],
   imports: [
     BrowserModule,
@@ -77,10 +120,15 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    DragulaModule
+    DragulaModule,
+    FileUploadModule,
+    SwiperModule
   ],
   providers: [
-    
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ],
   bootstrap: [AppComponent]
 })

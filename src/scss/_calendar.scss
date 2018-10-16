@@ -2,49 +2,77 @@
 
 // }
 
-.grid-days {
-  display: grid;
-  grid-template-columns: repeat(45, 100vw);
-  overflow: scroll;
-  scroll-behavior: smooth;
-}
+// .grid-days {
+//   display: grid;
+//   grid-template-columns: repeat(45, 100vw);
+//   overflow: scroll;
+//   scroll-behavior: smooth;
+// }
 
-.arrows {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
+// .arrows {
+//   display: flex;
+//   justify-content: space-around;
+//   padding: 10px 0;
 
-  p {
-    display: inline;
-  }
-}
+//   p {
+//     display: inline;
+//   }
+// }
 
 
 .day-card {
   text-align: center;
 }
 
-.morning {
-  margin-bottom: 20px;
-}
-
 .calendar-view {
   margin: 0 auto;
+
+  li {
+    width: 90%;
+  }
+
 }
 
 .calendar-stuff {
+  margin-bottom: 30px;
+
   .scroll {
-    height: 30vh;
+    height: 40vh;
+    margin: 0 auto;
+    overflow: scroll;
+    width: 100%;
+    padding-bottom: 40px;
+  }
+  
+}
+
+.scroll-2 {
+  // height: 20vh;
+  // margin: 0 auto;
+  // width: 360px;
+  // padding-bottom: 40px;
+  // overflow: scroll;
+  // scroll-behavior: smooth;
+  // text-align: center;
+  // flex-wrap: inherit
+
+  display: grid;
+  grid-template-columns: repeat(45, 100vw);
+  overflow: scroll;
+  scroll-behavior: smooth;
+
+  parking-lot {
+    flex: 1;
   }
 }
 
-.scroll-x {
-  display: grid;
-  grid-template-columns: repeat(2, 100vw);
-  overflow: scroll;
-  scroll-behavior: smooth;
-  text-align: center;
-}
+// .scroll-x {
+//   display: grid;
+//   grid-template-columns: repeat(2, 100vw);
+//   overflow: scroll;
+//   scroll-behavior: smooth;
+//   text-align: center;
+// }
 
 
 // .grid-units {
@@ -52,3 +80,24 @@
 //   grid-template-columns: repeat(45, 100vw);
 //   overflow: scroll;
 // }
+
+
+@media screen and (min-width: 769px) {
+  .grid-days {
+    display: grid;
+    grid-template-columns: repeat(45, 50vw);
+    overflow: scroll;
+    scroll-behavior: smooth;
+  }
+
+}
+
+@media screen and (min-width: 1028px) {
+  .grid-days {
+    display: grid;
+    grid-template-columns: repeat(45, 16vw);
+    overflow: scroll;
+    scroll-behavior: smooth;
+  }
+
+}

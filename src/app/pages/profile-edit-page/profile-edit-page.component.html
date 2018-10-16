@@ -1,0 +1,46 @@
+<section class="form-cohort">
+  <app-arrow-back></app-arrow-back>
+  <h2>Edit profile</h2>
+  <form *ngIf="!loading" (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" class="scroll">
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && firstNameField.errors}">
+      <label>First Name</label>
+      <input type="text" name="firstName" [(ngModel)]="user.firstName" #firstNameField="ngModel"  required [disabled]="processing">
+      <div *ngIf="feedbackEnabled && firstNameField.errors || firstNameField.dirty && firstNameField.errors">
+        <p *ngIf="firstNameField.errors.required" class="validation">First Name required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && lastNameField.errors}">
+      <label>Last Name</label>
+      <input type="text" name="lastName" [(ngModel)]="user.lastName" #lastNameField="ngModel"  required [disabled]="processing">
+      <div *ngIf="feedbackEnabled && lastNameField.errors || lastNameField.dirty && lastNameField.errors">
+        <p *ngIf="lastNameField.errors.required" class="validation">Last Name required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && descriptionField.errors}">
+      <label>Description</label>
+      <input type="text" name="description" [(ngModel)]="user.description" #descriptionField="ngModel" required 
+        [disabled]="processing">
+      <div *ngIf="feedbackEnabled && descriptionField.errors || descriptionField.dirty && descriptionField.errors">
+        <p *ngIf="descriptionField.errors.required" class="validation">description address required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && fileFeedback}">
+      <label>Picture</label>
+      <input type="file" name="file" ng2FileSelect [uploader]="uploader" required />
+      <div *ngIf="feedbackEnabled && fileFeedback">
+        <p *ngIf="fileFeedback" class="validation">Profile Pic required</p>
+      </div>
+    </div>
+
+    <div class="field submit">
+      <button type="submit" [disabled]="processing">Save</button>
+      <div *ngIf="feedbackEnabled && form.invalid">
+        <p class="validation">there are errors in the form, please review the fields</p>
+      </div>
+    </div>
+  </form>
+</section>
