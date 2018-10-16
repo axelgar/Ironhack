@@ -48,6 +48,23 @@ form {
 		}
 	}
 
+	.custom-select {
+		
+
+		select {
+
+		}
+
+		option {
+			position: absolute;
+			background-color: red;
+			top: 100%;
+			left: 0;
+			right: 0;
+			z-index: 99;
+		}
+	}
+
 	input {
 		border: 1px solid $color-dark;
 		border-radius: 10px;
