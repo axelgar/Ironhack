@@ -5,6 +5,18 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { DragulaModule } from 'ng2-dragula';
 import { FileUploadModule } from 'ng2-file-upload';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto',
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  }
+};
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,8 +63,8 @@ const routes: Routes = [
   { path: 'unit/:id', component: UnitDetailPageComponent, canActivate: [RequireUserGuard]},
   { path: 'users', component: UsersPageComponent, canActivate: [RequireUserGuard]},
   { path: 'user/create/:id', component: UsersCreatePageComponent, canActivate: [RequireUserGuard]},
-  { path: 'user/settings/:id', component: ProfileSettingsPageComponent, canActivate: [RequireUserGuard]},
-  { path: 'user/edit/:id', component: ProfileEditPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/settings', component: ProfileSettingsPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/edit', component: ProfileEditPageComponent, canActivate: [RequireUserGuard]},
   { path: 'user/:id', component: ProfilePageComponent, canActivate: [RequireUserGuard]},
   { path: '**', component: NotFoundPageComponent, canActivate: [InitAuthGuard]}
 ];
@@ -87,10 +99,14 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     DragulaModule,
-    FileUploadModule
+    FileUploadModule,
+    SwiperModule
   ],
   providers: [
-    
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ],
   bootstrap: [AppComponent]
 })

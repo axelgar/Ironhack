@@ -1,37 +1,33 @@
 <ul *ngIf="cohort" class="calendar-stuff">
   <li>
-    <ul class="grid-days">
-      <li *ngFor="let day of cohort.days;let i = index" class="day-card">
-        <div id="{{day.date}}" [ngClass]="{'is-moved-left': movedLeft, 'is-moved-right': movedRight }">
-          <div class="arrows">
-            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Im04OC42LDEyMS4zYzAuOCwwLjggMS44LDEuMiAyLjksMS4yczIuMS0wLjQgMi45LTEuMmMxLjYtMS42IDEuNi00LjIgMC01LjhsLTUxLTUxIDUxLTUxYzEuNi0xLjYgMS42LTQuMiAwLTUuOHMtNC4yLTEuNi01LjgsMGwtNTQsNTMuOWMtMS42LDEuNi0xLjYsNC4yIDAsNS44bDU0LDUzLjl6IiBmaWxsPSIjM2MzZjNmIi8+CiAgPC9nPgo8L3N2Zz4K"  *ngIf="cohort.days[i]!==cohort.days[0]" (click)="handleClickLeft()"/>
-            <span *ngIf="cohort.days[i]===cohort.days[0]"></span>
-            <p>{{day.date | date: "dd MMM"}}</p>
-            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Im00MC40LDEyMS4zYy0wLjgsMC44LTEuOCwxLjItMi45LDEuMnMtMi4xLTAuNC0yLjktMS4yYy0xLjYtMS42LTEuNi00LjIgMC01LjhsNTEtNTEtNTEtNTFjLTEuNi0xLjYtMS42LTQuMiAwLTUuOCAxLjYtMS42IDQuMi0xLjYgNS44LDBsNTMuOSw1My45YzEuNiwxLjYgMS42LDQuMiAwLDUuOGwtNTMuOSw1My45eiIgZmlsbD0iIzNjM2YzZiIvPgogIDwvZz4KPC9zdmc+Cg==" *ngIf="cohort.days[i]!==cohort.days[4]" (click)="handleClickRight()"/>
-            <span *ngIf="cohort.days[i]===cohort.days[4]"></span>
+    <swiper [config]="config" [(index)]="index">
+        <div *ngFor="let day of cohort.days;let i = index" class="day-card">
+          <div id="{{day.date}}" [ngClass]="{'is-moved-left': movedLeft, 'is-moved-right': movedRight }">
+            <div class="arrows">
+              <p>{{day.date | date: "dd MMM"}}</p>
+            </div>
+            <ul [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.units" class="scroll">
+              <li *ngFor='let unit of day.units, let i = index' [id]="unit._id"
+              (onCohortEdit)="onCohortEdit($event)">
+                <div class="morning">
+                  <a [routerLink]="['/unit', unit._id]">
+                    <div class="card unit-card section calendar-view" [ngClass]="{
+                          'is-lesson': unit.category === 'lessons',
+                          'is-ritual': unit.category === 'rituals',
+                          'is-pr': unit.category === 'P&R',
+                          'is-break': unit.category === 'break'
+                          }">
+                      <p>{{unit.subCategory}}</p>
+                      <p>{{unit.position}}</p>
+                      <h3>{{unit.title}}</h3>
+                    </div>
+                  </a>
+                </div>
+              </li>
+            </ul>
           </div>
-          <ul [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.units" class="scroll">
-            <li *ngFor='let unit of day.units, let i = index' [id]="unit._id"
-            (onCohortEdit)="onCohortEdit($event)">
-              <div class="morning">
-                <a [routerLink]="['/unit', unit._id]">
-                  <div class="card unit-card section calendar-view" [ngClass]="{
-                        'is-lesson': unit.category === 'lessons',
-                        'is-ritual': unit.category === 'rituals',
-                        'is-pr': unit.category === 'P&R',
-                        'is-break': unit.category === 'break'
-                        }">
-                    <p>{{unit.subCategory}}</p>
-                    <p>{{unit.position}}</p>
-                    <h3>{{unit.title}}</h3>
-                  </div>
-                </a>
-              </div>
-            </li>
-          </ul>
         </div>
-      </li>
-    </ul>
+    </swiper>
   </li>
   <li>
     <ul class="scroll-x">

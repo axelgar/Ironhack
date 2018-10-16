@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile-edit-page',
@@ -14,68 +16,59 @@ export class ProfileEditPageComponent implements OnInit {
   feedbackEnabled = false;
   error = null;
   processing = false;
-  
-  newUser: any = {
-    firstName: '',
-    lastName: '',
-    description: ''
-  }
+  uploader: FileUploader;
+  loading = true;
+  fileFeedback = false;
+  currentUser: any;
 
   constructor(
     private userService: UserService, 
     private route: ActivatedRoute, 
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
-    this.route.params
-      .subscribe((params) => {
-        this.id = params.id;
-        this.userService.findProfile(this.id)
-          .then((result) => {
-            this.user = result;
-          })
-          .catch((error) => {
-            console.log(error);
-            this.error = true;
-          })
+    this.currentUser = this.authService.getUser();
+    this.userService.findProfile(this.currentUser._id)
+      .then((result) => {
+        this.user = result;
+        this.loading = false;
       })
+      .catch((error) => {
+        console.log(error);
+        this.error = true;
+      })
+      this.uploader= new FileUploader({
+        url: environment.apiUrl + `/users/edit`
+      });
   }
-  uploader: FileUploader = new FileUploader({
-    url: `http://localhost:3000/users/edit/${this.id}`
-  });
 
   submitForm(form) {
     this.error = '';
     this.feedbackEnabled = true;
-    if (form.valid) {
-      this.uploader.onBuildItemForm = (item, form2) => {
-        form2.append('newUser', this.newUser);
-      };
+    const filesSelected = this.uploader.getNotUploadedItems();
+    if (!filesSelected.length) {
+      this.fileFeedback = true;
     }
-    this.uploader.uploadAll();
-    // this.router.navigate([`/user/${this.user._id}`]);
+    if (form.valid && filesSelected.length) {
+      this.uploader.onBuildItemForm = (item, form2) => {
+        form2.append('firstName', this.user.firstName);
+        form2.append('lastName', this.user.lastName);
+        form2.append('description', this.user.description);
+      };
+      this.uploader.onSuccessItem = (item, response) => {
+        this.router.navigate([`/user/${this.user._id}`]);
+      };
 
+      this.uploader.onErrorItem = (item, response, status, headers) => {
+        this.error = JSON.parse(response).code;
+        this.processing = false;
+        this.feedbackEnabled = false;
+      };
+      this.uploader.uploadAll();
+      this.processing = true;
 
-    
-    // if (form.valid) {
-    //   this.processing = true;
-    //   this.userService.userCreate(this.newUser)
-    //     .then((id) => {
-    //       this.router.navigate([`/user/${id}`]);
-    //     })
-    //     .catch((err) => {
-    //       this.error = err.error.code;
-    //       this.processing = false;
-    //       this.feedbackEnabled = false;
-    //     });
-    // }
-    // if (form.valid) {
-    //   this.uploader.onBuildItemForm = (item, form2) => {
-    //     form2.append('name', this.name);
-    //   };
-    // }
-    // this.uploader.uploadAll();
-  // }
+    }
   }
 
 }
