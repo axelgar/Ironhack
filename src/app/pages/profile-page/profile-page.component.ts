@@ -86,6 +86,14 @@ export class ProfilePageComponent implements OnInit {
     }
   }
 
+  handleDeleteProject(id) {
+    this.userService.deleteProject(id)
+      .catch((error) => {
+        console.log(error);
+        this.error = true;
+      })
+  }
+
 
 
 }
