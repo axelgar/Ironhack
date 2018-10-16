@@ -1,0 +1,79 @@
+<section class="form-cohort">
+  <app-arrow-back></app-arrow-back>
+  <h2>New unit</h2>
+  <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" class="scroll">
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && titleField.errors}">
+      <label>Title</label>
+      <input type="text" name="title" [(ngModel)]="newUnit.title" #titleField="ngModel" required [disabled]="processing">
+      <div *ngIf="feedbackEnabled && titleField.errors || titleField.dirty && titleField.errors">
+        <p *ngIf="titleField.errors.required" class="validation">Title required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && categoryField.errors}">
+      <label>Category</label>
+      <select name="category" [(ngModel)]="newUnit.category" #categoryField="ngModel" required [disabled]="processing">
+        <option value="">-Pick one-</option>
+        <option value="lessons">Lessons</option>
+        <option value="rituals">Rituals</option>
+        <option value="P&R">Practice & Review</option>
+        <option value="break">Break</option>
+      </select>
+      <div *ngIf="feedbackEnabled && categoryField.errors || categoryField.dirty && categoryField.errors">
+        <p *ngIf="categoryField.errors.required" class="validation">Category required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && subCategoryField.errors}">
+      <label>Subcategory</label>
+      <select name="subCategory" [(ngModel)]="newUnit.subCategory" #subCategoryField="ngModel" required [disabled]="processing">
+        <option value="">-Pick one-</option>
+        <option value="lecture">Lecture</option>
+        <option value="code-along">Code-along</option>
+        <option value="demo">Demo</option>
+        <option value="practice">Practice</option>
+        <option value="review">Review</option>
+        <option value="activity">Activity</option>
+        <option value="P.P.">Pair programming</option>
+        <option value="D.E.">Daily exercise</option>
+        <option value="ritual">Ritual</option>
+        <option value="deck">Deck</option>
+        <option value="break">Break</option>
+        <option value="talk">Talk</option>
+      </select>
+      <div *ngIf="feedbackEnabled && subCategoryField.errors || subCategoryField.dirty && subCategoryField.errors">
+        <p *ngIf="subCategoryField.errors.required" class="validation">Subcategory required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && moduleField.errors}">
+      <label>Module</label>
+      <select name="module" [(ngModel)]="newUnit.module" #moduleField="ngModel" required [disabled]="processing">
+        <option value="">-Pick one-</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <div *ngIf="feedbackEnabled && moduleField.errors || moduleField.dirty && moduleField.errors">
+        <p *ngIf="moduleField.errors.required" class="validation">Module required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && durationField.errors}">
+      <label>Duration</label>
+      <input type="number" name="duration" [(ngModel)]="newUnit.duration" #durationField="ngModel" required [disabled]="processing">
+      <div *ngIf="feedbackEnabled && durationField.errors || durationField.dirty && durationField.errors">
+        <p *ngIf="durationField.errors.required" class="validation">duration required</p>
+      </div>
+    </div>
+    
+    <div class="field submit">
+      <button type="submit" [disabled]="processing">Add User</button>
+      <div *ngIf="feedbackEnabled && form.invalid || error" [ngSwitch]="error">
+        <p class="validation">there are errors in the form, please review the fields</p>
+        <p *ngSwitchCase="'email-not-unique'" class="validation">Email already in use</p>
+      </div>
+    </div>
+  </form>
+</section>

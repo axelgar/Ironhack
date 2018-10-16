@@ -68,4 +68,16 @@ export class UnitService {
     return this.httpClient.put(`${this.apiUrl}/transfer/${unit._id}`, body, options)
       .pipe(catchError((err) => Observable.throw(err.json())));
   }
+
+  unitCreate(unit: any, cohortId): Promise<any> {
+    const options = {
+      withCredentials: true,
+    };
+    const data ={
+      unit,
+      cohortId
+    }
+    return this.httpClient.post(`${this.apiUrl}/unit-create`, data, options)
+      .toPromise()
+  }
 }

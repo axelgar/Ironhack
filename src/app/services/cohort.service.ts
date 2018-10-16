@@ -36,7 +36,6 @@ export class CohortService {
   //     .toPromise()
   // }
 
-
   getCohort(id): Observable<any> {
     const options = {
       withCredentials: true
@@ -64,15 +63,6 @@ export class CohortService {
     return this.httpClient.delete(`${this.apiUrl}/${data}` , options)
      .toPromise();
   }
-
-  // private getNextPosition(): number {
-  //   if (this.days.length !== 0) {
-  //     const pos = _.last(this.days).position;
-  //     return pos + 1000;
-  //   } else {
-  //     return 0;
-  //   }
-  // }
    /**
    * Re-arrange a sortable array by position and title
    * @params items: Array<SortableItem> - The array to sort
@@ -141,8 +131,6 @@ export class CohortService {
       const _el = _.find(this.cohort.parkingLot, { _id: unitId }) as Unit;
       updatePosition(_el)
     }
-  }
-
-    
+  }  
 }
 

@@ -33,6 +33,7 @@ import { ArrowBackComponent } from './components/arrow-back/arrow-back.component
 
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersCreatePageComponent } from './pages/users-create-page/users-create-page.component';
+import { AddUnitComponent } from './components/add-unit/add-unit.component';
 
 
 const routes: Routes = [
@@ -68,6 +69,7 @@ const routes: Routes = [
     ArrowBackComponent,
     UsersPageComponent,
     UsersCreatePageComponent,
+    AddUnitComponent,
   ],
   imports: [
     BrowserModule,

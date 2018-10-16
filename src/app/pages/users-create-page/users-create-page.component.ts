@@ -26,7 +26,10 @@ export class UsersCreatePageComponent implements OnInit {
     cohortId: this.route.params
   }
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService, 
+    private router: Router, 
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
   }

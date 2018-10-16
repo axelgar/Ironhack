@@ -5,14 +5,19 @@
     <div class="cohort-menu">
       <p class="calendar" (click)="handleToggleClickCalendar()">calendar</p>
       <p class="overview" (click)="handleToggleClickOverview()">overview</p>
+      <p class="unit" (click)="handleToggleClickAddUnit()">add unit</p>
     </div>
   
     <div *ngIf="calendar">
       <app-cohort-calendar [cohort]="cohort"></app-cohort-calendar>
     </div>
   
-    <div *ngIf="!calendar">
+    <div *ngIf="overview">
       <app-cohort-overview [cohort]="cohort"></app-cohort-overview>
+    </div>
+
+    <div *ngIf="addUnit">
+      <app-add-unit [cohort]="cohort"></app-add-unit>
     </div>
     </div>
 </section>

@@ -22,6 +22,7 @@
                         'is-break': unit.category === 'break'
                         }">
                     <p>{{unit.subCategory}}</p>
+                    <p>{{unit.position}}</p>
                     <h3>{{unit.title}}</h3>
                   </div>
                 </a>
@@ -38,7 +39,7 @@
         <p>parkingLot</p>
         <div class="scroll">
           <div [id]="cohort._id"[dragula]='"units"' [(dragulaModel)]="cohort.parkingLot">
-              <li class="parkingLot" *ngFor='let unit of cohort.parkingLot, let i = index' [id]="unit._id">
+              <li class="parkingLot" *ngFor='let unit of cohort.parkingLot' [id]="unit._id">
                   <a [routerLink]="['/unit', unit._id]">
                     <div class="card unit-card section calendar-view" [ngClass]="{
                           'is-lesson': unit.category === 'lessons',

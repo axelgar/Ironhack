@@ -17,6 +17,8 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
   cohort: any;
   error = false;
   calendar = true;
+  overview = false;
+  addUnit = false;
   destroySubject$: Subject<void> = new Subject();
   
   constructor(
@@ -49,14 +51,25 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
 
   handleToggleClickCalendar() {
     this.calendar = true;
+    this.overview = false;
+    this.addUnit = false;
   }
 
   handleToggleClickOverview() {
     this.calendar = false;
+    this.overview = true;
+    this.addUnit = false;
+  }
+
+  handleToggleClickAddUnit() {
+    this.calendar = false;
+    this.overview = false;
+    this.addUnit = true;
   }
 
   ngOnDestroy () {
     this.destroySubject$.next();
   }
+
 
 }
