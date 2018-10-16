@@ -57,6 +57,14 @@ export class CohortService {
       .toPromise();
   }
 
+  delete(data): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.delete(`${this.apiUrl}/${data}` , options)
+     .toPromise();
+  }
+
   // private getNextPosition(): number {
   //   if (this.days.length !== 0) {
   //     const pos = _.last(this.days).position;
