@@ -15,8 +15,7 @@ export class UserService {
       withCredentials: true
     };
     return this.httpClient.get(`${this.apiUrl}`, options)
-      .toPromise();
-      
+      .toPromise();  
   }
 
   userCreate(user: any): Promise<any> {
@@ -25,6 +24,14 @@ export class UserService {
     };
     return this.httpClient.post(`${this.apiUrl}/user-create`, user, options)
       .toPromise()
+  }
+
+  delete(data): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.delete(`${this.apiUrl}/${data}` , options)
+     .toPromise();
   }
 
   // getOne(id): Promise<any> {
