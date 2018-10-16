@@ -2,6 +2,7 @@ body {
   background-image: url(assets/bg-cow.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 #site-header {
@@ -89,6 +90,10 @@ body {
 }
 
 .curriculum-section {
+  .scroll {
+    height: 70vh;
+    overflow: scroll;
+  }
   .modules-menu {
     display: flex;
     justify-content: space-evenly;
@@ -197,9 +202,13 @@ body {
 }
 
 @media (min-width: 1028px) {
+  body {
+    background-image: url(assets/bg-big.jpg);
+  }
+
   .container {
     max-width: 95%;
-    margin: 0 2vw 0 17vw;
+    margin: 0 20px 0 120px;
   }
 
   #site-footer {
@@ -210,7 +219,7 @@ body {
     position: fixed;
     left: 0;
     height: 100%;
-    width: 15vw;
+    width: 100px;
     z-index: 10;
   
     nav {

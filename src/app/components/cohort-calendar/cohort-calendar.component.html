@@ -1,4 +1,4 @@
-<ul *ngIf="cohort" class="calendar-stuff container">
+<ul *ngIf="cohort" class="calendar-stuff">
   <li>
     <swiper [config]="config" [(index)]="index">
         <div *ngFor="let day of cohort.days;let i = index" class="day-card">
@@ -18,7 +18,7 @@
                           'is-break': unit.category === 'break'
                           }">
                       <p>{{unit.subCategory}}</p>
-                      <p>{{unit.position}}</p>
+                      <!-- <p>{{unit.position}}</p> -->
                       <h3>{{unit.title}}</h3>
                     </div>
                   </a>
@@ -26,32 +26,37 @@
               </li>
             </ul>
           </div>
-<<<<<<< HEAD
-          <ul [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.units" class="scroll card-container">
-            <li *ngFor='let unit of day.units, let i = index' [id]="unit._id"
-            (onCohortEdit)="onCohortEdit($event)">
-              <div class="morning">
-                <a [routerLink]="['/unit', unit._id]">
-                  <div class="card unit-card section calendar-view" [ngClass]="{
-                        'is-lesson': unit.category === 'lessons',
-                        'is-ritual': unit.category === 'rituals',
-                        'is-pr': unit.category === 'P&R',
-                        'is-break': unit.category === 'break'
-                        }">
-                    <p>{{unit.subCategory}}</p>
-                    <h3>{{unit.title}}</h3>
-                  </div>
-                </a>
-              </div>
-            </li>
-          </ul>
-=======
->>>>>>> efb8840839ad5a9f2ff116d1d59f95b1df6db190
         </div>
     </swiper>
   </li>
+  <!-- <li>
+    <swiper [config]="config" [(index)]="index">
+      <div *ngFor="let day of cohort.days;let i = index" class="day-card">
+        <div id="{{day.date}}" [ngClass]="{'is-moved-left': movedLeft, 'is-moved-right': movedRight }">
+          <div>
+            <p>parkingLot</p>
+            <ul class="scroll-2 card-container" [id]="cohort._id"[dragula]='"units"' [(dragulaModel)]="cohort.parkingLot">
+              <li class="parking-lot" *ngFor='let unit of cohort.parkingLot, let i = index' [id]="unit._id">
+                  <a [routerLink]="['/unit', unit._id]">
+                    <div class="card unit-card section calendar-view" [ngClass]="{
+                          'is-lesson': unit.category === 'lessons',
+                          'is-ritual': unit.category === 'rituals',
+                          'is-pr': unit.category === 'P&R',
+                          'is-break': unit.category === 'break'
+                          }">
+                      <p>{{unit.subCategory}}</p>
+                      <h3>{{unit.title}}</h3>
+                        </div>
+                  </a>
+              </li>
+            </ul>
+          </div> 
+        </div>
+      </div>
+    </swiper>
+  </li> -->
   <li>
-    <div class="scroll-x ">
+
       <div>
         <p>parkingLot</p>
         <ul class="scroll-2 card-container" [id]="cohort._id"[dragula]='"units"' [(dragulaModel)]="cohort.parkingLot">
@@ -70,7 +75,7 @@
           </li>
         </ul>
       </div>
-    </div>
+
         <!-- <div class="scroll">
         <p>Adaptive Curriculum</p>
           <div [id]="cohort._id"[dragula]='"units"' [(dragulaModel)]="cohort.adaptiveCurriculum" >

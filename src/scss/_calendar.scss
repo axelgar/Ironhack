@@ -2,22 +2,22 @@
 
 // }
 
-.grid-days {
-  display: grid;
-  grid-template-columns: repeat(45, 100vw);
-  overflow: scroll;
-  scroll-behavior: smooth;
-}
+// .grid-days {
+//   display: grid;
+//   grid-template-columns: repeat(45, 100vw);
+//   overflow: scroll;
+//   scroll-behavior: smooth;
+// }
 
-.arrows {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
+// .arrows {
+//   display: flex;
+//   justify-content: space-around;
+//   padding: 10px 0;
 
-  p {
-    display: inline;
-  }
-}
+//   p {
+//     display: inline;
+//   }
+// }
 
 
 .day-card {
@@ -40,7 +40,7 @@
     height: 40vh;
     margin: 0 auto;
     overflow: scroll;
-    width: 300px;
+    width: 100%;
     padding-bottom: 40px;
   }
   
@@ -66,13 +66,13 @@
   }
 }
 
-.scroll-x {
-  display: grid;
-  grid-template-columns: repeat(2, 100vw);
-  overflow: scroll;
-  scroll-behavior: smooth;
-  text-align: center;
-}
+// .scroll-x {
+//   display: grid;
+//   grid-template-columns: repeat(2, 100vw);
+//   overflow: scroll;
+//   scroll-behavior: smooth;
+//   text-align: center;
+// }
 
 
 // .grid-units {

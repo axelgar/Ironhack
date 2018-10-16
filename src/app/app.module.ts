@@ -11,12 +11,31 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
-  slidesPerView: 'auto',
+  slidesPerView: 5,
+  spaceBetween: 10,
+  breakpoints: {
+    // when window width is <= 320px
+    768: {
+      slidesPerView: 1,
+      // spaceBetween: 10
+    },
+    // when window width is <= 480px
+    1028: {
+      slidesPerView: 3,
+      // spaceBetween: 20
+    },
+    // when window width is <= 640px
+    // 1028: {
+    //   slidesPerView: 5,
+    //   // spaceBetween: 30
+    // }
+  },
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   }
 };
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
