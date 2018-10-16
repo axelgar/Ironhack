@@ -72,10 +72,10 @@ export class ProfilePageComponent implements OnInit {
           console.log(this.id)
           this.router.navigate([`/user/${this.id}`]);
           this.newProject = {
-            title: ' ',
+            title: 'Title',
             module: ' ',
-            presLink: ' ',
-            deployLink: ' '
+            presLink: 'Presentation Link',
+            deployLink: 'Deploy link'
           };
         })
         .catch((err) => {

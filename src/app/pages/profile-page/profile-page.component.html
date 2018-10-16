@@ -54,7 +54,7 @@
             <option value="M2">M2</option>
             <option value="M3">M3</option>
           </select>
-          <div *ngIf="feedbackEnabled && moduleField.errors">
+          <div *ngIf="feedbackEnabled && moduleField.errors || moduleField.dirty && titleField.errors">
             <p *ngIf="moduleField.errors.required" class="validation">Module required</p>
           </div>
         </div>
