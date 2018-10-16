@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile-settings-page',
@@ -17,21 +18,19 @@ export class ProfileSettingsPageComponent implements OnInit {
     newPassword: '',
     currentPassword: ''
   }
+  currentUser: any;
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
   
   ngOnInit() {
-    this.route.params
-      .subscribe((params) => {
-        this.id = params.id;
-        this.userService.findProfile(this.id)
-          .then((result) => {
-            this.user = result;
-          })
-          .catch((error) => {
-            console.log(error);
-            this.error = true;
-          })
+    this.currentUser = this.authService.getUser();
+    this.userService.findProfile(this.currentUser._id)
+      .then((result) => {
+        this.user = result;
+      })
+      .catch((error) => {
+        console.log(error);
+        this.error = true;
       })
   }
 
@@ -40,7 +39,7 @@ export class ProfileSettingsPageComponent implements OnInit {
     this.feedbackEnabled = true;
     if (form.valid) {
       this.processing = true;
-      this.userService.changePassword(this.passwords, this.user._id)
+      this.userService.changePassword(this.passwords)
         .then((user) => {
           this.router.navigate([`/user/${this.user._id}`]);
         })
