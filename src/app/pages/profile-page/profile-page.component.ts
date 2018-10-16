@@ -14,12 +14,14 @@ export class ProfilePageComponent implements OnInit {
   id: string;
   error = false;
   currentUser: any;
-  newProject= {
+
+  newProject = {
     title: '',
-    module: '',
     presLink: '',
-    deployLink:''
+    deployLink:'',
+    module: ''
   } ;
+
   feedbackEnabled = false;
   projecterror = null;
   loading = true;
@@ -46,7 +48,6 @@ export class ProfilePageComponent implements OnInit {
           .then((result) => {
             this.user = result;
             this.projectsUser = this.user.projects;
-            console.log(this.projectsUser)
             return this.authService.getUser()
           })
           .then((result) => {
