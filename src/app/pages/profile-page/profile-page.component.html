@@ -1,13 +1,15 @@
 <section *ngIf="user" class="profile-page">
-  <img src="{{user.profilePic}}" alt="profile picture">
+  <div class="profile-pic">
+    <img src="{{user.profilePic}}" alt="profile picture">
+  </div>
   <div class="info-user">
-    <h2>{{user.firstName}}</h2>
+    <h2>{{user.firstName}} {{user.lastName}}</h2>
     <p>{{user.role}}</p>
     <div class="edit-settings">
       <div>
         <a [routerLink]="['/user/edit']">
-            <div class="card cohort-card create" *ngIf="currentUser._id === user._id">
-              <span>Edit</span>
+            <div class="edit-icon" *ngIf="currentUser._id === user._id">
+              <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDUyOC44OTkgNTI4Ljg5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTI4Ljg5OSA1MjguODk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTMyOC44ODMsODkuMTI1bDEwNy41OSwxMDcuNTg5bC0yNzIuMzQsMjcyLjM0TDU2LjYwNCwzNjEuNDY1TDMyOC44ODMsODkuMTI1eiBNNTE4LjExMyw2My4xNzdsLTQ3Ljk4MS00Ny45ODEgICBjLTE4LjU0My0xOC41NDMtNDguNjUzLTE4LjU0My02Ny4yNTksMGwtNDUuOTYxLDQ1Ljk2MWwxMDcuNTksMTA3LjU5bDUzLjYxMS01My42MTEgICBDNTMyLjQ5NSwxMDAuNzUzLDUzMi40OTUsNzcuNTU5LDUxOC4xMTMsNjMuMTc3eiBNMC4zLDUxMi42OWMtMS45NTgsOC44MTIsNS45OTgsMTYuNzA4LDE0LjgxMSwxNC41NjVsMTE5Ljg5MS0yOS4wNjkgICBMMjcuNDczLDM5MC41OTdMMC4zLDUxMi42OXoiIGZpbGw9IiMzYzNmM2YiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
             </div>
         </a>
       </div>
@@ -17,58 +19,72 @@
     </div>
   </div>
 
-  <div class="projects" *ngIf="currentUser._id === user._id">
-    <form *ngIf="user" (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+  <swiper [config]="config" [(index)]="index" id="projects-container">
 
-      <div class="field" [ngClass]="{'has-error': feedbackEnabled && titleField.errors}">
-        <label>Title</label>
-        <input type="text" name="title" [(ngModel)]="newProject.title" #titleField="ngModel" required [disabled]="processing">
-        <div *ngIf="feedbackEnabled && titleField.errors || titleField.dirty && titleField.errors">
-          <p *ngIf="titleField.errors.required" class="validation">First Name required</p>
-        </div>
+    <div *ngFor="let project of projectsUser" class="project-card">
+      <div class="delete" (click)="handleDeleteProject(project._id)">
+        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ2OS43ODUgNDY5Ljc4NSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDY5Ljc4NSA0NjkuNzg1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4yNSAwIDAgLTEuMjUgMCA0NSkiPgoJPGc+CgkJPGc+CgkJCTxwYXRoIHN0eWxlPSJmaWxsOiNERDJFNDQ7IiBkPSJNMjI4LjI5NC0xNTEuNzUzTDM2Ny40ODktMTIuNTU4YzExLjExNiwxMS4xMDUsMTEuMTE2LDI5LjExNiwwLDQwLjIyICAgICBjLTExLjEwNSwxMS4xMTYtMjkuMTA0LDExLjExNi00MC4yMiwwTDE4OC4wNzMtMTExLjUzM0w0OC44NjYsMjcuNjYzYy0xMS4wOTMsMTEuMTE2LTI5LjExNiwxMS4xMTYtNDAuMjIsMCAgICAgYy0xMS4xMDUtMTEuMTA1LTExLjEwNS0yOS4xMTYsMC00MC4yMmwxMzkuMjA3LTEzOS4xOTZMOC4zMzgtMjkxLjI2OGMtMTEuMTE2LTExLjExNi0xMS4xMTYtMjkuMTE2LDAtNDAuMjIgICAgIGM1LjU1Mi01LjU2NCwxMi44MzQtOC4zNCwyMC4xMTYtOC4zNGM3LjI3LDAsMTQuNTUyLDIuNzc2LDIwLjEwNSw4LjM0bDEzOS41MTQsMTM5LjUxNGwxMzkuMTk2LTEzOS4xOTYgICAgIGM1LjU2NC01LjU1MiwxMi44MzQtOC4zNCwyMC4xMTYtOC4zNGM3LjI3LDAsMTQuNTUyLDIuNzg4LDIwLjEwNSw4LjM0YzExLjExNiwxMS4xMDUsMTEuMTE2LDI5LjEwNCwwLDQwLjIyTDIyOC4yOTQtMTUxLjc1M3oiLz4KCQk8L2c+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" width="15px" />
       </div>
-
-      <div class="field" [ngClass]="{'has-error': feedbackEnabled && moduleField.errors}">
-        <label>Module</label>
-        <input type="text" name="module" [(ngModel)]="newProject.module" #moduleField="ngModel" required [disabled]="processing">
-        <div *ngIf="feedbackEnabled && moduleField.errors || moduleField.dirty && moduleField.errors">
-          <p *ngIf="moduleField.errors.required" class="validation">First Name required</p>
-        </div>
-      </div>
-
-      <div class="field" [ngClass]="{'has-error': feedbackEnabled && presLinkField.errors}">
-        <label>Presentation Link</label>
-        <input type="text" name="presLink" [(ngModel)]="newProject.presLink" #presLinkField="ngModel" required [disabled]="processing">
-        <div *ngIf="feedbackEnabled && presLinkField.errors || presLinkField.dirty && presLinkField.errors">
-          <p *ngIf="presLinkField.errors.required" class="validation">First Name required</p>
-        </div>
-      </div>
-    
-      <div class="field" [ngClass]="{'has-error': feedbackEnabled && deployLinkField.errors}">
-        <label>Deploy Link</label>
-        <input type="text" name="deployLink" [(ngModel)]="newProject.deployLink" #deployLinkField="ngModel" required [disabled]="processing">
-        <div *ngIf="feedbackEnabled && deployLinkField.errors || deployLinkField.dirty && deployLinkField.errors">
-          <p *ngIf="deployLinkField.errors.required" class="validation">First Name required</p>
-        </div>
-      </div>
-    
-      <div class="field submit">
-        <button type="submit" [disabled]="processing">Save</button>
-        <div *ngIf="feedbackEnabled && form.invalid">
-          <p class="validation">there are errors in the form, please review the fields</p>
-        </div>
-      </div>
-    </form>
-  </div>
-  <ul class="projects-list" *ngIf="user">
-    <li *ngFor="let project of projectsUser">
       <div>
         <h3>{{project.title}}</h3>
         <h4>{{project.module}}</h4>
-        <a href="{{project.presLink}}">{{project.presLink}}</a>
-        <a href="{{project.deployLink}}">{{project.deployLink}}</a>
+        <hr>
+        <p><a href="{{project.presLink}}">Presentation</a></p>
+        <p><a href="{{project.deployLink}}">Deploy</a></p>
       </div>
-    </li>
-  </ul>
+    </div>
+
+    <div class="projects" *ngIf="currentUser._id === user._id">
+      <h3>Add a project</h3>
+      <form *ngIf="user" (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" id="form">
+  
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && titleField.errors}">
+          <label></label>
+          <input type="text" name="title" [(ngModel)]="newProject.title" #titleField="ngModel" required [disabled]="processing" placeholder="Title">
+          <div *ngIf="feedbackEnabled && titleField.errors || titleField.dirty && titleField.errors">
+            <p *ngIf="titleField.errors.required" class="validation">Title required</p>
+          </div>
+        </div>
+  
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && moduleField.errors}">
+          <label></label>
+          <select name="module" [(ngModel)]="newProject.module" #moduleField="ngModel" required [disabled]="processing">
+            <option value="">-Pick a module-</option>
+            <option value="M1">M1</option>
+            <option value="M2">M2</option>
+            <option value="M3">M3</option>
+          </select>
+          <div *ngIf="feedbackEnabled && moduleField.errors || moduleField.dirty && titleField.errors">
+            <p *ngIf="moduleField.errors.required" class="validation">Module required</p>
+          </div>
+        </div>
+  
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && presLinkField.errors}">
+          <label></label>
+          <input type="text" name="presLink" [(ngModel)]="newProject.presLink" #presLinkField="ngModel" required [disabled]="processing" placeholder="Presentation link">
+          <div *ngIf="feedbackEnabled && presLinkField.errors || presLinkField.dirty && presLinkField.errors">
+            <p *ngIf="presLinkField.errors.required" class="validation">Link required</p>
+          </div>
+        </div>
+      
+        <div class="field" [ngClass]="{'has-error': feedbackEnabled && deployLinkField.errors}">
+          <label></label>
+          <input type="text" name="deployLink" [(ngModel)]="newProject.deployLink" #deployLinkField="ngModel" required [disabled]="processing" placeholder="Deploy link">
+          <div *ngIf="feedbackEnabled && deployLinkField.errors || deployLinkField.dirty && deployLinkField.errors">
+            <p *ngIf="deployLinkField.errors.required" class="validation">Link required</p>
+          </div>
+        </div>
+      
+        <div class="field submit">
+          <button type="submit" [disabled]="processing">Add</button>
+          <div *ngIf="feedbackEnabled && form.invalid">
+            <p class="validation">there are errors in the form, please review the fields</p>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </swiper>
+
 
 </section>

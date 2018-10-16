@@ -14,12 +14,14 @@ export class ProfilePageComponent implements OnInit {
   id: string;
   error = false;
   currentUser: any;
-  newProject= {
+
+  newProject = {
     title: '',
-    module: '',
     presLink: '',
-    deployLink:''
+    deployLink:'',
+    module: ''
   } ;
+
   feedbackEnabled = false;
   projecterror = null;
   loading = true;
@@ -46,7 +48,6 @@ export class ProfilePageComponent implements OnInit {
           .then((result) => {
             this.user = result;
             this.projectsUser = this.user.projects;
-            console.log(this.projectsUser)
             return this.authService.getUser()
           })
           .then((result) => {
@@ -71,10 +72,10 @@ export class ProfilePageComponent implements OnInit {
           console.log(this.id)
           this.router.navigate([`/user/${this.id}`]);
           this.newProject = {
-            title: ' ',
+            title: 'Title',
             module: ' ',
-            presLink: ' ',
-            deployLink: ' '
+            presLink: 'Presentation Link',
+            deployLink: 'Deploy link'
           };
         })
         .catch((err) => {
@@ -83,6 +84,14 @@ export class ProfilePageComponent implements OnInit {
           this.feedbackEnabled = false;
         });
     }
+  }
+
+  handleDeleteProject(id) {
+    this.userService.deleteProject(id)
+      .catch((error) => {
+        console.log(error);
+        this.error = true;
+      })
   }
 
 

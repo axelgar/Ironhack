@@ -73,6 +73,15 @@ export class UserService {
       .then((user) => this.setProjects(user))
   }
 
+  deleteProject(id): Promise<any> {
+    const options = {
+      withCredentials: true,
+    };
+    return this.httpClient.delete(`${this.apiUrl}/delete-project/${id}`, options)
+      .toPromise()
+      .then((user) => this.setProjects(user))
+  }
+
   // getOne(id): Promise<any> {
   //   const options = {
   //     withCredentials: true
