@@ -1,0 +1,18 @@
+<section *ngIf="user" class="profile-page">
+  <h2>{{user.firstName}}</h2>
+  <p>{{user.role}}</p>
+  <div>
+    <a [routerLink]="['/user/edit', user._id]">
+      <li>
+        <div class="card cohort-card create">
+          <span>Edit</span>
+        </div>
+      </li>
+    </a>
+  </div>
+  <img src="{{user.profilePic}}" alt="">
+  <div class="settings">
+    <a [routerLink]="['/user/settings', user._id]">Change password</a>
+  </div>
+
+</section>

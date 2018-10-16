@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { DragulaModule } from 'ng2-dragula';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,9 @@ import { CurriculumPageComponent } from './pages/curriculums-page/curriculums-pa
 import { CurriculumDetailPageComponent } from './pages/curriculum-detail-page/curriculum-detail-page.component';
 import { UnitDetailPageComponent } from './pages/unit-detail-page/unit-detail-page.component';
 import { CohortDetailsPageComponent } from './pages/cohort-details-page/cohort-details-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { ProfileSettingsPageComponent } from './pages/profile-settings-page/profile-settings-page.component';
+import { ProfileEditPageComponent } from './pages/profile-edit-page/profile-edit-page.component';
 
 import { InitAuthGuard } from './guards/init-auth.guard';
 import { RequireAnonGuard } from './guards/require-anon.guard';
@@ -35,6 +39,8 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersCreatePageComponent } from './pages/users-create-page/users-create-page.component';
 
 
+
+
 const routes: Routes = [
   { path: '', component: CohortsPageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
   { path: 'login', component: LogInPageComponent, canActivate: [RequireAnonGuard]},
@@ -45,7 +51,10 @@ const routes: Routes = [
   { path: 'curriculum/:id', component: CurriculumDetailPageComponent, canActivate: [RequireUserGuard, RequireStaffGuard]},
   { path: 'unit/:id', component: UnitDetailPageComponent, canActivate: [RequireUserGuard]},
   { path: 'users', component: UsersPageComponent, canActivate: [RequireUserGuard]},
-  { path: 'user/create/:id', component: UsersCreatePageComponent, canActivate: [RequireStaffGuard]},
+  { path: 'user/create/:id', component: UsersCreatePageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/settings', component: ProfileSettingsPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/edit', component: ProfileEditPageComponent, canActivate: [RequireUserGuard]},
+  { path: 'user/:id', component: ProfilePageComponent, canActivate: [RequireUserGuard]},
   { path: '**', component: NotFoundPageComponent, canActivate: [InitAuthGuard]}
 ];
 
@@ -68,6 +77,9 @@ const routes: Routes = [
     ArrowBackComponent,
     UsersPageComponent,
     UsersCreatePageComponent,
+    ProfilePageComponent,
+    ProfileSettingsPageComponent,
+    ProfileEditPageComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +87,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    DragulaModule
+    DragulaModule,
+    FileUploadModule
   ],
   providers: [
     
