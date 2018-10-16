@@ -36,7 +36,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   }
 };
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -69,6 +68,8 @@ import { ArrowBackComponent } from './components/arrow-back/arrow-back.component
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersCreatePageComponent } from './pages/users-create-page/users-create-page.component';
 import { AddUnitComponent } from './components/add-unit/add-unit.component';
+import { SharedModule } from './shared/shared.module';
+import { ChatModule } from './chat/chat.module';
 
 
 
@@ -122,7 +123,9 @@ const routes: Routes = [
     FormsModule,
     DragulaModule,
     FileUploadModule,
-    SwiperModule
+    SwiperModule,
+    SharedModule,
+    ChatModule
   ],
   providers: [
     {
