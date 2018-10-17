@@ -70,7 +70,6 @@ export class ProfilePageComponent implements OnInit {
         .then(() => {
           this.loading = false;
           this.processing= false;
-          console.log(this.id)
           this.router.navigate([`/user/${this.id}`])
           this.feedbackEnabled = false;
           this.newProject = {

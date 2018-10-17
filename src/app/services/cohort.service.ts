@@ -118,12 +118,12 @@ export class CohortService {
         }
         if (sourceDay === targetDay) {
           const subscription = self.unitService.edit(_el).subscribe(
-            (res) => console.log('Card position updated', res),
+            (res) => console.log(res),
             (err) => console.log('Update card error', err)
           );
         } else {
           const subscription = self.unitService.transfer(_el, sourceDay, targetDay).subscribe(
-            (res) => console.log('Card position updated', res),
+            (res) => console.log(res),
             (err) => console.log('Update card error', err)
           );
         }
@@ -131,12 +131,12 @@ export class CohortService {
         _el.position = 0;
         if (sourceDay === targetDay) {
           const subscription = self.unitService.edit(_el).subscribe(
-            (res) => console.log('Card position updated', res),
+            (res) => console.log(res),
             (err) => console.log('Update card error', err)
           );
         } else {
           const subscription = self.unitService.transfer(_el, sourceDay, targetDay).subscribe(
-            (res) => console.log('Card position updated', res),
+            (res) => console.log(res),
             (err) => console.log('Update card error', err)
           );
         }
