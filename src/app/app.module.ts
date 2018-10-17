@@ -15,8 +15,12 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   spaceBetween: 10,
   breakpoints: {
     // when window width is <= 320px
-    768: {
+    415: {
       slidesPerView: 1,
+      // spaceBetween: 10
+    },
+    768: {
+      slidesPerView: 2,
       // spaceBetween: 10
     },
     // when window width is <= 480px
@@ -71,6 +75,7 @@ import { UsersCreatePageComponent } from './pages/users-create-page/users-create
 import { AddUnitComponent } from './components/add-unit/add-unit.component';
 import { CohortDriveComponent } from './components/cohort-drive/cohort-drive.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 
@@ -116,7 +121,8 @@ const routes: Routes = [
     ProfileSettingsPageComponent,
     ProfileEditPageComponent,
     CohortDriveComponent,
-    LoadingComponent
+    LoadingComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
