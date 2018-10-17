@@ -101,7 +101,6 @@ export class CohortService {
       if(tDay) {
       const _index = _.findIndex(tDay.units, { _id: unitId }) as number;
       if (_index !== -1) {
-     
           if (_index === 0) {
             if (tDay.units.length > 1) {
               _el.position = tDay.units[1].position - 1000;
