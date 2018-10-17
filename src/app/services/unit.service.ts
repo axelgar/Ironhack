@@ -80,4 +80,12 @@ export class UnitService {
     return this.httpClient.post(`${this.apiUrl}/unit-create`, data, options)
       .toPromise()
   }
+
+  deleteUnit(id): Promise<any> {
+    const options = {
+      withCredentials: true,
+    };
+    return this.httpClient.delete(`${this.apiUrl}/${id}`, options)
+      .toPromise()
+  }
 }

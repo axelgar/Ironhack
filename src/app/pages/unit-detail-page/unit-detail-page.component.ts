@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Location } from '@angular/common';
 
 import { UnitService } from 'src/app/services/unit.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-unit-detail-page',
@@ -13,8 +15,14 @@ export class UnitDetailPageComponent implements OnInit {
   unit: any;
   error = false;
   loading = true;
+  currentUser: any;
 
-  constructor(private unitService: UnitService, private route: ActivatedRoute) {}
+  constructor(
+    private unitService: UnitService, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private _location: Location,
+    private authService: AuthService) {}
 
   ngOnInit() {
     this.route.params
@@ -23,7 +31,11 @@ export class UnitDetailPageComponent implements OnInit {
         this.unitService.getUnit(this.id)
           .then((result) => {
             this.loading = false;
-            this.unit = result;
+            this.unit = result; 
+            return this.authService.getUser()
+          })
+          .then((result) => {
+            return this.currentUser = result;
           })
           .catch((error) => {
             console.log(error);
@@ -31,4 +43,13 @@ export class UnitDetailPageComponent implements OnInit {
           })
       })
   }
+
+  // handleDeleteUnit(id) {
+  //   this.unitService.deleteUnit(id)
+  //     .then(() => this._location.back())
+  //     .catch((error) => {
+  //       console.log(error);
+  //       this.error = true;
+  //     })
+  // }
 }
