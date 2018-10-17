@@ -8,6 +8,7 @@
       <p class="calendar" (click)="handleToggleClickCalendar()">calendar</p>
       <p class="overview" (click)="handleToggleClickOverview()">overview</p>
       <p class="unit" (click)="handleToggleClickAddUnit()">add unit</p>
+      <p class="drive" (click)="handleToggleClickDrive()">drive</p>
     </div>
   
     <div *ngIf="calendar">
@@ -20,6 +21,10 @@
 
     <div *ngIf="addUnit">
       <app-add-unit [cohort]="cohort"></app-add-unit>
+    </div>
+
+    <div *ngIf="drive">
+      <app-cohort-drive [cohort]="cohort"></app-cohort-drive>
     </div>
     </div>
 </section>
