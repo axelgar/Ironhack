@@ -27,7 +27,7 @@ export class CohortsPageComponent implements OnInit {
       })
   }
 
-  handleDeletClick(id) {
+  handleDeleteClick(id) {
     this.cohortService.delete(id)
       .then(() => {
         this.cohorts = this.cohorts.filter(cohort => {
