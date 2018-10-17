@@ -16,6 +16,7 @@ export class CurriculumDetailPageComponent implements OnInit {
   mTwo = false;
   mThree = false;
   loading: boolean = true;
+  activeLink = false;
 
   constructor(private curriculumService: CurriculumService, private route: ActivatedRoute) { }
 

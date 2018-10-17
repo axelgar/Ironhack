@@ -38,14 +38,27 @@ form {
 			&:focus {
 				outline: none;
 			}
-			option {
-				padding-top: 5px;
-				&:checked{
-					background: $color-blue;
-				}
-			}
+			// option {
+			// 	padding-top: 5px;
+			// 	&::selection{
+			// 		background: $color-blue;
+			// 	}
+			// }
+
+			// &:-internal-list-box{
+			
+			// 	option:checked {
+			// 		background-color: $color-blue !important;
+
+			// 	}
+			// } 
+				
 
 		}
+	}
+
+	select[multiple]:focus option:hover {
+			background-color: $color-blue !important;
 	}
 
 	.custom-select {

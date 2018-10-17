@@ -1,4 +1,5 @@
 <section class="settings" *ngIf="user">
+  <app-arrow-back></app-arrow-back>
   <h2 class="title">Change your Password</h2>
   <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
   

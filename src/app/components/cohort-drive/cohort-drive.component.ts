@@ -17,6 +17,7 @@ export class CohortDriveComponent implements OnInit {
   uploader: FileUploader;
   loading = true;
   fileFeedback = false;
+  images: Array<any>
 
   constructor(
     private route: ActivatedRoute, 
@@ -25,13 +26,11 @@ export class CohortDriveComponent implements OnInit {
   ) {}
 
   ngOnInit () {
-    this.cohortService.cohortChange$.subscribe((cohort) => {
-      this.cohort = cohort;
-    })
+    this.cohortService.getCohort(this.cohort._id).subscribe(cohort => this.images = cohort.images)
 
-    this.uploader = new FileUploader({
-      url: environment.apiUrl + `/cohort/${this.cohort._id}/drive`
-    });
+    this.cohortService.cohortChange$.subscribe(images => this.images = images)
+
+    this.uploader = new FileUploader({ url: environment.apiUrl + `/cohort/${this.cohort._id}/drive`});
   }
 
   submitForm(form) {
@@ -44,9 +43,8 @@ export class CohortDriveComponent implements OnInit {
     if (form.valid && filesSelected.length) {
       this.uploader.onBuildItemForm = (item, form2) => {
       };
-      // this.cohortService.addImage(this.cohort);
       this.uploader.onSuccessItem = (item, response) => {
-        this.router.navigate([`/cohort/${this.cohort._id}`]);
+        this.cohortService.addImage(this.cohort);
       };
 
       this.uploader.onErrorItem = (item, response, status, headers) => {
