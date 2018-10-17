@@ -27,7 +27,7 @@ export class CohortService {
 
   private setImages(cohort?: any) {
     this.cohort = cohort;
-    this.cohortChange.next(this.cohort);
+    this.cohortChange.next(this.cohort.images);
     return this.cohort;
   }
 
@@ -50,7 +50,11 @@ export class CohortService {
     const options = {
       withCredentials: true,
     };
-     return this.setImages(cohort)
+    this.httpClient.get(`${this.apiUrl}/${cohort._id}`, options)
+      .toPromise()
+      .then((cohort) => {
+        this.setImages(cohort)
+      })
   }
 
   getCohort(id): Observable<any> {

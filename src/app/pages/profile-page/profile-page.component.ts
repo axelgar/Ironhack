@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FileUploader } from 'ng2-file-upload';
 import { AuthService } from 'src/app/services/auth.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-profile-page',
@@ -14,12 +15,12 @@ export class ProfilePageComponent implements OnInit {
   id: string;
   error = false;
   currentUser: any;
-
+  module: any='';
   newProject = {
     title: '',
     presLink: '',
-    deployLink:'',
-    module: ''
+    module: '',
+    deployLink:''
   } ;
 
   feedbackEnabled = false;
@@ -70,12 +71,13 @@ export class ProfilePageComponent implements OnInit {
           this.loading = false;
           this.processing= false;
           console.log(this.id)
-          this.router.navigate([`/user/${this.id}`]);
+          this.router.navigate([`/user/${this.id}`])
+          this.feedbackEnabled = false;
           this.newProject = {
-            title: 'Title',
-            module: ' ',
-            presLink: 'Presentation Link',
-            deployLink: 'Deploy link'
+            title: '',
+            presLink: '',
+            module: '',
+            deployLink: ''
           };
         })
         .catch((err) => {

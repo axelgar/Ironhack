@@ -29,6 +29,22 @@
       </div>
     </div>
 
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && linkedinField.errors}">
+      <label>LinkedIn</label>
+      <input type="text" name="linkedin" [(ngModel)]="user.linkedin" #linkedinField="ngModel" [disabled]="processing">
+      <div *ngIf="feedbackEnabled && linkedinField.errors">
+        <p *ngIf="linkedinField.errors.required" class="validation">Last Name required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && githubField.errors}">
+      <label>GitHub</label>
+      <input type="text" name="github" [(ngModel)]="user.github" #githubField="ngModel" [disabled]="processing">
+      <div *ngIf="feedbackEnabled && githubField.errors">
+        <p *ngIf="githubField.errors.required" class="validation">Last Name required</p>
+      </div>
+    </div>
+
     <div class="field" [ngClass]="{'has-error': feedbackEnabled && fileFeedback}">
       <label>Picture</label>
       <input type="file" name="file" ng2FileSelect [uploader]="uploader" required />

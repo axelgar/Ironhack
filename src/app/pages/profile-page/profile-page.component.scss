@@ -19,6 +19,7 @@
   box-shadow: 0 -1px 15px 1px rgba(12, 12, 13, 0.1);
   padding-top: 72px;
   padding-bottom: 20px;
+  text-align: center;
 
   h2 {
     font-size: 20px;
@@ -31,6 +32,11 @@
     text-transform: uppercase;
     font-weight: 300;
     font-size: 13px;
+  }
+
+  a {
+    display: inline;
+    text-align: center;
   }
 
   .edit-icon {
