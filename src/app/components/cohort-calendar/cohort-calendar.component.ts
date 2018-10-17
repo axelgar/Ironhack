@@ -27,22 +27,11 @@ export class CohortCalendarComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.dragulaService.dropModel
       .subscribe((value) => {
-      console.log("dropModel")
       const element = value[1].id;
       const to = value[2].id;
       const from = value[3].id;
       this.cohortService.shiftUnit(from, to, element);
     }));
-  }
-
-  handleClickLeft() {
-    this.movedLeft = true;
-    this.movedRight = false;
-    console.log('left')
-  }
-
-  handleClickRight() {
-    
   }
 
   ngOnDestroy() {

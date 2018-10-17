@@ -6,14 +6,10 @@
   </div>
   <div *ngIf="cohort" class="container">
     <div class="cohort-menu">
-      <p class="calendar" (click)="handleToggleClickCalendar()">calendar</p>
       <p class="overview" (click)="handleToggleClickOverview()">overview</p>
-      <p class="unit" (click)="handleToggleClickAddUnit()">add unit</p>
+      <p class="calendarView" (click)="handleToggleClickCalendarView()">calendar</p>
       <p class="drive" (click)="handleToggleClickDrive()">drive</p>
-    </div>
-  
-    <div *ngIf="calendar">
-      <app-cohort-calendar [cohort]="cohort"></app-cohort-calendar>
+      <p class="unit" (click)="handleToggleClickAddUnit()">add unit</p>
     </div>
   
     <div *ngIf="overview">
@@ -27,5 +23,9 @@
     <div *ngIf="drive">
       <app-cohort-drive [cohort]="cohort"></app-cohort-drive>
     </div>
+
+    <div *ngIf="calendarView">
+      <app-cohort-calendar-view [cohort]="cohort" [currentUser]="currentUser"></app-cohort-calendar-view>
     </div>
+  </div>
 </section>

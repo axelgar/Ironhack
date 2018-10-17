@@ -71,6 +71,7 @@ import { UsersCreatePageComponent } from './pages/users-create-page/users-create
 import { AddUnitComponent } from './components/add-unit/add-unit.component';
 import { CohortDriveComponent } from './components/cohort-drive/cohort-drive.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { CohortCalendarViewComponent } from './components/cohort-calendar-view/cohort-calendar-view.component';
 
 
 
@@ -116,7 +117,8 @@ const routes: Routes = [
     ProfileSettingsPageComponent,
     ProfileEditPageComponent,
     CohortDriveComponent,
-    LoadingComponent
+    LoadingComponent,
+    CohortCalendarViewComponent
   ],
   imports: [
     BrowserModule,

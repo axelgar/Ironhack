@@ -5,6 +5,7 @@ import { CohortService } from 'src/app/services/cohort.service';
 import { Subscription, throwError } from 'rxjs';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -16,19 +17,22 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
   id: string;
   cohort: any;
   error = false;
-  calendar = true;
   overview = false;
   addUnit = false;
   drive = false;
+  calendarView = true;
   loading: boolean = true;
   destroySubject$: Subject<void> = new Subject();
+  currentUser: any;
   
   constructor(
     private cohortService: CohortService, 
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.currentUser = this.authService.getUser();
     this.route.params
       .pipe(takeUntil(this.destroySubject$))
       .subscribe(params => {
@@ -52,32 +56,31 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
     })
   }
 
-  handleToggleClickCalendar() {
-    this.calendar = true;
-    this.overview = false;
-    this.addUnit = false;
-    this.drive = false;
-
-  }
-
   handleToggleClickOverview() {
-    this.calendar = false;
     this.overview = true;
     this.addUnit = false;
     this.drive = false;
+    this.calendarView = false;
   }
 
   handleToggleClickAddUnit() {
-    this.calendar = false;
     this.overview = false;
     this.addUnit = true;
     this.drive = false;
+    this.calendarView = false;
   }
   handleToggleClickDrive() {
-    this.calendar = false;
     this.overview = false;
     this.addUnit = false;
     this.drive = true;
+    this.calendarView = false;
+  }
+
+  handleToggleClickCalendarView() {
+    this.overview = false;
+    this.addUnit = false;
+    this.drive = false;
+    this.calendarView = true;
   }
 
   ngOnDestroy () {

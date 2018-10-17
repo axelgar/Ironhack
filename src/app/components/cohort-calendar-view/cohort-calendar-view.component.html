@@ -1,0 +1,108 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="edit-icon" *ngIf="currentUser.role !== student" (click)="handleToggleClickCalendar()">
+    <img [ngClass]="{'view': view}" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDUyOC44OTkgNTI4Ljg5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTI4Ljg5OSA1MjguODk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTMyOC44ODMsODkuMTI1bDEwNy41OSwxMDcuNTg5bC0yNzIuMzQsMjcyLjM0TDU2LjYwNCwzNjEuNDY1TDMyOC44ODMsODkuMTI1eiBNNTE4LjExMyw2My4xNzdsLTQ3Ljk4MS00Ny45ODEgICBjLTE4LjU0My0xOC41NDMtNDguNjUzLTE4LjU0My02Ny4yNTksMGwtNDUuOTYxLDQ1Ljk2MWwxMDcuNTksMTA3LjU5bDUzLjYxMS01My42MTEgICBDNTMyLjQ5NSwxMDAuNzUzLDUzMi40OTUsNzcuNTU5LDUxOC4xMTMsNjMuMTc3eiBNMC4zLDUxMi42OWMtMS45NTgsOC44MTIsNS45OTgsMTYuNzA4LDE0LjgxMSwxNC41NjVsMTE5Ljg5MS0yOS4wNjkgICBMMjcuNDczLDM5MC41OTdMMC4zLDUxMi42OXoiIGZpbGw9IiMzYzNmM2YiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+</div>
+<ul *ngIf="cohort && view" class="calendar-stuff">
+  <li>
+    <swiper [config]="config" [(index)]="index">
+        <div *ngFor="let day of cohort.days;let i = index" class="day-card">
+          <div id="{{day.date}}" [ngClass]="{'is-moved-left': movedLeft, 'is-moved-right': movedRight }">
+            <div class="arrows">
+              <p>{{day.date | date: "dd MMM"}}</p>
+            </div>
+            <ul [id]="day._id" class="scroll">
+              <li *ngFor='let unit of day.units, let i = index' [id]="unit._id"
+              (onCohortEdit)="onCohortEdit($event)">
+                <div class="morning">
+                  <a [routerLink]="['/unit', unit._id]">
+                    <div class="card unit-card section calendar-view" [ngClass]="{
+                          'is-lesson': unit.category === 'lessons',
+                          'is-ritual': unit.category === 'rituals',
+                          'is-pr': unit.category === 'P&R',
+                          'is-break': unit.category === 'break'
+                          }">
+                      <p>{{unit.subCategory}}</p>
+                      <!-- <p>{{unit.position}}</p> -->
+                      <h3>{{unit.title}}</h3>
+                    </div>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </swiper>
+  </li>
+  <!-- <li>
+    <swiper [config]="config" [(index)]="index">
+      <div *ngFor="let day of cohort.days;let i = index" class="day-card">
+        <div id="{{day.date}}" [ngClass]="{'is-moved-left': movedLeft, 'is-moved-right': movedRight }">
+          <div>
+            <p>parkingLot</p>
+            <ul class="scroll-2 card-container" [id]="cohort._id" >
+              <li class="parking-lot" *ngFor='let unit of cohort.parkingLot, let i = index' [id]="unit._id">
+                  <a [routerLink]="['/unit', unit._id]">
+                    <div class="card unit-card section calendar-view" [ngClass]="{
+                          'is-lesson': unit.category === 'lessons',
+                          'is-ritual': unit.category === 'rituals',
+                          'is-pr': unit.category === 'P&R',
+                          'is-break': unit.category === 'break'
+                          }">
+                      <p>{{unit.subCategory}}</p>
+                      <h3>{{unit.title}}</h3>
+                        </div>
+                  </a>
+              </li>
+            </ul>
+          </div> 
+        </div>
+      </div>
+    </swiper>
+  </li> -->
+  <li>
+
+      <div>
+        <p>parkingLot</p>
+        <ul class="scroll-2 card-container" [id]="cohort._id">
+          <li class="parking-lot" *ngFor='let unit of cohort.parkingLot, let i = index' [id]="unit._id">
+              <a [routerLink]="['/unit', unit._id]">
+                <div class="card unit-card section calendar-view" [ngClass]="{
+                      'is-lesson': unit.category === 'lessons',
+                      'is-ritual': unit.category === 'rituals',
+                      'is-pr': unit.category === 'P&R',
+                      'is-break': unit.category === 'break'
+                      }">
+                  <p>{{unit.subCategory}}</p>
+                  <h3>{{unit.title}}</h3>
+                    </div>
+              </a>
+          </li>
+        </ul>
+      </div>
+
+        <!-- <div class="scroll">
+        <p>Adaptive Curriculum</p>
+          <div [id]="cohort._id"[dragula]='"units"' [(dragulaModel)]="cohort.adaptiveCurriculum" >
+              <li class="adaptiveCurriculum" *ngFor='let unit of cohort.adaptiveCurriculum, let i = index' [id]="unit._id">
+                  <a [routerLink]="['/unit', unit._id]">
+                    <div class="card unit-card section calendar-view" [ngClass]="{
+                          'is-lesson': unit.category === 'lessons',
+                          'is-ritual': unit.category === 'rituals',
+                          'is-pr': unit.category === 'P&R',
+                          'is-break': unit.category === 'break'
+                          }">
+                      <p>{{unit.subCategory}}</p>
+                      <h3>{{unit.title}}</h3>
+                    </div>
+                  </a>
+              </li>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </li>
+</ul>
+
+<div *ngIf="editable">
+    <app-cohort-calendar [cohort]="cohort"></app-cohort-calendar>
+</div>
