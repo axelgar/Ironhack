@@ -13,6 +13,8 @@ export class ModuleOneUnitsComponent implements OnInit {
   id: string;
   curriculum: any;
   error = false;
+  name: string;
+  searchText: string = "";
 
   constructor(private curriculumService: CurriculumService, private route: ActivatedRoute) { }
 
@@ -30,4 +32,9 @@ export class ModuleOneUnitsComponent implements OnInit {
           })
       })
   }
+
+  clearFilter() {
+    this.searchText = "";
+  }
+
 }

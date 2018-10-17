@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { Unit } from '../models/unit';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { Unit } from '../models/unit';
 export class UnitService {
   private apiUrl = environment.apiUrl + '/unit';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   list(): Promise<any> {
     const options = {
@@ -29,7 +30,10 @@ export class UnitService {
       withCredentials: true
     }
     return this.httpClient.get(`${this.apiUrl}/${id}`, options)
-      .toPromise();
+      .toPromise()
+      .catch(error => {
+        this.router.navigate(['/not-found'])
+      });
   }
 
   /**

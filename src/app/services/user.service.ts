@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UserService {
 
   projectChange$: Observable<any> = this.projectChange.asObservable();
 
-  constructor(private httpClient: HttpClient, private authService: AuthService) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService, private router: Router) { }
 
   private setProjects(user?: any) {
     this.userProjects = user.projects
@@ -36,8 +37,10 @@ export class UserService {
       withCredentials: true
     };
     return this.httpClient.get(`${this.apiUrl}/${id}`, options)
-      .toPromise();
-
+      .toPromise()
+      .catch(error => {
+        this.router.navigate(['/not-found'])
+      });
   }
 
   userCreate(user: any): Promise<any> {

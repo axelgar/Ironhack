@@ -1,5 +1,5 @@
 <app-loading *ngIf="loading"></app-loading>
-<section class="form-cohort">
+<section class="form-cohort container">
   <app-arrow-back></app-arrow-back>
   <h2>New cohort</h2>
   <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" class="scroll">
@@ -36,7 +36,7 @@
   
     <div class="field" [ngClass]="{'has-error': feedbackEnabled && languageField.errors}">
       <label>Language</label>
-      <select name="language" [(ngModel)]="newCohort.language" #languageField="ngModel" required [disabled]="processing">
+      <select name="language" [(ngModel)]="newCohort.language" #languageField="ngModel" required [disabled]="processing" class="select">
         <option value="">-Pick one-</option>
         <option value="es">Spanish</option>
         <option value="en">English</option>
