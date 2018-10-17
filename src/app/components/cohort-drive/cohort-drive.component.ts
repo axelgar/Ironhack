@@ -15,7 +15,7 @@ export class CohortDriveComponent implements OnInit {
   error = null;
   processing = false;
   uploader: FileUploader;
-  loading = true;
+  loading = false;
   fileFeedback = false;
   images: Array<any>
 
@@ -41,10 +41,13 @@ export class CohortDriveComponent implements OnInit {
       this.fileFeedback = true;
     }
     if (form.valid && filesSelected.length) {
+      this.loading = true;
       this.uploader.onBuildItemForm = (item, form2) => {
       };
       this.uploader.onSuccessItem = (item, response) => {
         this.cohortService.addImage(this.cohort);
+        this.loading = false;
+        this.router.navigate([`/cohort/${this.cohort._id}`]);
       };
 
       this.uploader.onErrorItem = (item, response, status, headers) => {

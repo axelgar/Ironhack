@@ -16,6 +16,7 @@ export class UsersCreatePageComponent implements OnInit {
   error = null;
   processing = false;
   id: string;
+  loading = true;
 
   newUser: any = {
     firstName: '',
@@ -32,6 +33,7 @@ export class UsersCreatePageComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loading = false;
   }
   
   submitForm(form) {
@@ -39,8 +41,10 @@ export class UsersCreatePageComponent implements OnInit {
     this.feedbackEnabled = true;
     if (form.valid) {
       this.processing = true;
+      this.loading = true;
       this.userService.userCreate(this.newUser)
       .then((cohort) => {
+        this.loading = false;
         this.router.navigate([`/cohort/${cohort}`]);
         })
         .catch((err) => {

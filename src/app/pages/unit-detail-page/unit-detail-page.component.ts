@@ -14,6 +14,7 @@ export class UnitDetailPageComponent implements OnInit {
   id: string;
   unit: any;
   error = false;
+  loading = true;
   currentUser: any;
 
   constructor(
@@ -29,6 +30,7 @@ export class UnitDetailPageComponent implements OnInit {
         this.id = params.id;
         this.unitService.getUnit(this.id)
           .then((result) => {
+            this.loading = false;
             this.unit = result; 
             return this.authService.getUser()
           })

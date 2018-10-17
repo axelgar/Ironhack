@@ -1,3 +1,4 @@
+<app-loading *ngIf="loading"></app-loading>
 <section *ngIf="user" class="profile-page">
   <app-arrow-back *ngIf="currentUser._id !== user._id"></app-arrow-back>
   <div class="profile-pic">

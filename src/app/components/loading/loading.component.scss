@@ -1,4 +1,13 @@
 div{
-  align-items: center;
-  width: 100%
+  position: fixed;
+  z-index: 10;
+  top: 30vh;
+  left: 30vw;
 } 
+
+@media (min-width: 768px) {
+  div {
+    top: 40vh;
+    left: 45vw;
+  }
+}

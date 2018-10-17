@@ -1,3 +1,4 @@
+<app-loading *ngIf="loading"></app-loading>
 <div *ngIf="cohort" class="drive">
   <h2>Cohort Drive</h2>
   <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate >

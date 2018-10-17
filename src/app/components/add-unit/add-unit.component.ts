@@ -12,6 +12,7 @@ export class AddUnitComponent implements OnInit {
   feedbackEnabled = false;
   error = null;
   processing = false;
+  loading = true;
 
   newUnit: any = {
     title: '',
@@ -25,6 +26,7 @@ export class AddUnitComponent implements OnInit {
     private unitService: UnitService) { }
 
   ngOnInit() {
+    this.loading = false;
   }
 
   submitForm(form) {
@@ -34,6 +36,7 @@ export class AddUnitComponent implements OnInit {
       this.processing = true;
       this.unitService.unitCreate(this.newUnit, this.cohort._id)
       .then(() => {
+        this.loading = false;
         this.router.navigate([`/cohort`]);
         })
         .catch((err) => {

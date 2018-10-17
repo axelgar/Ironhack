@@ -17,6 +17,7 @@ export class CohortCreatePageComponent implements OnInit {
   teachers: Array<any>;
   students: Array<any>;
   users: Array<any>;
+  loading: boolean = true;
 
   newCohort: any = {
     location: '',
@@ -31,6 +32,7 @@ export class CohortCreatePageComponent implements OnInit {
   ngOnInit() {
     this.userService.find()
       .then((results) => {
+        this.loading = false;
         this.users = results;
         this.teachers = this.users.filter(user => {
           return user.role === 'teacher'
@@ -53,8 +55,10 @@ export class CohortCreatePageComponent implements OnInit {
     this.feedbackEnabled = true;
     if (form.valid) {
       this.processing = true;
+      this.loading = true;
       this.cohortService.create(this.newCohort)
         .then((cohort) => {
+          this.loading = false;
           const id = cohort._id;
           this.router.navigate([`/cohort/${id}`]);
         })

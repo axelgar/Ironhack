@@ -12,6 +12,7 @@ export class ProfileSettingsPageComponent implements OnInit {
   feedbackEnabled = false;
   error = null;
   processing = false;
+  loading = true;
   id: string;
   user:any;
   passwords: any = {
@@ -26,6 +27,7 @@ export class ProfileSettingsPageComponent implements OnInit {
     this.currentUser = this.authService.getUser();
     this.userService.findProfile(this.currentUser._id)
       .then((result) => {
+        this.loading = false;
         this.user = result;
       })
       .catch((error) => {
@@ -39,8 +41,10 @@ export class ProfileSettingsPageComponent implements OnInit {
     this.feedbackEnabled = true;
     if (form.valid) {
       this.processing = true;
+      this.loading = true;
       this.userService.changePassword(this.passwords)
         .then((user) => {
+          this.loading = false;
           this.router.navigate([`/user/${this.user._id}`]);
         })
         .catch((err) => {
