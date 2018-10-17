@@ -19,6 +19,8 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
   calendar = true;
   overview = false;
   addUnit = false;
+  drive = false;
+  loading: boolean = true;
   destroySubject$: Subject<void> = new Subject();
   
   constructor(
@@ -35,6 +37,7 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
       this.cohortService.getCohort(this.id)
     .pipe(takeUntil(this.destroySubject$))
     .subscribe(cohort => {
+      this.loading= false;
       this.cohort = cohort;
       this.cohort.days.forEach((day) => {
         day.units.sort((a, b) => { 
@@ -53,18 +56,28 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
     this.calendar = true;
     this.overview = false;
     this.addUnit = false;
+    this.drive = false;
+
   }
 
   handleToggleClickOverview() {
     this.calendar = false;
     this.overview = true;
     this.addUnit = false;
+    this.drive = false;
   }
 
   handleToggleClickAddUnit() {
     this.calendar = false;
     this.overview = false;
     this.addUnit = true;
+    this.drive = false;
+  }
+  handleToggleClickDrive() {
+    this.calendar = false;
+    this.overview = false;
+    this.addUnit = false;
+    this.drive = true;
   }
 
   ngOnDestroy () {

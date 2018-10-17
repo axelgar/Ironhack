@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import * as _ from 'lodash';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { SortableItem } from '../interfaces/sortable-item';
@@ -18,7 +18,17 @@ export class CohortService {
   cohort: any;
   private apiUrl = environment.apiUrl + '/cohort';
 
+  private cohortChange: Subject<any> = new Subject();
+
+  cohortChange$: Observable<any> = this.cohortChange.asObservable();
+
   constructor(private httpClient: HttpClient,  private unitService: UnitService) { }
+
+  private setImages(cohort?: any) {
+    this.cohort = cohort;
+    this.cohortChange.next(this.cohort);
+    return this.cohort;
+  }
 
   list(): Promise<any> {
     const options = {
@@ -35,6 +45,12 @@ export class CohortService {
   //   return this.httpClient.get(`${this.apiUrl}/${id}`, options)
   //     .toPromise()
   // }
+  addImage(cohort) : any {
+    const options = {
+      withCredentials: true,
+    };
+     return this.setImages(cohort)
+  }
 
   getCohort(id): Observable<any> {
     const options = {

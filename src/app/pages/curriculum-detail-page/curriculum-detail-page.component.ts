@@ -15,6 +15,7 @@ export class CurriculumDetailPageComponent implements OnInit {
   mOne = true;
   mTwo = false;
   mThree = false;
+  loading: boolean = true;
 
   constructor(private curriculumService: CurriculumService, private route: ActivatedRoute) { }
 
@@ -24,6 +25,7 @@ export class CurriculumDetailPageComponent implements OnInit {
         this.id = params.id;
         this.curriculumService.getOne(this.id)
           .then((result) => {
+            this.loading = false;
             this.curriculum = result;
           })
           .catch((error) => {

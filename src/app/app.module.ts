@@ -9,7 +9,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 5,
   spaceBetween: 10,
@@ -69,6 +69,8 @@ import { ArrowBackComponent } from './components/arrow-back/arrow-back.component
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersCreatePageComponent } from './pages/users-create-page/users-create-page.component';
 import { AddUnitComponent } from './components/add-unit/add-unit.component';
+import { CohortDriveComponent } from './components/cohort-drive/cohort-drive.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -112,7 +114,9 @@ const routes: Routes = [
     AddUnitComponent,
     ProfilePageComponent,
     ProfileSettingsPageComponent,
-    ProfileEditPageComponent
+    ProfileEditPageComponent,
+    CohortDriveComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

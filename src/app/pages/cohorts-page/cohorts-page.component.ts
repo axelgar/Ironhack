@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CohortsPageComponent implements OnInit {
   cohorts: Array<any> = [];
   error = false;
+  loading: boolean = true;
   currentLocation = location.pathname;
 
   constructor(private cohortService: CohortService, private authService: AuthService) { }
@@ -19,6 +20,7 @@ export class CohortsPageComponent implements OnInit {
   ngOnInit() {
     this.cohortService.list()
       .then((results) => {
+        this.loading = false;
         this.cohorts = results;
       })
       .catch((error) => {

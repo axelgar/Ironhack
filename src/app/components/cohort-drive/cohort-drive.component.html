@@ -1,0 +1,19 @@
+<div *ngIf="cohort" class="drive">
+  <h2>Cohort Drive</h2>
+  <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate >
+    <div class="field">
+      <label>Picture</label>
+      <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+    </div>
+    
+    
+    <div class="field submit">
+      <button type="submit" >Add an Image</button>
+    </div>
+  </form>
+  <div class="card-container">
+    <div class="card" *ngFor="let image of cohort.images">
+      <img src="{{image}}" alt="">
+    </div> 
+  </div>
+</div>
