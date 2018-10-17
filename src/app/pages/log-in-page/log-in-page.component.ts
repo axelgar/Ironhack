@@ -13,6 +13,7 @@ export class LogInPageComponent implements OnInit {
   feedbackEnabled = false;
   error = null;
   processing = false;
+  currentUser: any;
 
   login: any = {
     email: '',
@@ -31,7 +32,9 @@ export class LogInPageComponent implements OnInit {
       this.processing = true;
       this.authService.login(this.login)
         .then(() => {
-          this.router.navigate([`/cohort/`]);
+          this.currentUser = this.authService.getUser();
+
+          this.router.navigate([`/user/${this.currentUser._id}`]);
         })
         .catch((err) => {
           this.error = err.error.code || 'unexpected'

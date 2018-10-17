@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { CohortService } from 'src/app/services/cohort.service';
 import { Subscription, throwError } from 'rxjs';
@@ -28,6 +28,7 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
   constructor(
     private cohortService: CohortService, 
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthService) {
   }
 
@@ -43,6 +44,9 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
     .subscribe(cohort => {
       this.loading= false;
       this.cohort = cohort;
+      if(this.currentUser.role === 'student' && this.currentUser.cohort !== this.id ) {
+        this.router.navigate([`/not-found`])
+      }
       this.cohort.days.forEach((day) => {
         day.units.sort((a, b) => { 
           return a.position - b.position;

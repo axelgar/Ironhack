@@ -13,13 +13,14 @@ div {
   display: inline-block;
   font-family: Helvetica-neue, Helvetica, Arial, sans-serif;
   color: #788392;
+  vertical-align: middle;
   
   svg {
     position: relative;
     overflow: visible;
     z-index: 2;
     transform: translate3d(0,0,0);
-    margin: 3em;
+    margin-bottom: 50px;
   }
 
   .error-message {
@@ -31,6 +32,7 @@ div {
     font-size: 50px;
     font-weight: normal;
     margin: 0;
+    line-height: 100%;
     animation: $error-animation-step*3 ease-out fade-in-slowly;
   }
 
@@ -139,3 +141,9 @@ svg:hover {
     transform: scale(1, 1)
   }
 }
+
+// @media (max-width: 425px) {
+//   svg {
+//     scale: 50%;
+//   }
+// }
