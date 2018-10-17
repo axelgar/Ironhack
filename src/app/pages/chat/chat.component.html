@@ -1,0 +1,44 @@
+<div class="chat">
+  <div>
+    <h2>Realtime Chat Application</h2>
+  </div>
+  <!-- <div>
+      <div class="col-sm-5">
+          <div class="form-group">
+              <label for="username">{{user.firstName}}</label> -->
+              <!-- <input type="text" [(ngModel)]="user" class="form-control" id="user.firstName" placeholder="Enter username"> -->
+              <!-- <small id="userHelp" class="form-text text-muted">Type your username.</small> -->
+          <!-- </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-sm-5">
+          <label for="roomInput">Choose room</label>
+          <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
+              <option value="Lobby">Lobby</option>
+              <option value="Hall">Hall</option>
+              <option value="Deluxe">Deluxe</option>
+          </select>
+      </div> -->
+      <!-- <div class="col sm-2">
+          <div style="margin-top:19px;" class="pull-right"> 
+              <button type="button" class="btn btn-primary" (click)="join()">Join</button>
+              <button type="button" class="btn btn-default" (click)="leave()">Leave</button>
+          </div>
+      </div> -->
+  <!-- </div> -->
+
+  <div class="hall-container">
+    <div *ngIf="messageArray">
+      <div *ngFor="let item of messageArray">
+          <p><img src="{{item.picture}}" alt="">{{item.message}}</p>
+        </div>
+      </div>
+    </div>
+  <div class="message-container" >
+      <div class="input-message">
+        <input type="text" class="form-control" [(ngModel)]="messageText">            
+      </div>
+      <div class="">
+        <button type="button" (click)="sendMessage()">Send</button>
+      </div>
+  </div>
+</div>

@@ -55,6 +55,7 @@ import { CohortDetailsPageComponent } from './pages/cohort-details-page/cohort-d
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ProfileSettingsPageComponent } from './pages/profile-settings-page/profile-settings-page.component';
 import { ProfileEditPageComponent } from './pages/profile-edit-page/profile-edit-page.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 import { InitAuthGuard } from './guards/init-auth.guard';
 import { RequireAnonGuard } from './guards/require-anon.guard';
@@ -76,9 +77,8 @@ import { AddUnitComponent } from './components/add-unit/add-unit.component';
 import { CohortDriveComponent } from './components/cohort-drive/cohort-drive.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CohortCalendarViewComponent } from './components/cohort-calendar-view/cohort-calendar-view.component';
+
 import { SearchPipe } from './pipes/search.pipe';
-
-
 
 
 const routes: Routes = [
@@ -95,6 +95,7 @@ const routes: Routes = [
   { path: 'user/settings', component: ProfileSettingsPageComponent, canActivate: [RequireUserGuard]},
   { path: 'user/edit', component: ProfileEditPageComponent, canActivate: [RequireUserGuard]},
   { path: 'user/:id', component: ProfilePageComponent, canActivate: [RequireUserGuard]},
+  { path: 'chat', component: ChatComponent, canActivate: [RequireUserGuard]},
   { path: '**', component: NotFoundPageComponent, canActivate: [InitAuthGuard]}
 ];
 
@@ -124,7 +125,8 @@ const routes: Routes = [
     CohortDriveComponent,
     LoadingComponent,
     CohortCalendarViewComponent,
-    SearchPipe
+    SearchPipe,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
