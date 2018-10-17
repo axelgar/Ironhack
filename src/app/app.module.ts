@@ -70,6 +70,7 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersCreatePageComponent } from './pages/users-create-page/users-create-page.component';
 import { AddUnitComponent } from './components/add-unit/add-unit.component';
 import { CohortDriveComponent } from './components/cohort-drive/cohort-drive.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -114,7 +115,8 @@ const routes: Routes = [
     ProfilePageComponent,
     ProfileSettingsPageComponent,
     ProfileEditPageComponent,
-    CohortDriveComponent
+    CohortDriveComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
