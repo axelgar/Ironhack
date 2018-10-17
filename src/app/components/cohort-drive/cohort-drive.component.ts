@@ -45,7 +45,7 @@ export class CohortDriveComponent implements OnInit {
       this.uploader.onBuildItemForm = (item, form2) => {
       };
       this.uploader.onSuccessItem = (item, response) => {
-        this.cohortService.addImage(this.cohort);
+        this.cohortService.addImage(this.cohort)
         this.loading = false;
         this.router.navigate([`/cohort/${this.cohort._id}`]);
       };
