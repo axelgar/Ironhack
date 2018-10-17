@@ -51,12 +51,14 @@ export class ProfileEditPageComponent implements OnInit {
       this.fileFeedback = true;
     }
     if (form.valid && filesSelected.length) {
+      this.loading = true;
       this.uploader.onBuildItemForm = (item, form2) => {
         form2.append('firstName', this.user.firstName);
         form2.append('lastName', this.user.lastName);
         form2.append('description', this.user.description);
       };
       this.uploader.onSuccessItem = (item, response) => {
+        this.loading = false;
         this.router.navigate([`/user/${this.user._id}`]);
       };
 

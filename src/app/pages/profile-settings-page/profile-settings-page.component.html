@@ -1,3 +1,4 @@
+<app-loading *ngIf="loading"></app-loading>
 <section class="settings" *ngIf="user">
   <h2 class="title">Change your Password</h2>
   <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">

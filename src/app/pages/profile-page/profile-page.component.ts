@@ -39,8 +39,6 @@ export class ProfilePageComponent implements OnInit {
     this.userService.projectChange$.subscribe((projects) => {
       this.projectsUser = projects;
     })
-
-
     this.route.params
       .subscribe((params) => {
         this.id = params.id;
@@ -66,8 +64,10 @@ export class ProfilePageComponent implements OnInit {
     this.feedbackEnabled = true;
     if (form.valid) {
       this.processing = true;
+      this.loading = true;
       this.userService.addProject(this.newProject)
         .then(() => {
+          this.loading = false;
           this.processing= false;
           console.log(this.id)
           this.router.navigate([`/user/${this.id}`]);

@@ -10,12 +10,14 @@ import { CurriculumService } from 'src/app/services/curriculum.service';
 export class CurriculumPageComponent implements OnInit {
   curricula: Array<any> = [];
   error = false;
+  loading: boolean = true;
 
   constructor(private curriculumService:CurriculumService) { }
 
   ngOnInit() {
     this.curriculumService.list()
       .then((results) => {
+        this.loading = false;
         this.curricula = results;
       })
       .catch((error) => {
