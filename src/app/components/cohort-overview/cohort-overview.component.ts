@@ -16,7 +16,7 @@ export class CohortOverviewComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleDeletClick(id) {
+  handleDeleteClick(id) {
     this.userService.delete(id)
       .then(() => {
         this.cohort.students = this.cohort.students.filter(student => {

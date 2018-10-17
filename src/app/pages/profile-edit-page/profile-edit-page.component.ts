@@ -56,6 +56,8 @@ export class ProfileEditPageComponent implements OnInit {
         form2.append('firstName', this.user.firstName);
         form2.append('lastName', this.user.lastName);
         form2.append('description', this.user.description);
+        form2.append('linkedin', this.user.linkedin);
+        form2.append('github', this.user.github);
       };
       this.uploader.onSuccessItem = (item, response) => {
         this.loading = false;

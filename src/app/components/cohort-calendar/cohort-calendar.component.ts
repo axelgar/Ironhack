@@ -17,6 +17,8 @@ export class CohortCalendarComponent implements OnInit, OnDestroy {
   subs = new Subscription();
   movedLeft=false;
   movedRight=false;
+  name: string;
+  searchText: string = "";
 
   constructor(
     private dragulaService: DragulaService,
@@ -36,6 +38,10 @@ export class CohortCalendarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.unsubscribe();
+  }
+
+  clearFilter() {
+    this.searchText = "";
   }
 
 }

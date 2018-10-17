@@ -1,5 +1,12 @@
+<div>
+  <div>
+    <input [(ngModel)]="searchText" placeholder="Search Units" class="searchbar">
+    <span class="clear-search" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
+  </div>
+</div>
+
 <ul class="card-container" *ngIf="curriculum">
-  <li *ngFor="let unit of curriculum.units">
+  <li *ngFor="let unit of curriculum.units | search : searchText">
     <div *ngIf="unit.module === '1'">
       <a [routerLink]="['/unit', unit._id]">
         <div class="card unit-card section" [ngClass]="{

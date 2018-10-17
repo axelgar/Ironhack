@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import * as _ from 'lodash';
-import { Observable, throwError, Subject } from 'rxjs';
+import { Observable, throwError, Subject, from } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { SortableItem } from '../interfaces/sortable-item';
@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 import { Unit } from '../models/unit';
 import { Day } from '../models/day';
 import { UnitService } from './unit.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,11 @@ export class CohortService {
 
   cohortChange$: Observable<any> = this.cohortChange.asObservable();
 
-  constructor(private httpClient: HttpClient,  private unitService: UnitService) { }
+  constructor(private httpClient: HttpClient,  private unitService: UnitService, private router: Router) {}
 
   private setImages(cohort?: any) {
     this.cohort = cohort;
-    this.cohortChange.next(this.cohort);
+    this.cohortChange.next(this.cohort.images);
     return this.cohort;
   }
 
@@ -49,7 +50,11 @@ export class CohortService {
     const options = {
       withCredentials: true,
     };
-     return this.setImages(cohort)
+    this.httpClient.get(`${this.apiUrl}/${cohort._id}`, options)
+      .toPromise()
+      .then((cohort) => {
+        this.setImages(cohort)
+      })
   }
 
   getCohort(id): Observable<any> {
@@ -61,7 +66,7 @@ export class CohortService {
     .pipe(map((res) => {
       return this.cohort = res;
     }))
-    .pipe(catchError((err) => throwError("this is an error")));
+    .pipe(catchError((err) => this.router.navigate(['/not-found'])))
   }
 
   create(data): Promise<any> {

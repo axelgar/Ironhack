@@ -4,10 +4,11 @@ import { ActivatedRoute } from "@angular/router";
 import { CurriculumService } from 'src/app/services/curriculum.service';
 
 @Component({
-  selector: 'app-cohort-page',
+  selector: 'app-curriculum-detail-page',
   templateUrl: './curriculum-detail-page.component.html',
   styleUrls: ['./curriculum-detail-page.component.scss']
 })
+
 export class CurriculumDetailPageComponent implements OnInit {
   curriculum: any;
   error = false;
@@ -16,6 +17,7 @@ export class CurriculumDetailPageComponent implements OnInit {
   mTwo = false;
   mThree = false;
   loading: boolean = true;
+  activeLink = false;
 
   constructor(private curriculumService: CurriculumService, private route: ActivatedRoute) { }
 

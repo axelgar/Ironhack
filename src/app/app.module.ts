@@ -15,8 +15,12 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   spaceBetween: 10,
   breakpoints: {
     // when window width is <= 320px
-    768: {
+    415: {
       slidesPerView: 1,
+      // spaceBetween: 10
+    },
+    768: {
+      slidesPerView: 2,
       // spaceBetween: 10
     },
     // when window width is <= 480px
@@ -72,6 +76,7 @@ import { AddUnitComponent } from './components/add-unit/add-unit.component';
 import { CohortDriveComponent } from './components/cohort-drive/cohort-drive.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CohortCalendarViewComponent } from './components/cohort-calendar-view/cohort-calendar-view.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 
@@ -118,7 +123,8 @@ const routes: Routes = [
     ProfileEditPageComponent,
     CohortDriveComponent,
     LoadingComponent,
-    CohortCalendarViewComponent
+    CohortCalendarViewComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
