@@ -88,6 +88,7 @@ body {
 
 .container {
   margin: 0 20px;
+  padding-bottom: 50px;
 }
 
 .section {
@@ -128,13 +129,9 @@ body {
       }
     }
   }
+ 
 }
 
-.cohort-list {
-  .scroll {
-    height: 70vh;
-  }
-}
 
 .cohort-details {
   h2 {
@@ -154,11 +151,18 @@ body {
     p {
       font-size: 25px;
       font-weight: 300;
-      padding-right: 40px;
-      text-transform: uppercase;
+      width: 33.33%;
+      text-align: center;
       border-right: 1px solid $color-blue;
+      cursor: pointer;
+      text-transform: uppercase;
   
       &:hover {
+        font-weight: 700;
+        color: $color-blue;
+      }
+
+      &.active {
         font-weight: 700;
         color: $color-blue;
       }
@@ -172,12 +176,11 @@ body {
 }
 
 .unit-details{
-  .scroll{
-    height: 70vh;
-  }
+
   h3 {
     text-transform: uppercase;
     text-align: center;
+    margin-bottom: 5px;
     &.is-lesson {
       
       color: $color-orange;
@@ -199,10 +202,42 @@ body {
   }
    h4{
      text-align: center;
-     margin-bottom: 10px;
+     margin-bottom: 50px;
+     font-weight: 400;
+
    }
    p{
      text-align: justify;
+   }
+
+   .unit-links {
+     padding-top: 30px;
+
+     h4 {
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        font-weight: 500;
+        text-align: left;
+
+        &.is-lesson {
+      
+          color: $color-orange;
+        }
+      
+        &.is-pr {
+          
+          color: $color-green;
+        }
+      
+        &.is-ritual {
+          
+          color: $color-pink;
+        }
+      
+        &.is-break {
+          display: none;
+        }
+     }
    }
 }
 
@@ -219,8 +254,16 @@ body {
   }
 
   .container {
-    max-width: 95%;
+    max-width: 800px;
     margin: 0 20px 0 120px;
+
+    &.max {
+      max-width: 100%;
+    }
+
+    &.center {
+      margin: 0 auto;
+    }
   }
 
   #site-footer {

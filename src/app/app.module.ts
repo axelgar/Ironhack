@@ -77,8 +77,7 @@ import { CohortDriveComponent } from './components/cohort-drive/cohort-drive.com
 import { LoadingComponent } from './components/loading/loading.component';
 import { CohortCalendarViewComponent } from './components/cohort-calendar-view/cohort-calendar-view.component';
 import { SearchPipe } from './pipes/search.pipe';
-
-
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 const routes: Routes = [
@@ -124,7 +123,8 @@ const routes: Routes = [
     CohortDriveComponent,
     LoadingComponent,
     CohortCalendarViewComponent,
-    SearchPipe
+    SearchPipe,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

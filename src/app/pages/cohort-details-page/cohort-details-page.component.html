@@ -1,16 +1,16 @@
 <app-loading *ngIf="loading"></app-loading>
 <app-arrow-back></app-arrow-back>
 <section class="cohort-details" *ngIf="cohort" >
-  <div class="container">
+  <div class="container max">
     <h2>{{cohort.type}}</h2>
     <p class="start-date">{{cohort.startDate | date: "MMyy"}}</p>
   </div>
-  <div *ngIf="cohort" class="container">
+  <div *ngIf="cohort" class="container max">
     <div class="cohort-menu">
-      <p class="overview" (click)="handleToggleClickOverview()">overview</p>
-      <p class="calendarView" (click)="handleToggleClickCalendarView()">calendar</p>
-      <p class="drive" (click)="handleToggleClickDrive()">drive</p>
-      <p class="unit" (click)="handleToggleClickAddUnit()">add unit</p>
+      <p [ngClass]="{'active': calendarView}" (click)="handleToggleClickCalendarView()">calendar</p>
+      <p [ngClass]="{'active': overview}" (click)="handleToggleClickOverview()">overview</p>
+      <p [ngClass]="{'active': drive}" (click)="handleToggleClickDrive()">drive</p>
+      <p [ngClass]="{'active': unit}" (click)="handleToggleClickAddUnit()">add unit</p>
     </div>
   
     <div *ngIf="overview">

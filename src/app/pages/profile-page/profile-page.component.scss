@@ -1,23 +1,27 @@
 @import '../../../scss/variables';
 
 .profile-pic {
-  width: 34%;
+  width: 100%;
+  position: absolute;
   margin: 0 auto;
+  top: 10%;
+  left: 0;
+  text-align: center;
 
 
     img {
     clip-path: circle(40% at center);
-    width: 100%;
+    width: 30%;
     }
 }
 
 .info-user {
-  margin: -90px auto 30px;
+  margin: 80px auto 30px;
   border-radius: 10px;
   width: 90%;
-  background-color: $color-white;
+  background-color: #f9f9fa;
   box-shadow: 0 -1px 15px 1px rgba(12, 12, 13, 0.1);
-  padding-top: 72px;
+  padding-top: 52px;
   padding-bottom: 20px;
   text-align: center;
 
@@ -41,9 +45,13 @@
 
   .edit-icon {
     position: absolute;
-    top: 25%;
-    right: 12%;
+    top: 26%;
+    right: 15%;
     cursor: pointer;
+
+    img{
+      width: 80%;
+    }
   }
 
   .settings {
@@ -155,33 +163,28 @@ form {
 
 }
 
+// @media (min-width: 768px) {
+//   .container {
+//     max-width: 728px;
+//     margin: 0 auto;
+//   }
+// }
 
-
-// .icon-profilepic {
-   
+// @media (min-width: 1028px) {
+//   body {
+//     background-image: url(assets/bg-big.jpg);
 //   }
 
-//   .profile {
-//     flex: 1;
-//     text-align: right;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     overflow: hidden;
-//     display: inline-block;
-//     position: absolute;
-//     left: 16px;
-//     top: -4px;
-  
-//     img {
-//       width: 100%;
+//   .container {
+//     max-width: 800px;
+//     margin: 0 20px 0 120px;
+
+//     &.max {
+//       max-width: 100%;
 //     }
 
-//     &.true {
-//       border: 2px solid $color-selected;
-//     }
-
-//     &.false {
-//       border: none;
+//     &.center {
+//       margin: 0 auto;
 //     }
 //   }
+// }
