@@ -3,7 +3,7 @@
   <div class="container center">
     <h2>Curriculum</h2>
     <ul class="card-container" *ngIf="curricula" >
-      <li *ngFor="let curriculum of curricula"  [routerLink]="['/curriculum', curriculum._id]">
+      <li *ngFor="let curriculum of curricula"  [routerLink]="['/curriculum', curriculum._id]" class="curriculum">
         <div class="card curriculum-card section">
             <h3 class="curriculum-title">{{curriculum.type}}</h3>
         </div>

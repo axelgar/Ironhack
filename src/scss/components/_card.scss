@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 
   img {
     border: 1px solid $color-dark;
@@ -19,6 +20,10 @@
   } 
 
   .cohort {
+    margin-bottom: 10px;
+  }
+
+  .curriculum {
     margin-bottom: 10px;
   }
 
