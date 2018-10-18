@@ -10,13 +10,13 @@
 
 
     img {
-    clip-path: circle(40% at center);
-    width: 30%;
+      clip-path: circle(40% at center);
+      width: 115px;
     }
 }
 
 .info-user {
-  margin: 80px auto 30px;
+  margin: 100px auto 30px;
   border-radius: 10px;
   width: 90%;
   background-color: #f9f9fa;
@@ -39,20 +39,33 @@
   }
 
   a {
-    display: inline;
+    display: inline-block;
     text-align: center;
+    padding: 0px 5px;
+    margin: 10px 0;
   }
-
+  
   .edit-icon {
     position: absolute;
-    top: 26%;
-    right: 15%;
+    top: 24%;
+    right: 16%;
     cursor: pointer;
 
     img{
       width: 80%;
     }
+
+    div {
+      a {
+        display: inline;
+      }
+    }
+
   }
+  .description {
+    text-transform: none;
+  }
+
 
   .settings {
     text-align: center;
@@ -66,21 +79,31 @@
   }
 }
 
-.projects-container {
-  overflow-y: scroll;
-  padding-top: 30px;
-
-  
+.projects-desk {
+  display: none;
 }
+
+.projects {
+    h3 {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+}
+
 .project-card{
 
-  div {
+  .info-projects {
     background-color: $color-dark;
     color: $color-white;
     padding: 30px 30px;
-    width: 75%;
+    width: 55%;
     margin: 30px auto;
     border-radius: 10px;
+
+    .delete {
+      text-align: right;
+    }
   }
 
   h3 {
@@ -129,11 +152,10 @@ h3 {
 }
 
 form {
-  width: 100%;
-  margin: 0 auto;
-  height: 40vh;
-  text-align: center;
-  padding-top: 10px;
+
+  input {
+    padding: 10px;
+  }
 
   .field {
     margin-bottom: 10px;
@@ -163,28 +185,128 @@ form {
 
 }
 
-// @media (min-width: 768px) {
-//   .container {
-//     max-width: 728px;
-//     margin: 0 auto;
-//   }
-// }
+@media (min-width: 768px) {
+  .container {
+    max-width: 728px;
+    margin: 0 auto;
+  }
 
-// @media (min-width: 1028px) {
-//   body {
-//     background-image: url(assets/bg-big.jpg);
-//   }
+  .profile-pic {
+    top: 7%;
 
-//   .container {
-//     max-width: 800px;
-//     margin: 0 20px 0 120px;
+    img {
+        width: 125px;
+      }
+  }
 
-//     &.max {
-//       max-width: 100%;
-//     }
+  .info-user {
+    
+    .edit-icon {
+      top: 24%;
+      right: 11%;
+    }
 
-//     &.center {
-//       margin: 0 auto;
-//     }
-//   }
-// }
+  }
+
+  .projects-mobile {
+    display: none;
+  }
+
+  .projects-desk {
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .projects-mobile {
+    display: none;
+  }
+
+  .project-card{
+    width: 31.33%;
+    margin: 10px 0;
+
+    .info-projects {
+      width: 100%;
+
+      .delete {
+        margin-bottom: 20px;
+      }
+    }
+      
+  }
+}
+
+@media (min-width: 1028px) {
+  body {
+    background-image: url(../../../assets/bg-big.jpg);
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 20px 0 120px;
+
+    &.max {
+      max-width: 100%;
+    }
+
+    &.center {
+      margin: 0 auto;
+    }
+  }
+
+  .profile-pic {
+    top: 2%;
+    left: 50px;
+
+      img {
+        width: 200px;
+      }
+  }
+
+  .info-user {
+    padding-top: 120px;
+    margin-bottom: 40px;
+
+    p {
+      font-size: 15px;
+    }
+
+    .edit-icon {
+      top: 20%;
+      right: 18%;
+    }
+
+    .settings {
+      a {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .projects-desk {
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .projects-mobile {
+    display: none;
+  }
+
+  .project-card{
+    width: 31.33%;
+    margin: 10px 0;
+
+    .info-projects {
+      width: 100%;
+
+      .delete {
+        margin-bottom: 20px;
+      }
+    }
+      
+  }
+}

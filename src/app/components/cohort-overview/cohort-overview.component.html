@@ -1,36 +1,56 @@
-<div *ngIf="cohort" class="scroll container">
+<div *ngIf="cohort" class="container center">
   <div>
-    <a [routerLink]="['/user/create', cohort._id]">
-      <li>
-        <div class="card cohort-card create">
-          <span>add user</span>
-        </div>
-      </li>
-    </a>
-  </div>
-  <div class="teacher-card">
-    <ul class="card-container">
-      <li *ngFor="let teacher of cohort.teacher" class="card teachers-card" [routerLink]="['/user', teacher._id]">
-        <p class="person">Teacher</p>
-        <p class="name">{{teacher.firstName}}</p>
-      </li>
-    </ul>
-  </div>
-  <div class="tas-cards">
-    <ul class="card-container">
-      <li *ngFor="let ta of cohort.tas" class="card tas-card" [routerLink]="['/user', ta._id]">
-        <p class="person">TA</p>
-        <p class="name">{{ta.firstName}}</p>
-      </li>
-    </ul>
-  </div>
-  <div>
-    <ul class="card-container">
-      <li *ngFor="let student of cohort.students" class="card students-card">
-        <a (click)="handleDeleteClick(student._id)"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ2OS43ODUgNDY5Ljc4NSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDY5Ljc4NSA0NjkuNzg1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4yNSAwIDAgLTEuMjUgMCA0NSkiPgoJPGc+CgkJPGc+CgkJCTxwYXRoIHN0eWxlPSJmaWxsOiNERDJFNDQ7IiBkPSJNMjI4LjI5NC0xNTEuNzUzTDM2Ny40ODktMTIuNTU4YzExLjExNiwxMS4xMDUsMTEuMTE2LDI5LjExNiwwLDQwLjIyICAgICBjLTExLjEwNSwxMS4xMTYtMjkuMTA0LDExLjExNi00MC4yMiwwTDE4OC4wNzMtMTExLjUzM0w0OC44NjYsMjcuNjYzYy0xMS4wOTMsMTEuMTE2LTI5LjExNiwxMS4xMTYtNDAuMjIsMCAgICAgYy0xMS4xMDUtMTEuMTA1LTExLjEwNS0yOS4xMTYsMC00MC4yMmwxMzkuMjA3LTEzOS4xOTZMOC4zMzgtMjkxLjI2OGMtMTEuMTE2LTExLjExNi0xMS4xMTYtMjkuMTE2LDAtNDAuMjIgICAgIGM1LjU1Mi01LjU2NCwxMi44MzQtOC4zNCwyMC4xMTYtOC4zNGM3LjI3LDAsMTQuNTUyLDIuNzc2LDIwLjEwNSw4LjM0bDEzOS41MTQsMTM5LjUxNGwxMzkuMTk2LTEzOS4xOTYgICAgIGM1LjU2NC01LjU1MiwxMi44MzQtOC4zNCwyMC4xMTYtOC4zNGM3LjI3LDAsMTQuNTUyLDIuNzg4LDIwLjEwNSw4LjM0YzExLjExNiwxMS4xMDUsMTEuMTE2LDI5LjEwNCwwLDQwLjIyTDIyOC4yOTQtMTUxLjc1M3oiLz4KCQk8L2c+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" width="15px"/></a>
-        <p class="person">Student</p>
-        <p class="name">{{student.firstName}} {{student.lastName}}</p>
-      </li>
-    </ul>
+    <div>
+      <a [routerLink]="['/user/create', cohort._id]">
+        <li>
+          <div class="card cohort-card create">
+            <span>+</span>
+            <span>Add participant</span>
+          </div>
+        </li>
+      </a>
+    </div>
+    <div class="user-cards teacher">
+      <ul>
+        <li *ngFor="let teacher of cohort.teacher" class="card teachers-card" [routerLink]="['/user', teacher._id]">
+          <div class="user-img">
+            <img src="{{teacher.profilePic}}" alt="">
+          </div>
+          <div class="info-card">
+            <p class="person">Teacher</p>
+            <p class="name">{{teacher.firstName}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="user-cards">
+      <ul class="tas">
+        <li *ngFor="let ta of cohort.tas" class="card tas-card" [routerLink]="['/user', ta._id]">
+          <div class="user-img">
+            <img src="{{ta.profilePic}}" alt="">
+          </div>
+          <div class="info-card">
+            <p class="person">TA</p>
+            <p class="name">{{ta.firstName}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="user-cards">
+      <ul>
+        <li *ngFor="let student of cohort.students" class="card students-card">
+          <div class="user-img">
+            <img src="{{student.profilePic}}" alt="">
+          </div>
+          <div class="info-card">
+            <p class="person">Student</p>
+            <p class="name">{{student.firstName}}</p>
+          </div>
+          <div class="delete">
+            <a (click)="handleDeleteClick(student._id)"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4Ni40IDQ4Ni40IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODYuNCA0ODYuNDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik00NDYsNzBIMzQ0LjhWNTMuNWMwLTI5LjUtMjQtNTMuNS01My41LTUzLjVoLTk2LjJjLTI5LjUsMC01My41LDI0LTUzLjUsNTMuNVY3MEg0MC40Yy03LjUsMC0xMy41LDYtMTMuNSwxMy41ICAgIFMzMi45LDk3LDQwLjQsOTdoMjQuNHYzMTcuMmMwLDM5LjgsMzIuNCw3Mi4yLDcyLjIsNzIuMmgyMTIuNGMzOS44LDAsNzIuMi0zMi40LDcyLjItNzIuMlY5N0g0NDZjNy41LDAsMTMuNS02LDEzLjUtMTMuNSAgICBTNDUzLjUsNzAsNDQ2LDcweiBNMTY4LjYsNTMuNWMwLTE0LjYsMTEuOS0yNi41LDI2LjUtMjYuNWg5Ni4yYzE0LjYsMCwyNi41LDExLjksMjYuNSwyNi41VjcwSDE2OC42VjUzLjV6IE0zOTQuNiw0MTQuMiAgICBjMCwyNC45LTIwLjMsNDUuMi00NS4yLDQ1LjJIMTM3Yy0yNC45LDAtNDUuMi0yMC4zLTQ1LjItNDUuMlY5N2gzMDIuOXYzMTcuMkgzOTQuNnoiIGZpbGw9IiMzYzNmM2YiLz4KCQk8cGF0aCBkPSJNMjQzLjIsNDExYzcuNSwwLDEzLjUtNiwxMy41LTEzLjVWMTU4LjljMC03LjUtNi0xMy41LTEzLjUtMTMuNXMtMTMuNSw2LTEzLjUsMTMuNXYyMzguNSAgICBDMjI5LjcsNDA0LjksMjM1LjcsNDExLDI0My4yLDQxMXoiIGZpbGw9IiMzYzNmM2YiLz4KCQk8cGF0aCBkPSJNMTU1LjEsMzk2LjFjNy41LDAsMTMuNS02LDEzLjUtMTMuNVYxNzMuN2MwLTcuNS02LTEzLjUtMTMuNS0xMy41cy0xMy41LDYtMTMuNSwxMy41djIwOC45ICAgIEMxNDEuNiwzOTAuMSwxNDcuNywzOTYuMSwxNTUuMSwzOTYuMXoiIGZpbGw9IiMzYzNmM2YiLz4KCQk8cGF0aCBkPSJNMzMxLjMsMzk2LjFjNy41LDAsMTMuNS02LDEzLjUtMTMuNVYxNzMuN2MwLTcuNS02LTEzLjUtMTMuNS0xMy41cy0xMy41LDYtMTMuNSwxMy41djIwOC45ICAgIEMzMTcuOCwzOTAuMSwzMjMuOCwzOTYuMSwzMzEuMywzOTYuMXoiIGZpbGw9IiMzYzNmM2YiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" /></a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
