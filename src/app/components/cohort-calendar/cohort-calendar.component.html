@@ -1,6 +1,6 @@
 <ul *ngIf="cohort" class="calendar-stuff">
   <li>
-    <swiper [config]="config" [(index)]="index">
+    <div class="swiper-edit">
         <div *ngFor="let day of cohort.days;let i = index" class="day-card">
           <div id="{{day.date}}" [ngClass]="{'is-moved-left': movedLeft, 'is-moved-right': movedRight }">
             <div class="arrows">
@@ -27,7 +27,7 @@
             </ul>
           </div>
         </div>
-    </swiper>
+    </div>
   </li>
   <!-- <li>
     <swiper [config]="config" [(index)]="index">
