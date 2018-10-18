@@ -1,5 +1,6 @@
 <app-loading *ngIf="loading"></app-loading>
-<section class="form-cohort">
+<section class="form-cohort container max">
+  <div class="container center">
     <app-arrow-back></app-arrow-back>
     <h2>Add new user</h2>
     <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" class="scroll">
@@ -57,4 +58,5 @@
         </div>
       </div>
     </form>
+  </div>
   </section>

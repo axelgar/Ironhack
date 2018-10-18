@@ -1,74 +1,76 @@
 <app-loading *ngIf="loading"></app-loading>
-<section class="form-cohort container">
-  <app-arrow-back></app-arrow-back>
-  <h2>New cohort</h2>
-  <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" class="scroll">
-    <div class="field" [ngClass]="{'has-error': feedbackEnabled && locationField.errors}">
-      <label>Campus</label>
-      <select name="location" [(ngModel)]="newCohort.location" #locationField="ngModel" required [disabled]="processing">
-        <option value="">-Pick one-</option>
-        <option value="bcn">Barcelona</option>
-      </select>
-      <div *ngIf="feedbackEnabled && locationField.errors || locationField.dirty && locationField.errors">
-        <p *ngIf="locationField.errors.required" class="validation">Campus required</p>
+<section class="form-cohort container max">
+  <div class="container center">
+    <app-arrow-back></app-arrow-back>
+    <h2>New cohort</h2>
+    <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}" class="scroll">
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && locationField.errors}">
+        <label>Campus</label>
+        <select name="location" [(ngModel)]="newCohort.location" #locationField="ngModel" required [disabled]="processing">
+          <option value="">-Pick one-</option>
+          <option value="bcn">Barcelona</option>
+        </select>
+        <div *ngIf="feedbackEnabled && locationField.errors || locationField.dirty && locationField.errors">
+          <p *ngIf="locationField.errors.required" class="validation">Campus required</p>
+        </div>
       </div>
-    </div>
+    
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && typeField.errors}">
+        <label>Bootcamp</label>
+        <select name="type" [(ngModel)]="newCohort.type" #typeField="ngModel" required [disabled]="processing">
+          <option value="">-Pick one-</option>
+          <option value="webdev">Web Development</option>
+          <option value="ux-ui">UX/UI Design</option>
+        </select>
+        <div *ngIf="feedbackEnabled && typeField.errors || typeField.dirty && typeField.errors">
+          <p *ngIf="typeField.errors.required" class="validation">Bootcamp required</p>
+        </div>
+      </div>
+    
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && startDateField.errors}">
+        <label>Start date</label>
+        <input type="date" name="startDate" [(ngModel)]="newCohort.startDate" #startDateField="ngModel" required [disabled]="processing"/>
+        <div *ngIf="feedbackEnabled && startDateField.errors || startDateField.dirty && startDateField.errors">
+          <p *ngIf="startDateField.errors.required" class="validation">Start date required</p>
+        </div>
+      </div>
+    
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && languageField.errors}">
+        <label>Language</label>
+        <select name="language" [(ngModel)]="newCohort.language" #languageField="ngModel" required [disabled]="processing" class="select">
+          <option value="">-Pick one-</option>
+          <option value="es">Spanish</option>
+          <option value="en">English</option>
+        </select>
+        <div *ngIf="feedbackEnabled && languageField.errors || languageField.dirty && languageField.errors">
+          <p *ngIf="languageField.errors.required" class="validation">Language required</p>
+        </div>
+      </div>
+    
+      <div class="field" *ngIf="teachers" [ngClass]="{'has-error': feedbackEnabled && teacherField.errors}">
+        <label>Teacher</label>
+        <select name="teacher" [(ngModel)]="newCohort.teacher" #teacherField="ngModel" required [disabled]="processing">
+          <option value="">-Pick one-</option>
+          <option value="{{teacher._id}}" *ngFor="let teacher of teachers">{{teacher.firstName}}</option>
+        </select>
+        <div *ngIf="feedbackEnabled && teacherField.errors || teacherField.dirty && teacherField.errors">
+          <p *ngIf="teacherField.errors.required" class="validation">Teacher required</p>
+        </div>
+      </div>
+    
+      <div class="field" *ngIf="tas">
+        <label>TAs</label>
+        <select multiple [(ngModel)]="newCohort.tas" [ngModelOptions]="{standalone: true}" class="multiple">
+          <option *ngFor="let ta of tas" [ngValue]="ta._id">{{ta.firstName}}</option>
+        </select>
+      </div>
   
-    <div class="field" [ngClass]="{'has-error': feedbackEnabled && typeField.errors}">
-      <label>Bootcamp</label>
-      <select name="type" [(ngModel)]="newCohort.type" #typeField="ngModel" required [disabled]="processing">
-        <option value="">-Pick one-</option>
-        <option value="webdev">Web Development</option>
-        <option value="ux-ui">UX/UI Design</option>
-      </select>
-      <div *ngIf="feedbackEnabled && typeField.errors || typeField.dirty && typeField.errors">
-        <p *ngIf="typeField.errors.required" class="validation">Bootcamp required</p>
+      <div class="field submit">
+        <button type="submit" [disabled]="processing">Finish</button>
+        <div *ngIf="feedbackEnabled && form.invalid">
+          <p class="validation">there are errors in the form, please review the fields</p>
+        </div>
       </div>
-    </div>
-  
-    <div class="field" [ngClass]="{'has-error': feedbackEnabled && startDateField.errors}">
-      <label>Start date</label>
-      <input type="date" name="startDate" [(ngModel)]="newCohort.startDate" #startDateField="ngModel" required [disabled]="processing"/>
-      <div *ngIf="feedbackEnabled && startDateField.errors || startDateField.dirty && startDateField.errors">
-        <p *ngIf="startDateField.errors.required" class="validation">Start date required</p>
-      </div>
-    </div>
-  
-    <div class="field" [ngClass]="{'has-error': feedbackEnabled && languageField.errors}">
-      <label>Language</label>
-      <select name="language" [(ngModel)]="newCohort.language" #languageField="ngModel" required [disabled]="processing" class="select">
-        <option value="">-Pick one-</option>
-        <option value="es">Spanish</option>
-        <option value="en">English</option>
-      </select>
-      <div *ngIf="feedbackEnabled && languageField.errors || languageField.dirty && languageField.errors">
-        <p *ngIf="languageField.errors.required" class="validation">Language required</p>
-      </div>
-    </div>
-  
-    <div class="field" *ngIf="teachers" [ngClass]="{'has-error': feedbackEnabled && teacherField.errors}">
-      <label>Teacher</label>
-      <select name="teacher" [(ngModel)]="newCohort.teacher" #teacherField="ngModel" required [disabled]="processing">
-        <option value="">-Pick one-</option>
-        <option value="{{teacher._id}}" *ngFor="let teacher of teachers">{{teacher.firstName}}</option>
-      </select>
-      <div *ngIf="feedbackEnabled && teacherField.errors || teacherField.dirty && teacherField.errors">
-        <p *ngIf="teacherField.errors.required" class="validation">Teacher required</p>
-      </div>
-    </div>
-  
-    <div class="field" *ngIf="tas">
-      <label>TAs</label>
-      <select multiple [(ngModel)]="newCohort.tas" [ngModelOptions]="{standalone: true}" class="multiple">
-        <option *ngFor="let ta of tas" [ngValue]="ta._id">{{ta.firstName}}</option>
-      </select>
-    </div>
-
-    <div class="field submit">
-      <button type="submit" [disabled]="processing">Finish</button>
-      <div *ngIf="feedbackEnabled && form.invalid">
-        <p class="validation">there are errors in the form, please review the fields</p>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </section>
