@@ -17,7 +17,7 @@
       <h4>Duration: {{unit.duration}} min</h4>
       <p>{{unit.learningObjective}}</p>
       <p>{{unit.description}}</p>
-      <div *ngIf="unit.links"class="unit-links">
+      <div *ngIf="unit.links.length"class="unit-links">
         <h4 [ngClass]="{
           'is-lesson': unit.category === 'lessons',
           'is-ritual': unit.category === 'rituals',

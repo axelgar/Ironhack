@@ -1,25 +1,21 @@
-<section class="user-list">
-  <app-arrow-back></app-arrow-back>
-  <h2>Users</h2>
-
-  <div class="scroll">
-    <ul class="card-container" *ngIf="users" >
-      <!-- <a [routerLink]="['/users/create']">
-        <li>
-          <div class="card user-card create">
-            <span>+</span>
-          </div>
+<section class="user-list container max">
+  <div class="container center">
+    <app-arrow-back></app-arrow-back>
+    <h2>Ironhackers</h2>
+  
+    <div class="user-cards teacher">
+      <ul *ngIf="users" >
+        <li *ngFor="let user of users" class="card students-card" [routerLink]="['/user', user._id]">
+            <div class="user-img">
+              <img src="{{user.profilePic}}" alt="">
+            </div>
+            <div class="info-card">
+              <p class="person">{{user.role}}</p>
+              <p class="name">{{user.firstName}} {{user.lastName}}</p>
+            </div>
         </li>
-      </a> -->
-      <li *ngFor="let user of users">
-        <!-- <a [routerLink]="['/user', user._id]"> -->
-          <div class="card user-card">
-            <h3 class="name">{{user.firstName}} {{user.lastName}}</h3>
-            <p class="person">{{user.role}}</p>
-          </div>
-        <!-- </a> -->
-      </li>
-    </ul>
+      </ul>
+    </div>
   </div>
 </section>
 

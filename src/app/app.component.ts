@@ -13,6 +13,8 @@ export class AppComponent {
   loading = true;
   anon: boolean;
   user: any;
+  currentUser: any;
+  error = false;
   
   constructor(
     private authService: AuthService,
@@ -25,14 +27,8 @@ export class AppComponent {
       this.loading = false;
       this.user = user;
       this.anon = !user;
+      return this.currentUser=this.authService.getUser()
     });
-    
-    // if (this.user) {
-    //   this.router.navigate(['/cohort'])
-    // }
-    // else {
-    //   this.router.navigate(['/login'])
-    // }
   }
   
   logout() {
