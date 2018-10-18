@@ -1,6 +1,6 @@
 <div class="chat">
   <div>
-    <h2>Realtime Chat Application</h2>
+    <h2>IronChat</h2>
   </div>
   <!-- <div>
       <div class="col-sm-5">
@@ -10,14 +10,13 @@
               <!-- <small id="userHelp" class="form-text text-muted">Type your username.</small> -->
           <!-- </div> -->
       <!-- </div> -->
-      <!-- <div class="col-sm-5">
-          <label for="roomInput">Choose room</label>
-          <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
-              <option value="Lobby">Lobby</option>
-              <option value="Hall">Hall</option>
-              <option value="Deluxe">Deluxe</option>
+      <!-- <div class="field" *ngIf="cohorts">
+          <label>Change room</label>
+          <select name="roomInput" [(ngModel)]="room">
+            <option value="">-Pick one-</option>
+            <option value="{{cohort._id}}" *ngFor="let cohort of cohorts" (click)=handleNewRoom(cohort)>{{cohort.type}}{{cohort.startDate | date: "MMyy"}}</option>
           </select>
-      </div> -->
+        </div> -->
       <!-- <div class="col sm-2">
           <div style="margin-top:19px;" class="pull-right"> 
               <button type="button" class="btn btn-primary" (click)="join()">Join</button>
@@ -28,17 +27,19 @@
 
   <div class="hall-container">
     <div *ngIf="messageArray">
-      <div *ngFor="let item of messageArray">
-          <p><img src="{{item.picture}}" alt="">{{item.message}}</p>
+      <div *ngFor="let item of messageArray" class="message">
+        <div class="wraper">
+          <div>
+            <img src="{{item.picture}}" alt="">
+          </div>
+          <p>{{item.message}}</p>
         </div>
       </div>
     </div>
+  </div>
   <div class="message-container" >
       <div class="input-message">
-        <input type="text" class="form-control" [(ngModel)]="messageText">            
-      </div>
-      <div class="">
-        <button type="button" (click)="sendMessage()">Send</button>
+        <input type="text" class="form-control" [(ngModel)]="messageText" (keydown)="sendMessage($event)">            
       </div>
   </div>
 </div>

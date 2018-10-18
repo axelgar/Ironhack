@@ -37,16 +37,16 @@ export class ChatService{
     //     this.socket.emit('leave',data);
     // }
 
-    // userLeftRoom(){
-    //     let observable = new Observable<{user:String, message:String}>(observer=>{
-    //         this.socket.on('left room', (data)=>{
-    //             observer.next(data);
-    //         });
-    //         return () => {this.socket.disconnect();}
-    //     });
+    userLeftRoom(){
+        let observable = new Observable<{user:String, message:String, picture: String}>(observer=>{
+            this.socket.on('left room', (data)=>{
+                observer.next(data);
+            });
+            return () => {this.socket.disconnect();}
+        });
 
-    //     return observable;
-    // }
+        return observable;
+    }
 
   sendMessage(data)
   {
