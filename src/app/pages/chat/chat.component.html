@@ -38,8 +38,11 @@
     </div>
   </div>
   <div class="message-container" >
-      <div class="input-message">
-        <input type="text" class="form-control" [(ngModel)]="messageText" (keydown)="sendMessage($event)">            
-      </div>
+    <div class="input-message">
+      <input type="text" class="form-control" [(ngModel)]="messageText" (keydown)="sendMessage($event)">            
+    </div>
+    <!-- <div class="col-sm-2">
+      <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
+    </div> -->
   </div>
 </div>
