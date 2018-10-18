@@ -17,12 +17,19 @@ Virtual Campus for students of Ironhack with calendar as the main feature.
 -  **List curriculums** As an admin or staff I want to see the curriculums so that I choose one
 -  **Details curriculum** As an admin or staff I want to see the curriculum details so that I can choose one
 -  **Details unit** As a user I want to see the lecture details so that I can get more information about it
+-  **Create users** As an admin or staff I want to add students, teachers and staff to the aweb site
+-  **Create unit** As an admin or staff I want to creat unit to an existing cohort so that I can personalize it
+-  **User profile** As a user I want to see other users profile so that I can see their details
+-  **Edit profile** As a user I want to edit my profile so that I can update my password and my details
+-  **Draggable calendar** As an admin or staff I want to organise the calendar so that it is updated with the real one
+-  **Cohort overview** As a user I want to see the cohort details so that I can know who is participating
+-  **Search units** As an admin or staff I want to search units so that I can find one faster
+-  **Send emails** As an admin or staff I want to send and email to the created user so that he/she knows the password
+-  **Upload** As a user I want to upload pictures to the specific cohort so that I can shear some material
+-  **Send messages** As a user I want to send messages to the rest of the users so that I can comunicate wiht them in real time
 
 
 ## Backlog
-
-Create users: 
-- As an admin I want to add students, teachers and staff to the aweb site
 
 Create curriculum:
 - As an admin I want to creat curriculums for future courses
@@ -30,42 +37,21 @@ Create curriculum:
 Edit curriculum: 
 - As an admim I want to update a curriculum to fix errors and change content
 
-Create unit: 
-- As an admin or teacher I want to creat unit to an existing curriculum
-
 Edit unit:
 - As an admin or teacher I want to update unit to fix errors and change content
 
 Delete unit:
 - As an admin or teacher I want to delete unit in case the lecture gets obsolete
 
-User profile:
-- see own and other users profiles
-- list the projects
-
-Edit profile: 
-- as a user I want to upload img and content to my profile
-- as a user I want to change my password
-
 Calendar:
-- limit accesability for students
-- edit fields
 - save calendar and reuse it
 
 Cohort overview: 
-- list of all the projects
 - edit fields
-
-Search unit:
-- as a user I want to search unit by category and subcategory so that I can find specific unit faster
-
-Chat
 
 Picture recognision (Google Vision API - Test)
 
 Events calendar
-
-Upload and share documents
 
 List web dev and UX/UI news
 
@@ -78,8 +64,6 @@ Hiring page (student card)
 Pictures page of the cohort
 
 Ironhack information
-
-Emails
 
 # Client
 
