@@ -365,6 +365,29 @@ body {
     margin: 0 auto;
   }
 
+  body {
+    background-image: url(assets/bg-big.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 10px;
+
+    transition: none;
+
+    &.scrolled {
+
+      main {
+        padding-top: 0;
+      }
+      
+      #site-header {
+        position: inherit;      
+        max-width: 100%;
+        background-color: transparent;
+      }
+  }
+}
+
   .cohort-details {
     .cohort-menu {
       .calendarView {
@@ -412,7 +435,22 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 10px;
+
+    transition: none;
+
+    &.scrolled {
+
+      main {
+        padding-top: 0;
+      }
+      
+      #site-header {
+        position: inherit;      
+        max-width: 100%;
+        background-color: transparent;
+      }
   }
+}
 
   .container {
     max-width: 800px;
