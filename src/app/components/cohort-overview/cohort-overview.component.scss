@@ -36,14 +36,13 @@
   }
 
   
-  .user-pic {
+  .user-img {
     flex:1;
   }
 
   &.teacher {
     margin-bottom: 20px;
   }
-
   .teachers-card,
   .students-card {
     display: flex;
@@ -63,7 +62,7 @@
       padding-left: 10px;
     }
   }
-
+  
   .students-card {
     margin-bottom: 18px;
     position: relative;
@@ -97,83 +96,3 @@
     }
   }
 }
-
-// .user-cards {
-
-//   ul {
-//     width: 80%;
-//     margin: 0 auto;
-
-//     &.tas {
-//       display: flex;
-//       justify-content: space-around;
-//       flex-wrap: wrap;
-//     }
-//   }
-
-//   img {
-//     clip-path: circle(40% at center);
-//     width: 145px;
-//   }
-
-  
-//   .user-pic {
-//     flex:1;
-//   }
-
-//   &.teacher {
-//     margin-bottom: 20px;
-//   }
-
-//   .teachers-card,
-//   .students-card {
-//     display: flex;
-//     justify-content: space-around;
-//     align-items: center;
-
-//     .user-img {
-//       flex: 1;
-//     }
-
-//     .info-card {
-//       flex: 3;
-//       display: flex;
-//       flex-direction: column;
-//       align-items: baseline;
-//       padding-left: 30px;
-//     }
-//   }
-
-//   .students-card {
-//     margin-bottom: 18px;
-//     position: relative;
-
-//     .delete {
-//       position: absolute;
-//       top: 30px;
-//       width: 40px;
-//       right: 30px;
-      
-//       img {
-//         clip-path: none;
-//         width: 100%;
-//       }
-//     }
-//   }
-
-//   .tas-card {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     width: 310px;
-//     margin-bottom: 18px;
-//     height: 280px;
-//     padding: 35px 0;
-
-//     .info-card {
-//       display: flex;
-//       flex-direction: column;
-//       align-items: center;
-//     }
-//   }
-// }

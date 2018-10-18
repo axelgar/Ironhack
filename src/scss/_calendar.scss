@@ -1,23 +1,6 @@
-// .section-calendar {
-
-// }
-
-// .grid-days {
-//   display: grid;
-//   grid-template-columns: repeat(45, 100vw);
-//   overflow: scroll;
-//   scroll-behavior: smooth;
-// }
-
-// .arrows {
-//   display: flex;
-//   justify-content: space-around;
-//   padding: 10px 0;
-
-//   p {
-//     display: inline;
-//   }
-// }
+.edit-calendar {
+  display: none;
+}
 
 
 .day-card {
@@ -37,48 +20,37 @@
   margin-bottom: 30px;
 
   .scroll {
-    height: 40vh;
     margin: 0 auto;
-    overflow: scroll;
     width: 100%;
     padding-bottom: 40px;
   }
   
 }
 
-.scroll-2 {
-  // height: 20vh;
-  // margin: 0 auto;
-  // width: 360px;
-  // padding-bottom: 40px;
-  // overflow: scroll;
-  // scroll-behavior: smooth;
-  // text-align: center;
-  // flex-wrap: inherit
-
-  display: grid;
-  grid-template-columns: repeat(45, 100vw);
-  overflow: scroll;
-  scroll-behavior: smooth;
-
-  parking-lot {
-    flex: 1;
+.pl-container {
+  h2 {
+    margin-bottom: 45px;
   }
 }
 
-// .scroll-x {
-//   display: grid;
-//   grid-template-columns: repeat(2, 100vw);
-//   overflow: scroll;
-//   scroll-behavior: smooth;
-//   text-align: center;
-// }
+// .scroll-2 {
+//   // height: 20vh;
+//   // margin: 0 auto;
+//   // width: 360px;
+//   // padding-bottom: 40px;
+//   // overflow: scroll;
+//   // scroll-behavior: smooth;
+//   // text-align: center;
+//   // flex-wrap: inherit
 
-
-// .grid-units {
 //   display: grid;
 //   grid-template-columns: repeat(45, 100vw);
 //   overflow: scroll;
+//   scroll-behavior: smooth;
+
+//   parking-lot {
+//     flex: 1;
+//   }
 // }
 
 
@@ -90,6 +62,11 @@
     scroll-behavior: smooth;
   }
 
+  .edit-calendar {
+    display: inline;
+    cursor: pointer;
+  }
+
 }
 
 @media screen and (min-width: 1028px) {
@@ -98,6 +75,11 @@
     grid-template-columns: repeat(45, 16vw);
     overflow: scroll;
     scroll-behavior: smooth;
+  }
+
+  .edit-calendar {
+    display: inline;
+    cursor: pointer;
   }
 
 }

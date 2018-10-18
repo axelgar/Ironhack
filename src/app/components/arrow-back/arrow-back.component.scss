@@ -5,3 +5,9 @@ img {
     width: 20px;
     cursor: pointer;
 }
+
+@media (min-width: 768px) {
+  img {
+    left: 20%;
+  }
+}
