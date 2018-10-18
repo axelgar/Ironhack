@@ -357,7 +357,7 @@ picture - String
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+Physical board
 
 ### Git
 
@@ -366,10 +366,10 @@ The url to your repository and to your deployed project
 [Client repository Link](https://github.com/axelgar/Ironhack-client/)
 [Server repository Link](https://github.com/axelgar/Ironhack-server)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://ironcampus.herokuapp.com)
 
 ### Slides
 
 The url to your presentation slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/13E2TllxYrJ4FxTDN4Rbi7GmIN0rmTHuCFUZdKCLylf8/edit?usp=sharing)
