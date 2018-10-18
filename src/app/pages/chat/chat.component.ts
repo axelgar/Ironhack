@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked,ElementRef, ViewChild } from '@angular/core';
 import {ChatService} from '../../services/chat.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CohortService } from 'src/app/services/cohort.service';
@@ -10,6 +10,7 @@ import { CohortService } from 'src/app/services/cohort.service';
     providers:[ChatService]
 })
 export class ChatComponent implements OnInit{
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   user: any;
   error = false;
@@ -17,7 +18,9 @@ export class ChatComponent implements OnInit{
   cohorts: any;
   inputMessage: any;
   messageText:String;
-  messageArray:Array<{user:Object, message:String, picture:String}> = [];
+  messageArray:Array<{user:Object, message:String, picture:String, firstName:String, lastName:String}> = [];
+
+
 
   constructor(
     private _chatService:ChatService,
@@ -41,12 +44,23 @@ export class ChatComponent implements OnInit{
       this.cohortService.list()
       .then((results)=>{
         this.cohorts = results;
+        this.scrollToBottom()
       })
     })
     .catch((error) => {
       console.log(error);
       this.error = true;
     })
+  }
+
+  ngAfterViewChecked() {        
+    this.scrollToBottom();        
+  }  
+
+  scrollToBottom(): void {
+    try {
+        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }                 
   }
 
   join() {
@@ -59,9 +73,9 @@ export class ChatComponent implements OnInit{
 
   sendMessage(event) {
     if (event.keyCode == 13 && this.messageText !== undefined) {
-      this._chatService.sendMessage({user:this.user, room:this.room, message:this.messageText, picture:this.user.profilePic});
-      this._chatService.saveMessage({user:this.user, room:this.room, message:this.messageText, picture:this.user.profilePic});
-      this.messageText = null
+      this._chatService.sendMessage({user:this.user, firstName:this.user.firstName, lastName:this.user.lastName, room:this.room, message:this.messageText, picture:this.user.profilePic});
+      this._chatService.saveMessage({user:this.user, firstName:this.user.firstName, lastName:this.user.lastName, room:this.room, message:this.messageText, picture:this.user.profilePic})
+      this.messageText = null;
     }
   }
 }

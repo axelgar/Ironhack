@@ -49,6 +49,7 @@ export class UsersCreatePageComponent implements OnInit {
         })
         .catch((err) => {
           this.error = err.error.code;
+          this.loading = false;
           this.processing = false;
           this.feedbackEnabled = false;
         });
