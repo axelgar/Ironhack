@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CohortOverviewComponent implements OnInit {
   @Input() cohort: any;
+  @Input() currentUser: any;
   id: string;
   error = false;
 
