@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked,ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewChecked,ElementRef, ViewChild} from '@angular/core';
 import {ChatService} from '../../services/chat.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CohortService } from 'src/app/services/cohort.service';
@@ -42,7 +42,6 @@ export class ChatComponent implements OnInit{
       this.cohortService.list()
       .then((results)=>{
         this.cohorts = results;
-        this.scrollToBottom()
       })
     })
     .catch((error) => {
@@ -50,6 +49,10 @@ export class ChatComponent implements OnInit{
       this.error = true;
     })
   }
+  ngAfterViewChecked(){
+    this.scrollToBottom(); 
+    console.log('z')
+  };
 
   scrollToBottom(): void {
     try {
@@ -58,9 +61,9 @@ export class ChatComponent implements OnInit{
   }
 
   join() {
-    this.scrollToBottom(); 
     this._chatService.joinRoom({user:this.user.firstName, room:this.room});
   }
+
 
   sendMessage(event) {
     if (event.keyCode == 13 && this.messageText !== undefined) {
