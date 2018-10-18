@@ -1,0 +1,39 @@
+img {
+  clip-path: circle(40% at center);
+  width: 250%;
+  max-width: 40px;
+  }
+
+.hall-container {
+  height: 50vh;
+  margin: 0 20px;
+}
+
+.message-container{
+  margin: 0 20px;
+  // text-align: right;
+  input {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px grey;
+    position: fixed;
+    bottom: 200px
+  }
+}
+.message {
+  width: 60%;
+  max-width: 300px;
+  margin: 10px;
+  background-color:#7CAEFF;
+  color: white;
+  border-radius: 20px;
+}
+
+.wraper {
+  display: flex
+}
+
+p{
+  margin:auto;
+}

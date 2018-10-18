@@ -1,0 +1,45 @@
+<div class="chat">
+  <div>
+    <h2>IronChat</h2>
+  </div>
+  <!-- <div>
+      <div class="col-sm-5">
+          <div class="form-group">
+              <label for="username">{{user.firstName}}</label> -->
+              <!-- <input type="text" [(ngModel)]="user" class="form-control" id="user.firstName" placeholder="Enter username"> -->
+              <!-- <small id="userHelp" class="form-text text-muted">Type your username.</small> -->
+          <!-- </div> -->
+      <!-- </div> -->
+      <!-- <div class="field" *ngIf="cohorts">
+          <label>Change room</label>
+          <select name="roomInput" [(ngModel)]="room">
+            <option value="">-Pick one-</option>
+            <option value="{{cohort._id}}" *ngFor="let cohort of cohorts" (click)=handleNewRoom(cohort)>{{cohort.type}}{{cohort.startDate | date: "MMyy"}}</option>
+          </select>
+        </div> -->
+      <!-- <div class="col sm-2">
+          <div style="margin-top:19px;" class="pull-right"> 
+              <button type="button" class="btn btn-primary" (click)="join()">Join</button>
+              <button type="button" class="btn btn-default" (click)="leave()">Leave</button>
+          </div>
+      </div> -->
+  <!-- </div> -->
+
+  <div class="hall-container">
+    <div *ngIf="messageArray">
+      <div *ngFor="let item of messageArray" class="message">
+        <div class="wraper">
+          <div>
+            <img src="{{item.picture}}" alt="">
+          </div>
+          <p>{{item.message}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="message-container" >
+      <div class="input-message">
+        <input type="text" class="form-control" [(ngModel)]="messageText" (keydown)="sendMessage($event)">            
+      </div>
+  </div>
+</div>
