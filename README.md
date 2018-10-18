@@ -77,6 +77,11 @@ Ironhack information
 - /cohorts/create - create form
 - /cohorts/:id/calendar - cohort calendar
 - /cohorts/:id/details - cohort details
+- /users - list of users
+- /user/create/:id - create form
+- /user/settings - update form
+- /user/edit - update form
+- /chat - list messages
 - 404
 
 ## Pages
@@ -89,15 +94,30 @@ Ironhack information
 - Cohorts List Page (admin/staff only)
 - Cohort Calendar Page (user only)
 - Cohort Detail Page (user only)
+- Profile Page (user only)
+- Profile Settings Page (user only)
+- Profile Edit Page (user only)
+- Chat Page (user only)
 - 404 Page (public)
 
 ## Components
 
-- Unit Card component
-  - Input: unit: any
-- Calendar component
-  - Input: calendar: any
-
+- cohort-calendar component
+  - Input: cohort: any
+- add-unit component
+  - Inpunt: cohort: any
+- arrow back component
+- cohort-calendar-view component
+  - Input: cohort: any
+- cohort-drive component
+  - Input: cohort: any
+- cohort-overview component
+  - Input: cohort: any
+- loading component
+- module-one-units component
+- module-two-units component
+- module-three-units component
+  
 ## IO
 
 
@@ -111,19 +131,41 @@ Ironhack information
   
 - Curriculum Service
   - curriculum.list()
-  - curriculum.detail(id)
+  - curriculum.getOne(id)
   
 - Cohort Service
   - cohort.list()
-  - cohort.detail(id)
+  - cohort.addImage(cohort)
+  - cohort.getCohort(id)
   - cohort.create(data)
+  - cohort.delete (data)
+  - cohort.shiftUnit (sourceDay, targetDay, id)
+
+- Chat Service 
+  - chat.joinRoom(data)
+  - chat.newUserJoined()
+  - userLeftRoom()
+  - sendMessage(data)
+  - newMessageRecived()
+  - saveMessage(data)
+  - getMessage()
   
-- Calendar Service ?? Dragula
-  - calendar.dragstart()
-  - calendar.moved()
-  - calendar.dragend()
-  - calendar.canceled()
-  - calendar.callback()
+- Unit Service
+  - unit.list()
+  - unit.getUnit(id)
+  - unit.edit(unit)
+  - unit.transfer(unit)
+  - unit.unitCreate(unit)
+  - unit.deleteUnit(id)
+  
+- User Service
+  - user.find()
+  - user.findProfile(id)
+  - user.userCreate(user)
+  - user.delete(data)
+  - changePassword(data)
+  - addProject(data)
+  - deleteProject(id)
 
 
 # Server
