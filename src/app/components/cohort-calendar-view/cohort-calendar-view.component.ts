@@ -16,6 +16,7 @@ export class CohortCalendarViewComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+
   }
 
   handleToggleClickCalendar() {
