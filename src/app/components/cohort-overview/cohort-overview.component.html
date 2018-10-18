@@ -1,6 +1,6 @@
 <div *ngIf="cohort" class="container center">
   <div>
-    <div>
+    <div *ngIf="currentUser.role !== 'student'">
       <a [routerLink]="['/user/create', cohort._id]">
         <li>
           <div class="card cohort-card create">
