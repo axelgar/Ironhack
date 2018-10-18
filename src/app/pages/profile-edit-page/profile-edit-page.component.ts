@@ -66,6 +66,7 @@ export class ProfileEditPageComponent implements OnInit {
 
       this.uploader.onErrorItem = (item, response, status, headers) => {
         this.error = JSON.parse(response).code;
+        this.loading = false;
         this.processing = false;
         this.feedbackEnabled = false;
       };

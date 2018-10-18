@@ -32,6 +32,7 @@ export class ProfileSettingsPageComponent implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        this.loading = false;
         this.error = true;
       })
   }
@@ -50,6 +51,7 @@ export class ProfileSettingsPageComponent implements OnInit {
         .catch((err) => {
           this.error = err.error.code;
           this.processing = false;
+          this.loading = false;
           this.feedbackEnabled = false;
         });
     }
