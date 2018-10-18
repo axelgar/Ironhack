@@ -15,6 +15,8 @@ export class CohortOverviewComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    console.log(this.cohort)
+    console.log(this.cohort.students)
   }
 
   handleDeleteClick(id) {

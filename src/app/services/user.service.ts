@@ -84,12 +84,4 @@ export class UserService {
       .toPromise()
       .then((user) => this.setProjects(user))
   }
-
-  // getOne(id): Promise<any> {
-  //   const options = {
-  //     withCredentials: true
-  //   }
-  //   return this.httpClient.get(`${this.apiUrl}/${id}`, options)
-  //     .toPromise();
-  // }
 }
