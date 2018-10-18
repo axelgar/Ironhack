@@ -178,12 +178,25 @@ User model
 role - String // required & enum ['admin', 'staff', 'student']
 email - String // required & unique
 password - String // required
+firstName - String
+lastName - String
+description - String
+profilePic - String // default
+projects - [
+  title - String
+  presLink - String
+  deployLink - String
+  module - String // enum['M1', 'M2', 'M3']
+]
+linkedin - String
+github - String
+cohort - ObjectId<Cohort>
 ```
 
 Curriculum model
 
 ```
-units - [ObjectID<Unit>] // required
+units - [ObjectID<Unit>]
 type - String // required & enum ['webdev', 'ux-ui']
 ```
 
@@ -191,18 +204,23 @@ Unit model
 
 ```
 mandatory - Boolean // required
-category - String // required & enum ['lessons', 'rituals', 'practice-&-reviews']
-sub-category - String // required & enum ['lecture', 'research', 'code-along', 'demo', 'practice', 'review', 'de', 'stand-up', 'kick-off', 'activity', 'pp']
+category - String // required & enum ['lessons', 'rituals', 'practice-&-reviews', 'break']
+sub-category - String // required & enum ['lecture', 'research', 'code-along', 'demo', 'practice', 'review', 'de', 'stand-up', , 'kick-off', 'activity', 'P.P.', 'D.E.']
 title - String // required
 links - Array [] 
-learningObjectives - String // required & ??
+learningObjectives - String // required & enum ['1', '2', '3']
+links - Array
+learningObjectives - String // enum []
 duration - Number // required
+description - String
+day - ObjectId<Unit>
+position - Number
 ```
 
 Calendar model
 
 ```
-class-master - ObjectID<User> // required
+class-master - ObjectID<User> // ref:'User'
 title - String // required 
 week - Number // required & enum ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 module - String // required & enum ['1', '2', '3']
@@ -217,13 +235,33 @@ Cohort model
 
 ```
 teacher - ObjectID<User> 
-TAs - [ObjectID<User>..] 
-students - [ObjectID<User>..] 
+TAs - [ObjectID<User>] 
+students - [ObjectID<User>] 
 title - String //
 type - String // required & enum ['webdev', 'ux-ui']
+location - String // required enum['bcn', ...]
 startDate - Date // required
+days - ObjectId<Day>
+adaptiveCurriculum - ObjectId<Unit>
+parkingLot - [Unit.schema]
 language - String // required & enum ['en', 'es']
 nickName - String 
+image: []
+```
+
+Day model
+
+```
+date - Date // required
+unit - [Unit.schema]
+```
+Message model
+
+```
+message - String // required
+room - String // required
+user - [User.schema]
+picture - String
 ```
 
 
@@ -231,6 +269,8 @@ nickName - String
 
 - GET /auth/me
 - POST /auth/login
+  - email validation (404) 
+  - bycrypt validation (404)
   - body:
     - email
     - password
@@ -253,49 +293,65 @@ nickName - String
   - validation
   - auth (401) admin
   
-- POST /cohort
+- POST /cohort/create
   - validation requeired fields (422 Unprocessable Entity)
   - auth (401) admin / staff
   - body:
     - type
-    - startDate
+    - location
     - language
-     (200) status code 
-    
-- POST /cohort/:id/edit
-  - validation, valid inputs 422 Unprocessable Entity
-  - auth (401) admin / staff
-  - body:
+    - startDate
     - teacher
-    - TAs
-    - students
-    - nickName 
      (200) status code 
     
-- GET /cohort/:id/details
+- GET /cohort/:id
   - validation validId
   - auth (401) user / not ano
    (200) status code 
-  
-- GET /cohort/:id/calendar
-  - validation validId
-  - auth (401) user / not ano
-   (200) status code 
-  
-- POST /cohort/:id/calendar/edit
+     
+ - POST /cohort/:id/drive
   - validation validId
   - auth (401) admin / staff
-  - body:
-    - unit
-     (200) status code 
-    
-
-
+  (200) status code 
+  
+- DELETE /cohort/delete/:id
+  - validation validId
+  - auth (401) admin / staff
+  (200) status code 
+  
+- GET /units
+  - auth (401) user / not ano
+   (200) status code
+   
 - GET /units/:id
   - validation
   - auth (401) user / not ano
-   (200) status code 
+   (200) status code
+   
+- PUT /units/transfer/:id
+  - auth (401) user / not ano
+  - validation validId
+  (200) status code
   
+- PUT /units/:id
+  - auth (401) user / not ano
+  - validation validId
+  (200) status code
+  
+- POST /units/unit-create
+
+-GET /chat
+  - auth (401) user / not ano
+  (200) status code
+  
+-POST /chat/create-message
+  - auth (401) user / not ano
+    - body:
+      - room
+      - message
+      - user
+      - picture 
+  (200) status code
 
 ## Links
 
