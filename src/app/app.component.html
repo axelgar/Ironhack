@@ -3,6 +3,13 @@
 </header>
 <router-outlet></router-outlet>
 <footer id="site-footer" *ngIf="user">
+  <div class="logo">
+    <img src="../assets/logobig.png" alt="Ironhack Logo">
+  </div>
+  <div class="user">
+    <h4>Hello,</h4>
+    <h4>{{user.firstName}}</h4>
+  </div>
   <nav class="links">
     <a *ngIf="(user.role === 'student')" [routerLink]="['/cohort', user.cohort]" routerLinkActive="open">
       <div>

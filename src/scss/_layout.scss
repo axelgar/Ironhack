@@ -30,6 +30,14 @@ body {
   width: 100%;
   z-index: 10;
 
+  .logo {
+    display: none;
+  }
+
+  .user{
+    display: none;
+  }
+
   nav {
     display: flex;
     justify-content: space-around;
@@ -223,6 +231,7 @@ body {
     margin: 0 20px 0 120px;
   }
 
+
   #site-footer {
     color: $color-white;
     padding: 10px 0;
@@ -233,6 +242,29 @@ body {
     height: 100%;
     width: 100px;
     z-index: 10;
+
+    .logout {
+      position: fixed;
+      bottom: 20px;
+      left: 30px;
+      border-bottom: 4px solid transparent;
+    }
+
+    .logo {
+      display: block;
+      width: 70%;
+      margin: 20px auto;
+      img {
+        width: 100%;
+      }
+    }
+
+    .user{
+      display: inline-block;
+      text-align: left;
+      padding-left: 10px;
+      margin-bottom: 150px;
+    }
   
     nav {
       display: block;
@@ -241,9 +273,10 @@ body {
       a {
         text-decoration: none;
         color: $color-white;
-        margin-right: 10px;
+        margin-bottom: 40px;
         border-bottom: 4px solid transparent;
         cursor: pointer;
+        width: 100%;
   
         img {
           width: 20px;
@@ -256,23 +289,12 @@ body {
           font-size: 11px;
         }
         
-  
         &:hover {
           border-bottom: 4px solid $color-blue;
         }
   
         &:last-child {
           margin: 0;
-        }
-      }
-  
-      .logout {
-        a{
-          border-bottom: 4px solid transparent;
-          cursor: pointer;
-        }
-        &:hover {
-          border-bottom: 4px solid $color-blue;
         }
       }
     }
