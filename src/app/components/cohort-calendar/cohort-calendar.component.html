@@ -1,5 +1,5 @@
 <ul *ngIf="cohort" class="calendar-stuff">
-  <li>
+  <li class="cohort">
     <div class="swiper-edit">
         <div *ngFor="let day of cohort.days;let i = index" class="day-card">
           <div id="{{day.date}}" [ngClass]="{'is-moved-left': movedLeft, 'is-moved-right': movedRight }">
@@ -9,7 +9,7 @@
             <ul [id]="day._id" [dragula]='"units"' [(dragulaModel)]="day.units" class="scroll">
               <li *ngFor='let unit of day.units, let i = index' [id]="unit._id"
               (onCohortEdit)="onCohortEdit($event)">
-                <div class="morning">
+                <div>
                   <a [routerLink]="['/unit', unit._id]">
                     <div class="card unit-card section calendar-view" [ngClass]="{
                           'is-lesson': unit.category === 'lessons',
