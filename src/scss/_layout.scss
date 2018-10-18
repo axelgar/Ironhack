@@ -1,9 +1,5 @@
 body {
-  background-image: url(assets/bg-cow.jpg);
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: $color-white;
 
   transition: all .17s;
 
@@ -21,6 +17,7 @@ body {
       width: 100%;
       z-index: 100;
       background-color: $color-blue;
+      color: $color-white;
 
       &.container {
         margin: 0;
@@ -32,7 +29,7 @@ body {
 #site-header {
   // transition: all .2s;
   padding: 20px 0 10px;
-  color: $color-white;
+  color: $color-blue;
   text-align: center;
   background-color: transparent;
 
@@ -366,12 +363,6 @@ body {
   }
 
   body {
-    background-image: url(assets/bg-big.jpg);
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 10px;
-
     transition: none;
 
     &.scrolled {
@@ -430,12 +421,6 @@ body {
 
 @media (min-width: 1028px) {
   body {
-    background-image: url(assets/bg-big.jpg);
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 10px;
-
     transition: none;
 
     &.scrolled {
