@@ -13,6 +13,8 @@ export class ModuleThreeUnitsComponent implements OnInit {
   id: string;
   curriculum: any;
   error = false;
+  name: string;
+  searchText: string = "";
 
   constructor(private curriculumService: CurriculumService, private route: ActivatedRoute) { }
 
@@ -29,6 +31,10 @@ export class ModuleThreeUnitsComponent implements OnInit {
             this.error = true;
           })
       })
+    }
+
+  clearFilter() {
+    this.searchText = "";
   }
 
 }

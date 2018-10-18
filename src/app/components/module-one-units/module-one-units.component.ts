@@ -31,7 +31,7 @@ export class ModuleOneUnitsComponent implements OnInit {
             this.error = true;
           })
       })
-  }
+    }
 
   clearFilter() {
     this.searchText = "";

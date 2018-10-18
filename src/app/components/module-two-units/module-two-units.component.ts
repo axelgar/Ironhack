@@ -9,11 +9,12 @@ import { CurriculumService } from 'src/app/services/curriculum.service';
   styleUrls: ['./module-two-units.component.scss']
 })
 export class ModuleTwoUnitsComponent implements OnInit {
-
   @Input() cohortId: any;
   id: string;
   curriculum: any;
   error = false;
+  name: string;
+  searchText: string = "";
 
   constructor(private curriculumService: CurriculumService, private route: ActivatedRoute) { }
 
@@ -30,5 +31,9 @@ export class ModuleTwoUnitsComponent implements OnInit {
             this.error = true;
           })
       })
+    }
+
+  clearFilter() {
+    this.searchText = "";
   }
 }
