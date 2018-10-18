@@ -20,8 +20,6 @@ export class ChatComponent implements OnInit{
   messageText:String;
   messageArray:Array<{user:Object, message:String, picture:String, firstName:String, lastName:String}> = [];
 
-
-
   constructor(
     private _chatService:ChatService,
     private authService: AuthService,
@@ -53,10 +51,6 @@ export class ChatComponent implements OnInit{
     })
   }
 
-  ngAfterViewChecked() {        
-    this.scrollToBottom();        
-  }  
-
   scrollToBottom(): void {
     try {
         this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
@@ -64,12 +58,9 @@ export class ChatComponent implements OnInit{
   }
 
   join() {
+    this.scrollToBottom(); 
     this._chatService.joinRoom({user:this.user.firstName, room:this.room});
   }
-
-  // leave() {
-  //   this._chatService.leaveRoom({user:this.user, room:this.room});
-  // }
 
   sendMessage(event) {
     if (event.keyCode == 13 && this.messageText !== undefined) {
