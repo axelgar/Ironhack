@@ -7,9 +7,9 @@
   </div>
   <div *ngIf="cohort" class="container max">
     <div class="cohort-menu">
-      <p [ngClass]="{'active': calendarView}" class="calendarView" (click)="handleToggleClickCalendarView()">calendar</p>
-      <p [ngClass]="{'active': overview}" class="overview" (click)="handleToggleClickOverview()">overview</p>
-      <p [ngClass]="{'active': drive}" class="drive" (click)="handleToggleClickDrive()">drive</p>
+      <p [ngClass]="{'active': calendarView, 'is-student' : isStudent}" class="calendarView" (click)="handleToggleClickCalendarView()">calendar</p>
+      <p [ngClass]="{'active': overview, 'is-student' : isStudent}" class="overview" (click)="handleToggleClickOverview()">overview</p>
+      <p [ngClass]="{'active': drive, 'is-student' : isStudent}" class="drive" (click)="handleToggleClickDrive()">drive</p>
       <p [ngClass]="{'active': addUnit}" class="unit" (click)="handleToggleClickAddUnit()" *ngIf="currentUser.role !== 'student'">add unit</p>
     </div>
   

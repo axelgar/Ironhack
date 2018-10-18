@@ -24,6 +24,7 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   destroySubject$: Subject<void> = new Subject();
   currentUser: any;
+  isStudent = false;
   
   constructor(
     private cohortService: CohortService, 
@@ -47,6 +48,10 @@ export class CohortDetailsPageComponent implements OnInit, OnDestroy {
       if(this.currentUser.role === 'student' && this.currentUser.cohort !== this.id ) {
         this.router.navigate([`/not-found`])
       }
+      if (this.currentUser.role === 'student') {
+        this.isStudent = true;
+      }
+
       this.cohort.days.forEach((day) => {
         day.units.sort((a, b) => { 
           return a.position - b.position;

@@ -11,7 +11,7 @@
       </div>
     </form>
     <div class="img-container" id="columns">
-      <div *ngFor="let image of images" class="figure">
+      <div *ngFor="let image of images | reverse" class="figure">
         <img src="{{image}}" alt="">
       </div> 
     </div>
