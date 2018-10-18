@@ -20,7 +20,7 @@
 
 
   form {
-    width: 70%;
+    width: 280px;
     margin: 0 auto;
     height: 100%;
     
@@ -78,3 +78,14 @@
 }
 
 
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1028px) {
+  .login {
+    form {
+      width: 30%;
+    }
+  }
+}

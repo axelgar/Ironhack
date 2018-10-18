@@ -4,12 +4,37 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  transition: all .17s;
+
+  &.scrolled {
+
+    main {
+      padding-top: 53px;
+    }
+    
+    #site-header {
+      // transition: background-color .2s;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background-color: $color-blue;
+
+      &.container {
+        margin: 0;
+      }
+    }
+  }
 }
 
 #site-header {
+  // transition: all .2s;
   padding: 20px 0 10px;
   color: $color-white;
   text-align: center;
+  background-color: transparent;
 
 
   h1 {
@@ -43,12 +68,12 @@ body {
     justify-content: space-around;
 
     a {
-      display: block;
+      display: inline-block;
       text-decoration: none;
-      color: $color-white;
-      margin-right: 10px;
+      color: #f9f9fa;
       border-bottom: 4px solid transparent;
       cursor: pointer;
+      text-align: center;
 
       &.ironhackers {
         display: none;
@@ -72,6 +97,7 @@ body {
 
       &:hover{
         border-bottom: 4px solid $color-blue;
+        display: inline-block;
       }
 
       &:last-child {
@@ -382,6 +408,10 @@ body {
 @media (min-width: 1028px) {
   body {
     background-image: url(assets/bg-big.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 10px;
   }
 
   .container {
@@ -427,9 +457,18 @@ body {
 
     .user{
       display: inline-block;
-      text-align: left;
-      padding-left: 10px;
+      text-align: center;
       margin-bottom: 150px;
+      display: inline-block;
+      text-transform: uppercase;
+
+      h4 {
+        font-weight: 500;
+
+        &.hello {
+          font-weight: 300;
+        }
+      }
     }
   
     nav {
@@ -442,10 +481,16 @@ body {
         margin-bottom: 40px;
         border-bottom: 4px solid transparent;
         cursor: pointer;
-        width: 100%;
+        width: 76%;
+
+        div {
+          text-align: center;
+          width: 100%;
+          margin: 0 auto;
+        }
 
         &.ironhackers {
-          display: block;
+          display: inline-block;
         }
   
         img {

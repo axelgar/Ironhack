@@ -54,7 +54,7 @@
     </div>
   
   
-    <div class="projects" *ngIf="currentUser._id === user._id">
+    <div class="projects" *ngIf="currentUser._id === user._id && currentUser.role === 'student'">
       <h3>Add a project</h3>
       <form *ngIf="user" (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}"
         id="form">
