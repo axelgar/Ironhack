@@ -60,8 +60,8 @@ export class ChatComponent implements OnInit{
   sendMessage(event) {
     if (event.keyCode == 13 && this.messageText !== undefined) {
       this._chatService.sendMessage({user:this.user, room:this.room, message:this.messageText, picture:this.user.profilePic});
-      this._chatService.saveMessage({user:this.user, room:this.room, message:this.messageText, picture:this.user.profilePic})
-      this.messageText = null;
+      this._chatService.saveMessage({user:this.user, room:this.room, message:this.messageText, picture:this.user.profilePic});
+      this.messageText = null
     }
   }
 }

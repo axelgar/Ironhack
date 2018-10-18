@@ -17,12 +17,19 @@ Virtual Campus for students of Ironhack with calendar as the main feature.
 -  **List curriculums** As an admin or staff I want to see the curriculums so that I choose one
 -  **Details curriculum** As an admin or staff I want to see the curriculum details so that I can choose one
 -  **Details unit** As a user I want to see the lecture details so that I can get more information about it
+-  **Create users** As an admin or staff I want to add students, teachers and staff to the aweb site
+-  **Create unit** As an admin or staff I want to creat unit to an existing cohort so that I can personalize it
+-  **User profile** As a user I want to see other users profile so that I can see their details
+-  **Edit profile** As a user I want to edit my profile so that I can update my password and my details
+-  **Draggable calendar** As an admin or staff I want to organise the calendar so that it is updated with the real one
+-  **Cohort overview** As a user I want to see the cohort details so that I can know who is participating
+-  **Search units** As an admin or staff I want to search units so that I can find one faster
+-  **Send emails** As an admin or staff I want to send and email to the created user so that he/she knows the password
+-  **Upload** As a user I want to upload pictures to the specific cohort so that I can shear some material
+-  **Send messages** As a user I want to send messages to the rest of the users so that I can comunicate wiht them in real time
 
 
 ## Backlog
-
-Create users: 
-- As an admin I want to add students, teachers and staff to the aweb site
 
 Create curriculum:
 - As an admin I want to creat curriculums for future courses
@@ -30,42 +37,21 @@ Create curriculum:
 Edit curriculum: 
 - As an admim I want to update a curriculum to fix errors and change content
 
-Create unit: 
-- As an admin or teacher I want to creat unit to an existing curriculum
-
 Edit unit:
 - As an admin or teacher I want to update unit to fix errors and change content
 
 Delete unit:
 - As an admin or teacher I want to delete unit in case the lecture gets obsolete
 
-User profile:
-- see own and other users profiles
-- list the projects
-
-Edit profile: 
-- as a user I want to upload img and content to my profile
-- as a user I want to change my password
-
 Calendar:
-- limit accesability for students
-- edit fields
 - save calendar and reuse it
 
 Cohort overview: 
-- list of all the projects
 - edit fields
-
-Search unit:
-- as a user I want to search unit by category and subcategory so that I can find specific unit faster
-
-Chat
 
 Picture recognision (Google Vision API - Test)
 
 Events calendar
-
-Upload and share documents
 
 List web dev and UX/UI news
 
@@ -79,8 +65,6 @@ Pictures page of the cohort
 
 Ironhack information
 
-Emails
-
 # Client
 
 ## Routes
@@ -93,6 +77,11 @@ Emails
 - /cohorts/create - create form
 - /cohorts/:id/calendar - cohort calendar
 - /cohorts/:id/details - cohort details
+- /users - list of users
+- /user/create/:id - create form
+- /user/settings - update form
+- /user/edit - update form
+- /chat - list messages
 - 404
 
 ## Pages
@@ -105,15 +94,30 @@ Emails
 - Cohorts List Page (admin/staff only)
 - Cohort Calendar Page (user only)
 - Cohort Detail Page (user only)
+- Profile Page (user only)
+- Profile Settings Page (user only)
+- Profile Edit Page (user only)
+- Chat Page (user only)
 - 404 Page (public)
 
 ## Components
 
-- Unit Card component
-  - Input: unit: any
-- Calendar component
-  - Input: calendar: any
-
+- cohort-calendar component
+  - Input: cohort: any
+- add-unit component
+  - Inpunt: cohort: any
+- arrow back component
+- cohort-calendar-view component
+  - Input: cohort: any
+- cohort-drive component
+  - Input: cohort: any
+- cohort-overview component
+  - Input: cohort: any
+- loading component
+- module-one-units component
+- module-two-units component
+- module-three-units component
+  
 ## IO
 
 
@@ -127,19 +131,41 @@ Emails
   
 - Curriculum Service
   - curriculum.list()
-  - curriculum.detail(id)
+  - curriculum.getOne(id)
   
 - Cohort Service
   - cohort.list()
-  - cohort.detail(id)
+  - cohort.addImage(cohort)
+  - cohort.getCohort(id)
   - cohort.create(data)
+  - cohort.delete (data)
+  - cohort.shiftUnit (sourceDay, targetDay, id)
+
+- Chat Service 
+  - chat.joinRoom(data)
+  - chat.newUserJoined()
+  - userLeftRoom()
+  - sendMessage(data)
+  - newMessageRecived()
+  - saveMessage(data)
+  - getMessage()
   
-- Calendar Service ?? Dragula
-  - calendar.dragstart()
-  - calendar.moved()
-  - calendar.dragend()
-  - calendar.canceled()
-  - calendar.callback()
+- Unit Service
+  - unit.list()
+  - unit.getUnit(id)
+  - unit.edit(unit)
+  - unit.transfer(unit)
+  - unit.unitCreate(unit)
+  - unit.deleteUnit(id)
+  
+- User Service
+  - user.find()
+  - user.findProfile(id)
+  - user.userCreate(user)
+  - user.delete(data)
+  - changePassword(data)
+  - addProject(data)
+  - deleteProject(id)
 
 
 # Server
@@ -152,12 +178,25 @@ User model
 role - String // required & enum ['admin', 'staff', 'student']
 email - String // required & unique
 password - String // required
+firstName - String
+lastName - String
+description - String
+profilePic - String // default
+projects - [
+  title - String
+  presLink - String
+  deployLink - String
+  module - String // enum['M1', 'M2', 'M3']
+]
+linkedin - String
+github - String
+cohort - ObjectId<Cohort>
 ```
 
 Curriculum model
 
 ```
-units - [ObjectID<Unit>] // required
+units - [ObjectID<Unit>]
 type - String // required & enum ['webdev', 'ux-ui']
 ```
 
@@ -165,18 +204,23 @@ Unit model
 
 ```
 mandatory - Boolean // required
-category - String // required & enum ['lessons', 'rituals', 'practice-&-reviews']
-sub-category - String // required & enum ['lecture', 'research', 'code-along', 'demo', 'practice', 'review', 'de', 'stand-up', 'kick-off', 'activity', 'pp']
+category - String // required & enum ['lessons', 'rituals', 'practice-&-reviews', 'break']
+sub-category - String // required & enum ['lecture', 'research', 'code-along', 'demo', 'practice', 'review', 'de', 'stand-up', , 'kick-off', 'activity', 'P.P.', 'D.E.']
 title - String // required
 links - Array [] 
-learningObjectives - String // required & ??
+learningObjectives - String // required & enum ['1', '2', '3']
+links - Array
+learningObjectives - String // enum []
 duration - Number // required
+description - String
+day - ObjectId<Unit>
+position - Number
 ```
 
 Calendar model
 
 ```
-class-master - ObjectID<User> // required
+class-master - ObjectID<User> // ref:'User'
 title - String // required 
 week - Number // required & enum ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 module - String // required & enum ['1', '2', '3']
@@ -191,13 +235,33 @@ Cohort model
 
 ```
 teacher - ObjectID<User> 
-TAs - [ObjectID<User>..] 
-students - [ObjectID<User>..] 
+TAs - [ObjectID<User>] 
+students - [ObjectID<User>] 
 title - String //
 type - String // required & enum ['webdev', 'ux-ui']
+location - String // required enum['bcn', ...]
 startDate - Date // required
+days - ObjectId<Day>
+adaptiveCurriculum - ObjectId<Unit>
+parkingLot - [Unit.schema]
 language - String // required & enum ['en', 'es']
 nickName - String 
+image: []
+```
+
+Day model
+
+```
+date - Date // required
+unit - [Unit.schema]
+```
+Message model
+
+```
+message - String // required
+room - String // required
+user - [User.schema]
+picture - String
 ```
 
 
@@ -205,6 +269,8 @@ nickName - String
 
 - GET /auth/me
 - POST /auth/login
+  - email validation (404) 
+  - bycrypt validation (404)
   - body:
     - email
     - password
@@ -227,55 +293,71 @@ nickName - String
   - validation
   - auth (401) admin
   
-- POST /cohort
+- POST /cohort/create
   - validation requeired fields (422 Unprocessable Entity)
   - auth (401) admin / staff
   - body:
     - type
-    - startDate
+    - location
     - language
-     (200) status code 
-    
-- POST /cohort/:id/edit
-  - validation, valid inputs 422 Unprocessable Entity
-  - auth (401) admin / staff
-  - body:
+    - startDate
     - teacher
-    - TAs
-    - students
-    - nickName 
      (200) status code 
     
-- GET /cohort/:id/details
+- GET /cohort/:id
   - validation validId
   - auth (401) user / not ano
    (200) status code 
-  
-- GET /cohort/:id/calendar
-  - validation validId
-  - auth (401) user / not ano
-   (200) status code 
-  
-- POST /cohort/:id/calendar/edit
+     
+ - POST /cohort/:id/drive
   - validation validId
   - auth (401) admin / staff
-  - body:
-    - unit
-     (200) status code 
-    
-
-
+  (200) status code 
+  
+- DELETE /cohort/delete/:id
+  - validation validId
+  - auth (401) admin / staff
+  (200) status code 
+  
+- GET /units
+  - auth (401) user / not ano
+   (200) status code
+   
 - GET /units/:id
   - validation
   - auth (401) user / not ano
-   (200) status code 
+   (200) status code
+   
+- PUT /units/transfer/:id
+  - auth (401) user / not ano
+  - validation validId
+  (200) status code
   
+- PUT /units/:id
+  - auth (401) user / not ano
+  - validation validId
+  (200) status code
+  
+- POST /units/unit-create
+
+-GET /chat
+  - auth (401) user / not ano
+  (200) status code
+  
+-POST /chat/create-message
+  - auth (401) user / not ano
+    - body:
+      - room
+      - message
+      - user
+      - picture 
+  (200) status code
 
 ## Links
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+Physical board
 
 ### Git
 
@@ -284,10 +366,10 @@ The url to your repository and to your deployed project
 [Client repository Link](https://github.com/axelgar/Ironhack-client/)
 [Server repository Link](https://github.com/axelgar/Ironhack-server)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://ironcampus.herokuapp.com)
 
 ### Slides
 
 The url to your presentation slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/13E2TllxYrJ4FxTDN4Rbi7GmIN0rmTHuCFUZdKCLylf8/edit?usp=sharing)
