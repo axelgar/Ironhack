@@ -1,4 +1,4 @@
-<div class="chat">
+<div class="chat container max">
   <div>
     <h2>IronChat</h2>
   </div>
@@ -25,21 +25,24 @@
       </div> -->
   <!-- </div> -->
 
-  <div class="hall-container">
+  <div #scrollMe class="hall-container">
     <div *ngIf="messageArray">
       <div *ngFor="let item of messageArray" class="message">
         <div class="wraper">
-          <div>
+          <div class="thumb">
             <img src="{{item.picture}}" alt="">
           </div>
-          <p>{{item.message}}</p>
+          <!-- <div> -->
+            <!-- <h5>{{item.firstName}} {{item.lastName}}</h5> -->
+            <p>{{item.message}}</p>
+          <!-- </div> -->
         </div>
       </div>
     </div>
   </div>
   <div class="message-container" >
     <div class="input-message">
-      <input type="text" class="form-control" [(ngModel)]="messageText" (keydown)="sendMessage($event)">            
+      <input type="text" class="form-control" [(ngModel)]="messageText" (keydown)="sendMessage($event)" placeholder="Say hello!">            
     </div>
     <!-- <div class="col-sm-2">
       <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
