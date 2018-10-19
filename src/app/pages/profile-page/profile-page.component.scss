@@ -5,10 +5,10 @@
 
 .profile-pic {
   width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 10;
   margin: 0 auto;
-  top: 60px;
+  top:-91px;
   left: 0;
   text-align: center;
 
@@ -53,6 +53,7 @@
   .edit-icon {
     position: absolute;
     top: 10px;
+    z-index: 110;
     right: 10px;
     cursor: pointer;
 
@@ -197,7 +198,7 @@ form {
   }
 
   .profile-pic {
-    top: 49px;
+    top: -101px;
     img {
         width: 125px;
       }
@@ -252,11 +253,12 @@ form {
   }
 
   .profile-pic {
-    left: 50px;
-    top: 30px;
+    left: 0;
+    top: -90px;
+
 
       img {
-        width: 200px;
+        width: 160px;
       }
   }
 
