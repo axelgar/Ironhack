@@ -80,6 +80,8 @@ import { CohortCalendarViewComponent } from './components/cohort-calendar-view/c
 import { SearchPipe } from './pipes/search.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 const routes: Routes = [
@@ -139,7 +141,8 @@ const routes: Routes = [
     FormsModule,
     DragulaModule,
     FileUploadModule,
-    SwiperModule
+    SwiperModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
