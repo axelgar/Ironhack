@@ -7,7 +7,7 @@
       <ul *ngIf="users" >
         <li *ngFor="let user of users" class="card students-card" [routerLink]="['/user', user._id]">
             <div class="user-img">
-              <img src="{{user.profilePic}}" alt="">
+              <img src="{{user.profilePic}}" alt="profile picture">
             </div>
             <div class="info-card">
               <p class="person">{{user.role}}</p>
